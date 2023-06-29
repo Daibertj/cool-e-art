@@ -28,4 +28,16 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class 
+class Ilustation(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    url_image=db.Column(db.String(255), unique=True, nullable=False)
+    title=db.Column(db.String(255), unique=False, nullable=False)
+    description=db.Column(db.String(255))
+
+def serialize(self):
+        return {
+            "id": self.id,
+            "url_image": self.url_image,
+            "title": self.title,
+            "description": self.description,
+            }   
