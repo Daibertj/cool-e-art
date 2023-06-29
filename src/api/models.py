@@ -34,10 +34,31 @@ class Ilustation(db.Model):
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
 
-def serialize(self):
+    def __repr__(self):
+        return f'<Ilustration {self.id}>'
+
+    def serialize(self):
         return {
             "id": self.id,
             "url_image": self.url_image,
             "title": self.title,
             "description": self.description,
             }   
+
+
+class Image(db.Model):
+     id=db.Column(db.Integer, primary_key=True)
+     ilustation_id=(db.Integer, ForeignKey('Ilustration.id'))
+
+     def __repr__(self):
+        return f'<Image {self.id}>'
+     
+     def serialize(self):
+        return {
+            "id": self.id,
+
+        }
+     
+     
+
+    
