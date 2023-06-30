@@ -48,7 +48,7 @@ class Ilustation(db.Model):
 
 class Image(db.Model):
      id=db.Column(db.Integer, primary_key=True)
-     ilustation_id=(db.Integer, ForeignKey('Ilustration.id'))
+     ilustation_id=db.Column(db.Integer, ForeignKey('Ilustration.id'))
 
      def __repr__(self):
         return f'<Image {self.id}>'
