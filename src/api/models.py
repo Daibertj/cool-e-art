@@ -16,6 +16,9 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
     
+    ilustration= db.relationship('ilustration')
+    favorite = db.relationship('favorite')
+    image = db.relationship('image')
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -37,6 +40,8 @@ class Ilustation(db.Model):
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
     artist_id=db.Column(db.Integer, ForeignKey('user.id'))
+    
+    image= db.relationship('image')
     
     def __repr__(self):
         return f'<Ilustration {self.id}>'
