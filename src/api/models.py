@@ -18,7 +18,7 @@ class User(db.Model):
     
     ilustration= db.relationship('ilustration')
     favorite = db.relationship('favorite')
-    image = db.relationship('image')
+    
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -39,9 +39,10 @@ class Ilustation(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
-    artist_id=db.Column(db.Integer, ForeignKey('user.id'))
+    user_id=db.Column(db.Integer, ForeignKey('user.id'))
+    url_image=db.Column(db.String(255), unique=True, nullable=False)
+    category= db.Column(db.String(30), nullable=False)
     
-    image= db.relationship('image')
     
     def __repr__(self):
         return f'<Ilustration {self.id}>'
@@ -51,25 +52,10 @@ class Ilustation(db.Model):
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "artist": self.artist_id
+            "user": self.user_id,
+            "category": self.category
             }   
 
-
-# tabla de imagen, conectada a ilustaracion y a user con rol artista
-class Image(db.Model):
-    id=db.Column(db.Integer, primary_key=True)
-    ilustation_id=db.Column(db.Integer, ForeignKey('ilustration.id'), nullable=False),
-    artist_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    url_image=db.Column(db.String(255), unique=True, nullable=False)
-    
-    def __repr__(self):
-        return f'<Image {self.id}>'
-     
-    def serialize(self):
-        return {
-            "id": self.id,
-
-        }
 
 #tabla favorito con relacion user y con ilustracion
 class Favorite(db.Model):
