@@ -69,7 +69,7 @@ const Register = () => {
       <h1>Register</h1>
       <form>
         <div className="form-group  ">
-          <label for="name">Name:</label>
+          <label htmlFor="name">Name:</label>
           <input
             className="form-control "
             type="text"
