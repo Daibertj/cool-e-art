@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-
-
 const initialState = {
   name: "",
   lastname: "",
@@ -24,7 +22,6 @@ const Register = () => {
       const response = await actions.registerUser(user);
       if (response === 200) {
         console.log("Registro exitoso");
-        
       } else {
         console.log("Error en el registro");
       }
@@ -33,17 +30,18 @@ const Register = () => {
     }
   };
 
-    const handleChange = ({ target }) => {
-      setUser({ ...user, [target.name]: target.value })
-  }
+  const handleChange = ({ target }) => {
+    setUser({ ...user, [target.name]: target.value });
+  };
 
   return (
-    <div className="container">
-      <h1>Signup</h1>
+    <div className="container-fluid  w-25 border border-danger ">
+      <h1>Registe</h1>
       <form>
-        <div>
-          <label>Name:</label>
+        <div className="form-group  ">
+          <label for="name">Name:</label>
           <input
+            className="form-control "
             type="text"
             value={user.name}
             id="name"
@@ -51,19 +49,21 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="form-group ">
           <label>Last Name:</label>
           <input
+            className="form-control"
             type="text"
-           value={user.lastnamename}
+            value={user.lastnamename}
             id="lastname"
             name="lastname"
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="form-group ">
           <label>Email:</label>
           <input
+            className="form-control"
             type="email"
             value={user.email}
             id="email"
@@ -71,9 +71,10 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="form-group ">
           <label>Password:</label>
           <input
+            className="form-control"
             type="password"
             value={user.password}
             id="password"
@@ -81,11 +82,12 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
-        <button className="btn btn-primary"
+        <button
+          className="btn btn-primary mt-3"
           type="button"
           onClick={handleSignup}
         >
-          Signup
+          Register
         </button>
       </form>
       {/* <p>
