@@ -9,6 +9,7 @@ const initialState = {
   lastname: "",
   email: "",
   password: "",
+  image:""
 };
 
 const Register = () => {
@@ -30,7 +31,16 @@ const Register = () => {
     }
 
     try {
-      const response = await actions.registerUser(user);
+      const formData = new FormData()
+
+        formData.append("name", user.name)
+        formData.append("lastname", user.lastname)
+        formData.append("email", user.email)
+        formData.append("password", user.password)
+        formData.append("avatar", user.image)
+
+        const response = actions.registerUser(formData)
+
       if (response === 200) {
         console.log("Registro exitoso");
         navigate("/")
@@ -102,6 +112,18 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="form-group">
+                                <label>Ingresa Avatar </label>
+                                <input
+                                    type="file"
+                                    className="form-control"
+                                    id="image"
+                                    name="image"
+                                                                        onChange={({ target }) => setUser({ ...user, avatar: target.files[0] })}
+                                //value={user.avatar}
+                                />
+                            </div>
+
         <button
           className="btn btn-primary mt-3"
           type="button"
