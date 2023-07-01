@@ -20,6 +20,7 @@ def check_password(hash_password, password, salt):
     return check_password_hash(hash_password, f"{password}{salt}")
 
 
+
 @api.route('/user', methods=['POST'])
 def register_user():
     if request.method == "POST":
@@ -76,3 +77,13 @@ def register_user():
             db.session.rollback()
             return jsonify({"msg": "Error registering user", "error": str(error)}), 500
         return jsonify([]), 200
+
+
+@api.route('/hello', methods=['POST', 'GET'])
+def handle_hello():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200        
