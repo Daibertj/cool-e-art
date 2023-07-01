@@ -16,8 +16,8 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
     
-    ilustration= db.relationship('ilustration')
-    favorite = db.relationship('favorite')
+    ilustration= db.relationship('Ilustration' , uselist=True, backref='user')
+    favorite = db.relationship('Favorite', uselist=True, backref='user')
     
 
     def __repr__(self):
@@ -35,11 +35,11 @@ class User(db.Model):
         }
 
 #tabla ilustracion debe estar conectada con image, aca deben existir mucahs imagenes desde image de uno a mucho
-class Ilustation(db.Model):
+class Ilustration(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
-    user_id=db.Column(db.Integer, ForeignKey('user.id'))
+    user_id=db.Column(db.Integer, db.ForeignKey ('user.id'))
     url_image=db.Column(db.String(255), unique=True, nullable=False)
     category= db.Column(db.String(30), nullable=False)
     
@@ -60,8 +60,8 @@ class Ilustation(db.Model):
 #tabla favorito con relacion user y con ilustracion
 class Favorite(db.Model):
     id=db.Column(db.Integer, primary_key=True)
-    user_id= db.Column(db,Integer, ForeignKey('user.id'), nullable=False)
-    ilustration_id=db.Column(db.Integer, ForeignKey('ilustration_id'))
+    user_id= db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    ilustration_id=db.Column(db.Integer, db.ForeignKey('ilustration_id'))
     
     def __repr__(self):
         return f'<Favorite {self.id}>'
