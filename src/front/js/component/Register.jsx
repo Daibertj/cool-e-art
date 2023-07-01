@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-//import Swal from 'sweetalert2'
+
 
 const initialState = {
   name: "",
