@@ -35,7 +35,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container-fluid  w-25 border border-danger ">
+    <div className="container-fluid  w-25  ">
       <h1>Registe</h1>
       <form>
         <div className="form-group  ">
