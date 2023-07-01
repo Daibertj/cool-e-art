@@ -15,6 +15,7 @@ class User(db.Model):
     create_at = db.Column(db.DateTime, nullable=False,default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
+    salt = db.Column(db.String(100), unique=False, nullable=False)
     
     ilustration= db.relationship('ilustration')
     favorite = db.relationship('favorite')
