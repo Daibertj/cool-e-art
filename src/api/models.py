@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-# tabla de registro de artista y comprador debe estar conectada con ilustations, images y favoritos de uno a muchos
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=False, nullable=False )
@@ -16,8 +16,9 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
     salt = db.Column(db.String(100), unique=False, nullable=False)
-    ilustration= db.relationship('Ilustration' , uselist=True, backref='user')
-    favorite = db.relationship('Favorite', uselist=True, backref='user')
+
+    ilustration= db.relationship('Ilustration' ,backref='user', uselist=True )
+    favorite = db.relationship('Favorite',backref='user', uselist=True )
     
 
     def __repr__(self):
@@ -34,7 +35,6 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-#tabla ilustracion debe estar conectada con image, aca deben existir mucahs imagenes desde image de uno a mucho
 class Ilustration(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(255), unique=False, nullable=False)
@@ -57,11 +57,10 @@ class Ilustration(db.Model):
             }   
 
 
-#tabla favorito con relacion user y con ilustracion
 class Favorite(db.Model):
-    id=db.Column(db.Integer, primary_key=True)
-    user_id= db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    ilustration_id=db.Column(db.Integer, db.ForeignKey('ilustration_id'))
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    ilustration_id = db.Column(db.Integer, db.ForeignKey('ilustration.id'))
     
     def __repr__(self):
         return f'<Favorite {self.id}>'
