@@ -36,7 +36,7 @@ const Register = () => {
       formData.append("lastname", user.lastname);
       formData.append("email", user.email);
       formData.append("password", user.password);
-      formData.append("avatar", user.image);
+      formData.append("image", user.image);
 
       const response = actions.registerUser(formData);
 
@@ -111,7 +111,7 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label>Ingresa Avatar </label>
+          <label>Ingresa Imagen de Profile </label>
           <input
             type="file"
             className="form-control"

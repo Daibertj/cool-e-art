@@ -35,6 +35,7 @@ class User(db.Model):
             "name": self.name,
             "lastname": self.lastname,
             "username": self.username,
+            "image":self.image,
             "role":self.role
             # do not serialize the password, its a security breach
         }
