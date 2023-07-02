@@ -56,8 +56,9 @@ def register_user():
         password_salt = b64encode(os.urandom(32)).decode('utf-8')
         password_hash = set_password(data.get("password"), password_salt)
 
-        response_image = uploader.upload(data.get("image"))
-        data.update({"image": response_image.get("url")})
+        if data.get("image") is not None:
+            response_image = uploader.upload(data.get("image"))
+            data.update({"image": response_image.get("url")})
 
         new_user = User(
             name=data.get("name"),
