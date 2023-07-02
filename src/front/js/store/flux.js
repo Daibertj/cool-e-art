@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  })
 		
 				  let data = await response.json()
-		
+				  return response.status
 		
 				} catch (error) {
 				  return response.status
