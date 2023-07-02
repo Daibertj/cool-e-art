@@ -82,7 +82,7 @@ const Register = () => {
           <input
             className="form-control"
             type="text"
-            value={user.lastnamename}
+            value={user.lastname}
             id="lastname"
             name="lastname"
             onChange={handleChange}
@@ -120,7 +120,7 @@ const Register = () => {
             onChange={({ target }) =>
               setUser({ ...user, image: target.files[0] })
             }
-            value={user.image}
+            //value={user.image}
           />
         </div>
 
