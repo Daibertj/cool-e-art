@@ -40,7 +40,14 @@ const Register = () => {
 
       const response = actions.registerUser(formData);
 
-      if (response === 200) {
+      if (response === 201) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Registro Exitoso',
+          showConfirmButton: false,
+          timer: 1500
+        })
         console.log("Registro exitoso");
         navigate("/");
       } else {
