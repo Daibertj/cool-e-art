@@ -9,9 +9,9 @@ class User(db.Model):
     lastname = db.Column(db.String(30), unique=False, nullable=False )
     username = db.Column(db.String(30), unique=False, nullable=True )
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(255), unique=False, nullable=False)
     image = db.Column(db.String(255), unique=False, nullable=True )
-    role = db.Column(db.String(30), nullable=False)
+    role = db.Column(db.String(30))
     create_at = db.Column(db.DateTime, nullable=False,default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())

@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  })
 		
 				  let data = await response.json()
-		
+				  return response.status
 		
 				} catch (error) {
 				  return response.status
@@ -39,6 +39,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			fetchUserData: async () => {
+				const store = getStore();
+				try {
+				  const response = await fetch(`${process.env.BACKEND_URL}/user-data`, {
+					method: "GET",
+					headers: {
+					  Authorization: `Bearer ${store.token}` // Si es necesario enviar el token en la cabecera
+					}
+				  });
+		
+				  if (response.ok) {
+					
+					const data = await response.json();
+					console.log("User data:", data);
+					// Actualizar el estado de la aplicación con los datos del usuario obtenidos
+					setStore({ userData: data });
+				  } else {
+					// Hubo un error en la solicitud
+					console.log("Error fetching user data:", response.status);
+					// Realizar cualquier acción adicional en caso de error
+				  }
+				} catch (error) {
+				  // Hubo un error en la comunicación con el servidor
+				  console.log("Error fetching user data:", error);
+				  // Realizar cualquier acción adicional en caso de error
+				}
+			  },
 
 			getMessage: async () => {
 				try{

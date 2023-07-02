@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useContext }from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { Context } from "../store/appContext";
+
 
 function UserPage() {
+  const { actions, store } = useContext(Context)
+  const [userData, setUserData] = useState(null);
+
   return (
     <>
       <div>
