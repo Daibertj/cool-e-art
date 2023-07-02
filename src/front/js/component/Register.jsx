@@ -38,7 +38,7 @@ const Register = () => {
       formData.append("password", user.password);
       formData.append("image", user.image);
 
-      const response = actions.registerUser(formData);
+      const response = await actions.registerUser(formData);
 
       if (response === 201) {
         Swal.fire({
