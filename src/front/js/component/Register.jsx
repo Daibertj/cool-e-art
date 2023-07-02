@@ -46,7 +46,7 @@ const Register = () => {
           icon: 'success',
           title: 'Registro Exitoso',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1000
         })
         console.log("Registro exitoso");
         navigate("/");
