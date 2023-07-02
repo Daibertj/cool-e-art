@@ -10,8 +10,8 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5 container">
-			<div class="row">
-				<div class="col-9">
+			<div className="row">
+				<div className="col-9">
 					<Card/>
 				</div>
 			</div>
