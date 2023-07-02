@@ -39,7 +39,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Ilustrration(db.Model):
+class Ilustration(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
