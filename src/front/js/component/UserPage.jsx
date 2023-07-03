@@ -22,13 +22,14 @@ function UserPage() {
         <div className="col-lg-6 col-md-8 mx-auto">
           <h1 className="fw-light">Edgar Diaz{userData.name}</h1>
         </div>
-        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-  gracias</div>
+        
+        <div class="d-flex align-items-center p-3 my-3  bg-dark-subtle text-emphasis-dark rounded shadow-sm">
+  
           <div className="lh-1">
-            <h1 className="mb-0 text-blue lh-1">Bootstrap</h1>
+            <h1 className="mb-0 text-blue lh-1">Mis Creaciones</h1>
             <small>Since 2011</small>
           </div>
-        
+        </div>
 
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
