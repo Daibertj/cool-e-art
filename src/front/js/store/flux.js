@@ -40,7 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         getActions().changeColor(0, "green");
       },
 
-      UserData: async (user) => {
+      UserData: async () => {
         const store = getStore();
         try {
           const response = await fetch(`${process.env.BACKEND_URL}/user`, {
