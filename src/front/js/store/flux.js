@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         try {
           const response = await fetch(`${process.env.BACKEND_URL}/user/${id}`, {
-            //method: "GET",
+            method: "GET",
             // headers: {
 			// 	//"Content-Type": "application/json"
             //   //Authorization: `Bearer ${store.token}`,
