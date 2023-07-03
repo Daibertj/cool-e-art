@@ -1,32 +1,34 @@
-import React, { useContext, useState }from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 
-
-
 function UserPage() {
   const { actions, store } = useContext(Context);
-  const [userData, setUserData] = useState(null);
+  const { userData } = store;
+  const { getUserData } = actions;
 
   return (
     <>
       <div>
-        <div className="text-center">
-          <img src={store.userData.image} className="img-thumbnail rounded" alt="..." />
+        <div className="container">
+          <img
+            src="rigo-baby.jpg"
+            className="img-thumbnail rounded"
+            alt="..."
+          />
         </div>
 
         <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">{store.userData.name}</h1>
-          <p className="lead text-body-secondary">
-            Something short and leading about the collection below—its contents,
-            the creator, etc. Make it short and sweet, but not too short so
-            folks don’t simply skip over it entirely.
-          </p>
+          <h1 className="fw-light">Edgar Diaz{userData.name}</h1>
         </div>
-<p className="container">
-  Mis creaciones
-</p>
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+  gracias</div>
+          <div className="lh-1">
+            <h1 className="mb-0 text-blue lh-1">Bootstrap</h1>
+            <small>Since 2011</small>
+          </div>
+        
 
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
@@ -168,11 +170,7 @@ function UserPage() {
             </div>
           </div>
         </div>
-        <p className="container">
-  Mis Favoritos
-</p>
-
-
+        <p className="container">Mis Favoritos</p>
       </div>
     </>
   );
