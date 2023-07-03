@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import { Context } from "../store/appContext";
 
 function UserPage() {
+  const { actions, store } = useContext(Context);
+  
+
   return (
     <>
       <div>
         <div className="text-center">
-          <img src={rigoImageUrl} className="img-thumbnail rounded" alt="..." />
+          <img src={store.userData.image} className="img-thumbnail rounded" alt="..." />
         </div>
 
         <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">Edgar Diaz</h1>
+          <h1 className="fw-light">{store.userData.name}</h1>
           <p className="lead text-body-secondary">
             Something short and leading about the collection below—its contents,
             the creator, etc. Make it short and sweet, but not too short so
