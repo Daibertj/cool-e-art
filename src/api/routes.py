@@ -30,7 +30,7 @@ def register_user():
 
         data = {
             "name": data_form.get("name"),
-            "last_name": data_form.get("lastname"),
+            "lastname": data_form.get("lastname"),
             "email": data_form.get("email"),
             "password": data_form.get("password"),
             "image": data_files.get("image")
@@ -41,7 +41,7 @@ def register_user():
             return jsonify({"msg": "Missing JSON in request"}), 400
         if data.get("name") is None:
             return jsonify({"msg": "Missing name parameter"}), 400
-        if data.get("last_name") is None:
+        if data.get("lastname") is None:
             return jsonify({"msg": "Missing last name parameter"}), 400
         if data.get("email") is None:
             return jsonify({"msg": "Missing email parameter"}), 400
@@ -56,12 +56,13 @@ def register_user():
         password_salt = b64encode(os.urandom(32)).decode('utf-8')
         password_hash = set_password(data.get("password"), password_salt)
 
-        response_image = uploader.upload(data.get("image"))
-        data.update({"image": response_image.get("url")})
+        if data.get("image") is not None:
+            response_image = uploader.upload(data.get("image"))
+            data.update({"image": response_image.get("url")})
 
         new_user = User(
             name=data.get("name"),
-            last_name=data.get("last_name"),
+            lastname=data.get("lastname"),
             email=data.get("email"),
             password=password_hash,
             image=data.get("image"),

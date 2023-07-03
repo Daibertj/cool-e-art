@@ -38,9 +38,16 @@ const Register = () => {
       formData.append("password", user.password);
       formData.append("image", user.image);
 
-      const response = actions.registerUser(formData);
+      const response = await actions.registerUser(formData);
 
-      if (response === 200) {
+      if (response === 201) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Registro Exitoso',
+          showConfirmButton: false,
+          timer: 1000
+        })
         console.log("Registro exitoso");
         navigate("/");
       } else {
@@ -82,7 +89,7 @@ const Register = () => {
           <input
             className="form-control"
             type="text"
-            value={user.lastnamename}
+            value={user.lastname}
             id="lastname"
             name="lastname"
             onChange={handleChange}
@@ -120,7 +127,7 @@ const Register = () => {
             onChange={({ target }) =>
               setUser({ ...user, image: target.files[0] })
             }
-            value={user.image}
+            //value={user.image}
           />
         </div>
 
