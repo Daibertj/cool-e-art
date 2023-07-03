@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
+import { Card } from "./Card";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
@@ -22,17 +23,35 @@ function UserPage() {
         <div className="col-lg-6 col-md-8 mx-auto">
           <h1 className="fw-light">Edgar Diaz{userData.name}</h1>
         </div>
-        <div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-  gracias</div>
+        <div className="d-flex align-items-center p-3 my-3 border border-primary rounded shadow-sm">
+  
           <div className="lh-1">
-            <h1 className="mb-0 text-blue lh-1">Bootstrap</h1>
-            <small>Since 2011</small>
+            <h1 className="mb-0 text-blue lh-1">Mis creaciones</h1>
+            
           </div>
-        
+        </div>
 
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div>
+              <Card/>
+              <div className="btn-group">
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-secondary"
+                        >
+                          View
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-secondary"
+                        >
+                          Edit
+                        </button>
+                      </div>
+
+              </div>
               <div className="col">
                 <div className="card shadow-sm">
                   <svg
