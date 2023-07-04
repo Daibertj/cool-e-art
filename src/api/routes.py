@@ -9,6 +9,8 @@ import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import cloudinary.uploader as uploader
+from .models import User
+
 api = Blueprint('api', __name__)
 
 
@@ -79,6 +81,7 @@ def register_user():
         return jsonify([]), 200
 
 
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -108,3 +111,18 @@ def login():
             else:
                 return jsonify({"msg": "Bad credentials"}), 400
         return jsonify({"msg": "Bad credentials"}), 400
+
+@api.route('/user/<int:id>', methods=['GET'])
+#@jwt_required
+def get_user(id):
+    # if request.method == "GET":
+    #     user_id = get_jwt_identity()
+    # if user_id == id:
+         user = User.query.get(id)
+         if user:
+             return jsonify(user.serialize()), 200
+         else:
+             return jsonify({'error': 'User not found'}), 404
+    # else:
+    #     return jsonify({'error': 'Unauthorized'}), 401      
+
