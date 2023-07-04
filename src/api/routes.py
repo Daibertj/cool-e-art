@@ -81,8 +81,8 @@ def register_user():
         return jsonify([]), 200
 
 
-@api.route('/user', methods=['GET'])
-@jwt_required
+@api.route('/user/<int:id>', methods=['GET'])
+#@jwt_required
 def get_user(id):
      if request.method == "GET":
          user_id = get_jwt_identity()
@@ -94,3 +94,4 @@ def get_user(id):
              return jsonify({'error': 'User not found'}), 404
     
               
+
