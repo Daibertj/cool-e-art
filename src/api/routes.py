@@ -81,13 +81,12 @@ def register_user():
         return jsonify([]), 200
 
 
-@api.route('/user/<int:id>', methods=['GET'])
-#@jwt_required
-def get_user(id):
+@api.route('/user/token', methods=['GET'])
+@jwt_required
+def get_user_by_token(id):
      if request.method == "GET":
-         user_id = get_jwt_identity()
-    
-         user = User.query.get(user_id)
+         user = User.query.get(get_jwt_identity())
+             
          if user:
              return jsonify(user.serialize()), 200
          else:

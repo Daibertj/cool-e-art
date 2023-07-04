@@ -10,12 +10,13 @@ const initialState = {
 
 export const Navbar = () => {
 
-  const { actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const [user, setUser] = useState(initialState)
 
   const handleLogin = async () => {
-    let response = await actions.login(user);
+    
+    const response = await actions.login(user);
     if (response == 200) {
       Swal.fire({
         title: "Usuario logueado con éxito",
@@ -45,8 +46,9 @@ export const Navbar = () => {
 					<span className="navbar-brand mb-0 h1">Ilustrations</span>
 				</Link>
 				<div className="d-flex gap-2">
-								
-
+				
+        {!store.token ?(				
+        <>
           <Link className="btn btn-primary ms-2" to="/register">
 						Registro
 					</Link>
@@ -55,7 +57,7 @@ export const Navbar = () => {
           <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
             Login
           </button>
-        <form className="dropdown-menu p-4">
+        <form className="dropdown-menu p-4" onSubmit={handleLogin}>
         <div className="mb-3">
           <label htmlFor="exampleDropdownFormEmail2" className="form-label">Email address</label>
 
@@ -77,10 +79,19 @@ export const Navbar = () => {
           <button type="submit" className="btn btn-primary">Sign in</button>
         </form>
       </div>
-			</div>
-
-      </div>
+      
+      </>
 			
+
+				):(
+          <>
+          <li>
+                <span>¡Hey, {store.userData.name}!</span>
+              </li>
+              </>
+        )}
+      </div>
+			</div>
 		</nav>
 	);
 };

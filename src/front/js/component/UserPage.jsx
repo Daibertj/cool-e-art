@@ -9,7 +9,9 @@ function UserPage() {
   const { userData } = store;
   const { getUserData } = actions;
 
-  useEffect(()=>{getUserData()},[])
+  useEffect(()=>{
+    const token = store.token;
+  getUserData(token)},[])
 
   return (
     <>
