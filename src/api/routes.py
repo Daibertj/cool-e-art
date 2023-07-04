@@ -81,16 +81,16 @@ def register_user():
         return jsonify([]), 200
 
 
-@api.route('/user/<int:id>', methods=['GET'])
-#@jwt_required
+@api.route('/user', methods=['GET'])
+@jwt_required
 def get_user(id):
-    # if request.method == "GET":
-    #     user_id = get_jwt_identity()
-    # if user_id == id:
-         user = User.query.get(id)
+     if request.method == "GET":
+         user_id = get_jwt_identity()
+    
+         user = User.query.get(user_id)
          if user:
              return jsonify(user.serialize()), 200
          else:
              return jsonify({'error': 'User not found'}), 404
-    # else:
-    #     return jsonify({'error': 'Unauthorized'}), 401      
+    
+              

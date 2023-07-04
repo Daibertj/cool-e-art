@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: localStorage.getItem("token") || null,
 			message: null,
-			userData:[{id:"", name:""}],
+			userData:[],
 			
 			demo: [
 				{

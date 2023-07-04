@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
@@ -8,6 +8,8 @@ function UserPage() {
   const { actions, store } = useContext(Context);
   const { userData } = store;
   const { getUserData } = actions;
+
+  useEffect(()=>{getUserData()},[])
 
   return (
     <>
