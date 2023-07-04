@@ -81,6 +81,37 @@ def register_user():
         return jsonify([]), 200
 
 
+
+@api.route('/hello', methods=['POST', 'GET'])
+def handle_hello():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200        
+
+@api.route('/login', methods=['POST'])
+def login():
+    if request.method == "POST":
+        data = request.json
+        email = data.get("email", None)
+        password = data.get("password", None)
+
+        if email is None:
+            return jsonify({"msg": "Missing email parameter"}), 400
+        if password is None:
+            return jsonify({"msg": "Missing password parameter"}), 400
+
+        user = User.query.filter_by(email=email).one_or_none()
+        if user is not None:
+            if check_password(user.password, password, user.salt):
+                token = create_access_token(identity=user.id)
+                return jsonify({"token": token}), 200
+            else:
+                return jsonify({"msg": "Bad credentials"}), 400
+        return jsonify({"msg": "Bad credentials"}), 400
+
 @api.route('/user/<int:id>', methods=['GET'])
 #@jwt_required
 def get_user(id):
@@ -94,3 +125,4 @@ def get_user(id):
              return jsonify({'error': 'User not found'}), 404
     # else:
     #     return jsonify({'error': 'Unauthorized'}), 401      
+
