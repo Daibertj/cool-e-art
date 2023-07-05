@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-export const Card = () => {
+
+const Card = () => {
     const { store } = useContext(Context);
   
     // Accede a los datos de ilustrationData desde el store
@@ -21,3 +22,4 @@ export const Card = () => {
       </div>
     );
   };
+export default Card

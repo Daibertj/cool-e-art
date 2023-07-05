@@ -8,7 +8,7 @@ const initialState = {
   password: "",
 };
 
-export const Navbar = () => {
+const Navbar = () => {
   const { store, actions } = useContext(Context)
 
   const [user, setUser] = useState(initialState)
@@ -135,4 +135,6 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-};
+}
+
+export default Navbar
