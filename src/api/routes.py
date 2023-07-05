@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Ilustration
 from api.utils import generate_sitemap, APIException
 from base64 import b64encode
 import os
@@ -113,5 +113,8 @@ def get_user_by_token():
          else:
              return jsonify({'error': 'User not found'}), 404
     
-              
-
+@api.route('/ilustration', methods=['GET'] )
+def get_ilustations():
+    ilustrations=Ilustration.query.all()       
+    ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
+    return jsonify(ilustratrations_data), 200

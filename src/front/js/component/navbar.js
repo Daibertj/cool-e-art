@@ -127,7 +127,7 @@ export const Navbar = () => {
           ) : (
             <>
               <li>
-                <span>Hey, {store.userData.name} {localStorage.getItem}!</span>
+                <span>Hey, {store.userData.name} !</span>
               </li>
             </>
           )}

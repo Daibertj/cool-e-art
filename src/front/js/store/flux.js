@@ -2,8 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: localStorage.getItem("token") || null,
-      userData: JSON.parse(localStorage.getItem("userData")) || []
-
+      userData: JSON.parse(localStorage.getItem("userData")) || [],
+      ilustrationData: JSON.parse(localStorage.getItem("ilustrationData")) || []
       
     },
     actions: {
@@ -62,13 +62,11 @@ const getState = ({ getStore, getActions, setStore }) => {
         const responseData = await response.json();
         console.log("User data:", responseData);
   
-        // Guarda los datos en el localStorage
         localStorage.setItem("userData", JSON.stringify(responseData));
   
-        // Actualiza el valor de userData utilizando setStore
-        getActions().setStore({
-          userData: responseData,
-        });
+        
+        setStore({userData: [...store.userData, responseData]
+          });
       } else {
         console.log("Error fetching user data:", response.status);
       }
@@ -76,6 +74,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       console.log("Error fetching user data:", error);
     }
   },
+
+  getIlustrarions: async ()=>{
+    const store=getStore()
+    try {
+      const response = await fetch (`${process.env.BACKEND_URL}/ilustration`, {
+        method :"GET",
+        headers: { 	  
+          'Content-Type': 'application/json'
+        }
+      })
+      if (response.ok){
+        const responseData= await response.json()
+        console.log("Ilustration data:", responseData)
+        setStore({ilustrationData: [...store.ilustrationData, responseData]})
+      }
+      else {
+        console.log("Error getting ilustrations:", error)
+      }
+    } catch (error) {
+      console.log("Error getting ilustrations:", error)
+    }
+
+  }
     }
   };
 };
