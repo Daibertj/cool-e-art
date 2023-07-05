@@ -50,7 +50,7 @@ function UserPage() {
               
                 >
                   <Card
-      key={ilustration.id} 
+       
       image={ilustration.image}
       title={ilustration.title}
       description={ilustration.description}
