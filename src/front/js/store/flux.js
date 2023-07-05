@@ -2,21 +2,9 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: localStorage.getItem("token") || null,
-      message: null,
-      userData: [],
+      userData: JSON.parse(localStorage.getItem("userData")) || []
 
-      demo: [
-        {
-          title: "FIRST",
-          background: "white",
-          initial: "white",
-        },
-        {
-          title: "SECOND",
-          background: "white",
-          initial: "white",
-        },
-      ],
+      
     },
     actions: {
       
@@ -48,56 +36,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 			body: JSON.stringify(body),
 		  });
 	  
-		  let data;
-		  if (response.ok) {
-			data = await response.json();
-			setStore({
-			  token: data.token,
-			});
-			localStorage.setItem("token", data.token);
-			console.log(token)
-			console.log(response)
-			return data.status;
-		  } else {
-			// Manejar el caso de error aquí
-			// Por ejemplo, puedes lanzar una excepción con el mensaje de error
-			throw new Error("Error en la solicitud");
-		  }
-		} catch (error) {
-		  // Manejar el caso de error aquí
-		  console.error(error);
-		  // Puedes devolver el estado del error o algún valor para indicar que ocurrió un error
-		  return 500; // Por ejemplo, devolver un código de estado 500
-		}
-	  },
+      let data = await response.json();
+      setStore({
+        token: data.token,
+      });
 
-      getUserData: async (token) => {
-        const store = getStore();
-        try {
-          const response = await fetch(
-            `${process.env.BACKEND_URL}/user/token`,
-            {
-              method: "GET",
-              headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-            }}
-          );
-          console.log(response);
-          console.log(id);
-          if (response.ok) {
-            const responseData = await response.json();
-            console.log("User data:", responseData);
-            // Actualizar el estado de la aplicación con los datos del usuario obtenidos
-            setStore({ userData: responseData.userData });
-          } else {
-            console.log("Error fetching user data:", response.status);
-          }
-        } catch (error) {
-          console.log("Error fetching user data:", error);
-        }
-      },
-    },
+      localStorage.setItem("token", data.token)
+      return response.status
+    } catch (error) {
+      return response.status
+    }
+  },
+
+  getUserData: async () => {
+    const store = getStore();
+    try {
+      const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${store.token}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("User data:", responseData);
+  
+        // Guarda los datos en el localStorage
+        localStorage.setItem("userData", JSON.stringify(responseData));
+  
+        // Actualiza el valor de userData utilizando setStore
+        getActions().setStore({
+          userData: responseData,
+        });
+      } else {
+        console.log("Error fetching user data:", response.status);
+      }
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+    }
+  },
+    }
   };
 };
 

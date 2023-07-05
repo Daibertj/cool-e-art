@@ -40,7 +40,7 @@ const Register = () => {
 
       const response = await actions.registerUser(formData);
 
-      if (response === 201) {
+      if (response === 201 || 200) {
         Swal.fire({
           position: 'top-end',
           icon: 'success',

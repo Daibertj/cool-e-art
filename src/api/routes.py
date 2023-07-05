@@ -80,10 +80,31 @@ def register_user():
             return jsonify({"msg": "Error registering user", "error": str(error)}), 500
         return jsonify([]), 200
 
+@api.route('/login', methods=['POST'])
+def login():
+    if request.method == "POST":
+        data = request.json
+        email = data.get("email", None)
+        password = data.get("password", None)
 
-@api.route('/user/token', methods=['GET'])
-@jwt_required
-def get_user_by_token(id):
+        if email is None:
+            return jsonify({"msg": "Missing email parameter"}), 400
+        if password is None:
+            return jsonify({"msg": "Missing password parameter"}), 400
+
+        user = User.query.filter_by(email=email).one_or_none()
+        if user is not None:
+            if check_password(user.password, password, user.salt):
+                token = create_access_token(identity=user.id)
+                return jsonify({"token": token}), 200
+            else:
+                return jsonify({"msg": "Bad credentials"}), 400
+        return jsonify({"msg": "Bad credentials"}), 400
+    
+
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_by_token():
      if request.method == "GET":
          user = User.query.get(get_jwt_identity())
              
