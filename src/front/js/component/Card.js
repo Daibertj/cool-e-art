@@ -1,16 +1,23 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 export const Card = () => {
-	return (
-		
-            <div className="card" style={{width: "18rem"}} >
-                <img src="https://st2.depositphotos.com/23395854/44166/v/450/depositphotos_441666184-stock-illustration-fried-traditional-pastry-stuffed-with.jpg" className="card-img-top" alt="..."/>
-                <div className="card-body">
-                    <h5 className="card-title">Dibujo de empanada</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h5>@Daibert</h5>
-                </div>
+    const { store } = useContext(Context);
+  
+    // Accede a los datos de ilustrationData desde el store
+    const ilustrationData = store.ilustrationData;
+  
+    return (
+      <div>
+        {ilustrationData.map((ilustration) => (
+          <div className="card" style={{ width: "18rem" }} key={ilustration.id}>
+            <img src={ilustration.image} className="card-img-top" alt={ilustration.title} />
+            <div className="card-body">
+              <h5 className="card-title">{ilustration.title}</h5>
+              <p className="card-text">{ilustration.description}</p>
+              <h5>@{ilustration.user}</h5>
             </div>
-        
-	);
-};
+          </div>
+        ))}
+      </div>
+    );
+  };
