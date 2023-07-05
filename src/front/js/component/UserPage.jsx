@@ -7,29 +7,28 @@ import { Card } from "./Card";
 function UserPage() {
   const { actions, store } = useContext(Context);
   const { userData } = store;
-  const { getUserData, getIlustrarions } = actions;
-  console.log(store.ilustrationData)
-  useEffect(()=>{
-    
-  getUserData()},[])
+  const { getUserData, getIlustrations } = actions;
+  
+ 
   
   useEffect(() => {
-    getIlustrarions();
+    getIlustrations();
   }, []);
 
   return (
     <>
       <div>
         <div className="container">
-          <img
+          {/* <img
             src="rigo-baby.jpg"
             className="img-thumbnail rounded"
             alt="..."
-          />
+          /> */}
+          {store.image}
         
 
         <div className="col-lg-6 col-md-8 mx-auto">
-          <h1 className="fw-light">{userData.name}</h1>
+          <h1 className="fw-light">{store.name}</h1>
         </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 border border-primary rounded shadow-sm">
@@ -49,6 +48,7 @@ function UserPage() {
                 key={ilustration.id}
               
                 >
+                  
                   <Card
        
       image={ilustration.image}

@@ -139,12 +139,12 @@ export const Navbar = () => {
                 
               </ul></div>
               <li>
-                <span>Hey, {store.userData.name} !</span>
+                <span>Hey, {store.name} !</span>
               </li>
             </>
           )}
         </div>
-      </div>``
+      </div>
     </nav>
   );
 };
