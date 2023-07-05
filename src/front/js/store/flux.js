@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	  login: async (body) => {
 		const store = getStore();
 	  
-		try {
+		
 		  let response = await fetch(`${process.env.BACKEND_URL}/login`, {
 			method: "POST",
 			headers: {
@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			body: JSON.stringify(body),
 		  });
-	  
+	  try {
       let data = await response.json();
       setStore({
         token: data.token,

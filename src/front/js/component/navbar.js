@@ -8,24 +8,22 @@ const initialState = {
   password: "",
 };
 
-const Navbar = () => {
-  const { store, actions } = useContext(Context)
+export const Navbar = () => {
+  const { store, actions } = useContext(Context);
 
-  const [user, setUser] = useState(initialState)
-  const navigate = useNavigate()
+  const [user, setUser] = useState(initialState);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const response = await actions.login(user)
+    const response = await actions.login(user);
     if (response == 200) {
-      
       Swal.fire({
         title: "Usuario logueado con éxito",
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-      await actions.getUserData
-      navigate("/profile")
-      
+      await actions.getUserData;
+      navigate("/profile");
     }
     if (response == 400) {
       Swal.fire({
@@ -126,15 +124,27 @@ const Navbar = () => {
             </>
           ) : (
             <>
+             <div className="collapse navbar-collapse">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link to="/" className="nav-link active" aria-current="page" href="#">
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/" className="nav-link" href="#">
+                    Link
+                  </Link>
+                </li>
+                
+              </ul></div>
               <li>
                 <span>Hey, {store.userData.name} !</span>
               </li>
             </>
           )}
         </div>
-      </div>
+      </div>``
     </nav>
   );
-}
-
-export default Navbar
+};
