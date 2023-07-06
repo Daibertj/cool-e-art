@@ -43,6 +43,7 @@ const UploadImage = () => {
 
 
       const response = await actions.uploadIlustration(formData);
+     
       if (response === 201 || 200) {
         Swal.fire({
           position: "top-end",

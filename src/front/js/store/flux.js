@@ -98,7 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      uploadIlustration: async () => {
+      uploadIlustration: async (ilustration) => {
         const store = getStore();
         try {
           let response = await fetch(`${process.env.BACKEND_URL}/login`, {
@@ -106,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: formData,
+            body: ilustration,
           });
           if (response.ok) {
             return response.status;

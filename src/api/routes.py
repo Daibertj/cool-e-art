@@ -132,35 +132,34 @@ def upload_new_image():
         
         if data is None:
             return jsonify({"msg": "Missing JSON in request"}), 400
-        if data.get("image") is None:
-            return jsonify({"msg": "Missing name parameter"}), 400
         if data.get("description") is None:
-            return jsonify({"msg": "Missing last name parameter"}), 400
+            return jsonify({"msg": "Missing last name parameter des"}), 400
         if data.get("title") is None:
-            return jsonify({"msg": "Missing email parameter"}), 400
+            return jsonify({"msg": "Missing email parameter tit"}), 400
         if data.get("category") is None:
-            return jsonify({"msg": "Missing password parameter"}), 400
+            return jsonify({"msg": "Missing password parameter cat"}), 400
         
         
         if data.get("image") is not None:
             response_image = uploader.upload(data.get("image"))
             data.update({"image": response_image.get("url")})
             
-            new_upload = Ilustration(
+        new_upload = Ilustration(
                 title=data.get("title"),
                 description=data.get("description"),
                 category=data.get("category"),
                 image=data.get("image"),
                 user_id=current_user.get("id")
             )
-            db.session.add(new_upload)
-            try:
-                db.session.commit()   
-                return jsonify({"msg": "Upload successfully"}), 201
-            except Exception as error:
-                db.session.rollback()
-                return jsonify({"msg": "Error occured while trying to upload image"}), 500   # 500 server error.
-            return jsonify([]), 200
+            
+        db.session.add(new_upload)
+        try:
+            db.session.commit()   
+            return jsonify({"msg": "Upload successfully"}), 201
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({"msg": "Error occured while trying to upload image"}), 500   
+        return jsonify([]), 200
 
             
         
