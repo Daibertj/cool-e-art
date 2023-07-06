@@ -3,12 +3,11 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: localStorage.getItem("token") || null,
       userData: JSON.parse(localStorage.getItem("userData")) || [],
-      ilustrationData: JSON.parse(localStorage.getItem("ilustrationData")) || []
-      
+      ilustrationData:
+        JSON.parse(localStorage.getItem("ilustrationData")) || [],
     },
     actions: {
-      
-		registerUser: async (user) => {
+      registerUser: async (user) => {
         const store = getStore();
         try {
           let response = await fetch(`${process.env.BACKEND_URL}/user`, {
@@ -23,81 +22,103 @@ const getState = ({ getStore, getActions, setStore }) => {
           return data.status;
         }
       },
-      
-	  login: async (body) => {
-		const store = getStore();
-	  
-		try {
-		  let response = await fetch(`${process.env.BACKEND_URL}/login`, {
-			method: "POST",
-			headers: {
-			  "Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		  });
-	  
-      let data = await response.json();
-      setStore({
-        token: data.token,
-      });
 
-      localStorage.setItem("token", data.token)
-      return response.status
-    } catch (error) {
-      return response.status
-    }
-  },
+      login: async (body) => {
+        const store = getStore();
 
-  getUserData: async () => {
-    const store = getStore();
-    try {
-      const response = await fetch(`${process.env.BACKEND_URL}/user`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${store.token}`,
-        },
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("User data:", responseData);
-  
-        localStorage.setItem("userData", JSON.stringify(responseData));
-  
-        
-        setStore({userData: [...store.userData, responseData]
+        try {
+          let response = await fetch(`${process.env.BACKEND_URL}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
           });
-      } else {
-        console.log("Error fetching user data:", response.status);
-      }
-    } catch (error) {
-      console.log("Error fetching user data:", error);
-    }
-  },
 
-  getIlustrarions: async ()=>{
-    const store=getStore()
-    try {
-      const response = await fetch (`${process.env.BACKEND_URL}/ilustration`, {
-        method :"GET",
-        headers: { 	  
-          'Content-Type': 'application/json'
+          let data = await response.json();
+          setStore({
+            token: data.token,
+          });
+
+          localStorage.setItem("token", data.token);
+          return response.status;
+        } catch (error) {
+          return response.status;
         }
-      })
-      if (response.ok){
-        const responseData= await response.json()
-        console.log("Ilustration data:", responseData)
-        setStore({ilustrationData: [...store.ilustrationData, responseData]})
-      }
-      else {
-        console.log("Error getting ilustrations:", error)
-      }
-    } catch (error) {
-      console.log("Error getting ilustrations:", error)
-    }
+      },
 
-  }
-    }
+      getUserData: async () => {
+        const store = getStore();
+        try {
+          const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
+            },
+          });
+          if (response.ok) {
+            const responseData = await response.json();
+            console.log("User data:", responseData);
+
+            localStorage.setItem("userData", JSON.stringify(responseData));
+
+            setStore({ userData: [...store.userData, responseData] });
+          } else {
+            console.log("Error fetching user data:", response.status);
+          }
+        } catch (error) {
+          console.log("Error fetching user data:", error);
+        }
+      },
+
+      getIlustrarions: async () => {
+        const store = getStore();
+        try {
+          const response = await fetch(
+            `${process.env.BACKEND_URL}/ilustration`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.ok) {
+            const responseData = await response.json();
+            console.log("Ilustration data:", responseData);
+            setStore({
+              ilustrationData: [...store.ilustrationData, responseData],
+            });
+          } else {
+            console.log("Error getting ilustrations:", error);
+          }
+        } catch (error) {
+          console.log("Error getting ilustrations:", error);
+        }
+      },
+
+      uploadIlustration: async () => {
+        const store = getStore();
+        try {
+          let response = await fetch(`${process.env.BACKEND_URL}/login`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: formData,
+          });
+          if (response.ok) {
+            return response.status;
+          } else {
+            throw new Error("Error uploading ilustration");
+          }
+        } catch (error) {
+          console.log("Error uploading ilustration:", error);
+          return 500; // Código de estado de error genérico
+        }
+      },
+    },
   };
 };
 

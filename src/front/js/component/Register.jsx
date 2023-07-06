@@ -48,7 +48,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1000
         })
-        console.log("Registro exitoso");
+        console.log("Registro exitoso")
         navigate("/");
       } else {
         Swal.fire({
@@ -58,10 +58,10 @@ const Register = () => {
           confirmButtonText: "OK",
         });
 
-        console.log("Error en el registro");
+        console.log("Error en el registro")
       }
     } catch (error) {
-      console.log("Error en la solicitud de registro:", error);
+      console.log("Error en la solicitud de registro:", error)
     }
   };
 
@@ -127,7 +127,7 @@ const Register = () => {
             onChange={({ target }) =>
               setUser({ ...user, image: target.files[0] })
             }
-            //value={user.image}
+            
           />
         </div>
 

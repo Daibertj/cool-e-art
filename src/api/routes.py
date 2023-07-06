@@ -113,8 +113,64 @@ def get_user_by_token():
          else:
              return jsonify({'error': 'User not found'}), 404
     
+@api.route('/ilustration', methods=['POST'])
+@jwt_required()
+def upload_new_image():
+    if request.method =="POST":
+        current_user = get_jwt_identity()
+        data_files = request.files
+        data_form = request.form
+        
+
+        data = {
+            "image": data_form.get("image"),
+            "description": data_form.get("description"),
+            "title": data_form.get("title"),
+            "category": data_form.get("category")
+            
+        }
+        
+        if data is None:
+            return jsonify({"msg": "Missing JSON in request"}), 400
+        if data.get("image") is None:
+            return jsonify({"msg": "Missing name parameter"}), 400
+        if data.get("description") is None:
+            return jsonify({"msg": "Missing last name parameter"}), 400
+        if data.get("title") is None:
+            return jsonify({"msg": "Missing email parameter"}), 400
+        if data.get("category") is None:
+            return jsonify({"msg": "Missing password parameter"}), 400
+        
+        
+        if data.get("image") is not None:
+            response_image = uploader.upload(data.get("image"))
+            data.update({"image": response_image.get("url")})
+            
+            new_upload = Ilustration(
+                title=data.get("title"),
+                description=data.get("description"),
+                category=data.get("category"),
+                image=data.get("image"),
+                user_id=current_user.get("id")
+            )
+            db.session.add(new_upload)
+            try:
+                db.session.commit()   
+                return jsonify({"msg": "Upload successfully"}), 201
+            except Exception as error:
+                db.session.rollback()
+                return jsonify({"msg": "Error occured while trying to upload image"}), 500   # 500 server error.
+            return jsonify([]), 200
+
+            
+        
+     
+
+
 @api.route('/ilustration', methods=['GET'] )
 def get_ilustations():
     ilustrations=Ilustration.query.all()       
     ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
     return jsonify(ilustratrations_data), 200
+
+
