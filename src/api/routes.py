@@ -117,13 +117,14 @@ def get_user_by_token():
 @jwt_required()
 def upload_new_image():
     if request.method =="POST":
+        
         current_user = get_jwt_identity()
         data_files = request.files
         data_form = request.form
         
 
         data = {
-            "image": data_form.get("image"),
+            "image": data_files.get("image"),
             "title": data_form.get("title"),
             "description": data_form.get("description"),
             "category": data_form.get("category")
@@ -131,6 +132,7 @@ def upload_new_image():
         }
         
         if data is None:
+            print ("entre aqui")
             return jsonify({"msg": "Missing JSON in request"}), 400
         if data.get("title") is None:
             return jsonify({"msg": "Missing title parameter"}), 400
@@ -140,7 +142,7 @@ def upload_new_image():
         if data.get("category") is None:
             return jsonify({"msg": "Missing category parameter "}), 400
         
-        
+        print (data.get("image"))
         if data.get("image") is not None:
             response_image = uploader.upload(data.get("image"))
             data.update({"image": response_image.get("url")})

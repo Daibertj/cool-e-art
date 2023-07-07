@@ -39,7 +39,7 @@ class Ilustration(db.Model):
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
-    url_image=db.Column(db.String(255), unique=True)
+    url_image=db.Column(db.String(255), unique=True, nullable=False)
     category= db.Column(db.String(30), nullable=False)
     
     
