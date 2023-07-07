@@ -7,7 +7,7 @@ import { Card } from "./Card";
 function UserPage() {
   const { actions, store } = useContext(Context);
   const { userData } = store;
-  const { getUserData, getIlustrations } = actions;
+  const { getUserData, getAllIlustrations } = actions;
   
  
   

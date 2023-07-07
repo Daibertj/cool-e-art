@@ -112,19 +112,67 @@ def get_user_by_token():
              return jsonify(user.serialize()), 200
          else:
              return jsonify({'error': 'User not found'}), 404
-
-     else:
-         return jsonify({'error': 'Unauthorized'}), 401      
-
-@api.route('/ilustrations', methods=['GET'])
-def get_ilustrations():
-
-    ilustrations = Ilustration.query.all()
-
-    ilustrations = list(map(lambda item:item.serialize(), ilustrations))
-    return jsonify(ilustrations)
-
-
-
     
+@api.route('/ilustration', methods=['POST'])
+@jwt_required()
+def upload_new_image():
+    if request.method =="POST":
+        
+        current_user = get_jwt_identity()
+        data_files = request.files
+        data_form = request.form
+        
+
+        data = {
+            "image": data_files.get("image"),
+            "title": data_form.get("title"),
+            "description": data_form.get("description"),
+            "category": data_form.get("category")
+            
+        }
+        
+        if data is None:
+            print ("entre aqui")
+            return jsonify({"msg": "Missing JSON in request"}), 400
+        if data.get("title") is None:
+            return jsonify({"msg": "Missing title parameter"}), 400
+        if data.get("description") is None:
+            return jsonify({"msg": "Missing description parameter"}), 400
+        
+        if data.get("category") is None:
+            return jsonify({"msg": "Missing category parameter "}), 400
+        
+        print (data.get("image"))
+        if data.get("image") is not None:
+            response_image = uploader.upload(data.get("image"))
+            data.update({"image": response_image.get("url")})
+            
+        new_upload = Ilustration(
+                url_image=data.get("image"),
+                title=data.get("title"),
+                description=data.get("description"),
+                category=data.get("category"),
+                user_id=current_user
+            )
+            
+        db.session.add(new_upload)
+        try:
+            db.session.commit()   
+            return jsonify({"msg": "Upload successfully"}), 201
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({"msg": "Error occurred while trying to upload image", "error": str(error)}), 500
+        return jsonify([]), 200
+
+            
+        
+     
+
+
+@api.route('/ilustration', methods=['GET'] )
+def get_ilustations():
+    ilustrations=Ilustration.query.all()       
+    ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
+    return jsonify(ilustratrations_data), 200
+
 
