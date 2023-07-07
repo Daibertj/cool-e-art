@@ -30,12 +30,8 @@ const ExplorePage = () => {
                 })}
                 
               </div>
-              
-              
-             
-              
-             
-            
+                         
+                                   
           </div>
         </>
 
