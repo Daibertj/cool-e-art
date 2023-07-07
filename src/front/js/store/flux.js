@@ -3,11 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: localStorage.getItem("token") || null,
       userData: JSON.parse(localStorage.getItem("userData")) || [],
-      ilustrationData:
-        JSON.parse(localStorage.getItem("ilustrationData")) || [],
-        name: "",
-        image:""  
-
+      ilustrationData: JSON.parse(localStorage.getItem("ilustrationData")) || [],
+      name: "",
+      image:""
     },
     actions: {
       registerUser: async (user) => {
@@ -25,23 +23,24 @@ const getState = ({ getStore, getActions, setStore }) => {
           return data.status;
         }
       },
-
-      login: async (body) => {
-        const store = getStore();
-
-        try {
-          let response = await fetch(`${process.env.BACKEND_URL}/login`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          });
-
-          let data = await response.json();
-          setStore({
-            token: data.token,
-          });
+      
+	  login: async (body) => {
+		const store = getStore();
+	  
+		
+		  let response = await fetch(`${process.env.BACKEND_URL}/login`, {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		  });
+	  try {
+      let data = await response.json();
+      setStore({
+        token: data.token,
+        name: data.name
+      });
 
           localStorage.setItem("token", data.token);
           return response.status;
@@ -50,30 +49,32 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getUserData: async () => {
-        const store = getStore();
-        try {
-          const response = await fetch(`${process.env.BACKEND_URL}/user`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${store.token}`,
-            },
+  getUserData: async () => {
+    const store = getStore();
+    try {
+      const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${store.token}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("User data:", responseData);
+  
+        localStorage.setItem("userData", JSON.stringify(responseData));
+  
+        
+        setStore({userData:  responseData
           });
-          if (response.ok) {
-            const responseData = await response.json();
-            console.log("User data:", responseData);
-
-            localStorage.setItem("userData", JSON.stringify(responseData));
-
-            setStore({ responseData });
-          } else {
-            console.log("Error fetching user data:", response.status);
-          }
-        } catch (error) {
-          console.log("Error fetching user data:", error);
-        }
-      },
+      } else {
+        console.log("Error fetching user data:", response.status);
+      }
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+    }
+  },
 
       getIlustrarions: async () => {
         const store = getStore();
@@ -98,7 +99,29 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           console.log("Error getting ilustrations:", error);
+  getIlustrations: async ()=>{
+    const store=getStore()
+    try {
+      const response = await fetch (`${process.env.BACKEND_URL}/ilustration`, {
+        method :"GET",
+        headers: { 	  
+          'Content-Type': 'application/json'
         }
+      })
+      if (response.ok){
+        const responseData= await response.json()
+        console.log("Ilustration data:", responseData)
+        setStore({ilustrationData: responseData})
+      }
+      else {
+        console.log("Error getting ilustrations:", error)
+      }
+    } catch (error) {
+      console.log("Error getting ilustrations:", error)
+    }
+
+  }
+    }
       },
 
       uploadIlustration: async (ilustration) => {

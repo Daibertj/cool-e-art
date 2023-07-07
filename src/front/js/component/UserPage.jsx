@@ -6,66 +6,70 @@ import { Card } from "./Card";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
-  const { userData, ilustrationData } = store;
-  const { getUserData, getIlustrarions } = actions;
-
+  const { userData } = store;
+  const { getUserData, getIlustrations } = actions;
+  
+ 
+  
   useEffect(() => {
-    const token = store.token;
-    getUserData(token);
-  }, []);
-
-  useEffect(() => {
-    getIlustrarions();
+    getIlustrations();
   }, []);
 
   return (
     <>
       <div>
         <div className="container">
-          <img
+          {/* <img
             src="rigo-baby.jpg"
             className="img-thumbnail rounded"
             alt="..."
-          />
+          /> */}
+          {store.image}
+        
 
-          <div className="col-lg-6 col-md-8 mx-auto">
-            <h1 className="fw-light">{userData.name}</h1>
-          </div>
+        <div className="col-lg-6 col-md-8 mx-auto">
+          <h1 className="fw-light">{store.name}</h1>
+        </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 border border-primary rounded shadow-sm">
+  
           <div className="lh-1">
             <h1 className="mb-0 text-blue lh-1">Mis creaciones</h1>
+            
           </div>
         </div>
 
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {ilustrationData.map((ilustration) => (
-                <div className="col" key={ilustration.id}>
+              
+            {store.ilustrationData.map((ilustration) => (
+                <div className="col" 
+                key={ilustration.id}
+              
+                >
+                  
                   <Card
-                    key={ilustration.id}
-                    image={ilustration.image}
-                    title={ilustration.title}
-                    description={ilustration.description}
-                    user={ilustration.user}
-                  />
+       
+      image={ilustration.image}
+      title={ilustration.title}
+      description={ilustration.description}
+      user={ilustration.user}
+    />
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
+                    <button type="button" className="btn btn-sm btn-outline-secondary">
                       View
                     </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
+                    <button type="button" className="btn btn-sm btn-outline-secondary">
                       Edit
                     </button>
                   </div>
                 </div>
               ))}
+             
+
+             
+             
             </div>
           </div>
         </div>

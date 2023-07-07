@@ -52,7 +52,9 @@ class Ilustration(db.Model):
             'title': self.title,
             'description': self.description,
             'user': self.user_id,
-            'category': self.category
+            'category': self.category,
+            'image':self.url_image
+            
             }   
 
 
