@@ -110,7 +110,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             body: ilustration,
           });
           if (response.ok) {
-            return response.status;
+            let data = await response.json();
+            return data.status;
           } else {
             throw new Error("Error uploading ilustration");
           }

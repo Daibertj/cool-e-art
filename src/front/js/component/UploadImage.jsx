@@ -36,8 +36,9 @@ const UploadImage = () => {
       const formData = new FormData();
 
       formData.append("image", imgUpload.image);
-      formData.append("description", imgUpload.description);
+      
       formData.append("title", imgUpload.title);
+      
       formData.append("category", imgUpload.category);
       formData.append("user", store.name)
 

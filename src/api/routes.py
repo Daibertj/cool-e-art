@@ -124,18 +124,19 @@ def upload_new_image():
 
         data = {
             "image": data_form.get("image"),
-            "description": data_form.get("description"),
             "title": data_form.get("title"),
+            "description": data_form.get("description"),
             "category": data_form.get("category")
             
         }
         
         if data is None:
             return jsonify({"msg": "Missing JSON in request"}), 400
-        if data.get("description") is None:
-            return jsonify({"msg": "Missing description parameter"}), 400
         if data.get("title") is None:
             return jsonify({"msg": "Missing title parameter"}), 400
+        if data.get("description") is None:
+            return jsonify({"msg": "Missing description parameter"}), 400
+        
         if data.get("category") is None:
             return jsonify({"msg": "Missing category parameter "}), 400
         
@@ -145,10 +146,10 @@ def upload_new_image():
             data.update({"image": response_image.get("url")})
             
         new_upload = Ilustration(
+                url_image=data.get("image"),
                 title=data.get("title"),
                 description=data.get("description"),
                 category=data.get("category"),
-                url_image=data.get("image"),
                 user_id=current_user
             )
             
