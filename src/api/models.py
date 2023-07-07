@@ -18,7 +18,7 @@ class User(db.Model):
 
     ilustration= db.relationship('Ilustration' ,backref='user', uselist=True )
     favorite = db.relationship('Favorite',backref='user', uselist=True )
-    salt = db.Column(db.String(100), unique=False, nullable=False)
+    
     
     def __repr__(self):
         return f'<User {self.email}>'
