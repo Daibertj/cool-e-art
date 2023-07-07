@@ -132,7 +132,7 @@ def upload_new_image():
         }
         
         if data is None:
-            print ("entre aqui")
+            
             return jsonify({"msg": "Missing JSON in request"}), 400
         if data.get("title") is None:
             return jsonify({"msg": "Missing title parameter"}), 400
