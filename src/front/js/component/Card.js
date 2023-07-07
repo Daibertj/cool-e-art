@@ -25,6 +25,6 @@ export const Card = ({title,description, image}) => {
         </div>
 
         
-      </div>
+      
     );
   };
