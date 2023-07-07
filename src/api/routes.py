@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Ilustration
 from api.utils import generate_sitemap, APIException
 from base64 import b64encode
 import os
@@ -80,17 +80,6 @@ def register_user():
             return jsonify({"msg": "Error registering user", "error": str(error)}), 500
         return jsonify([]), 200
 
-
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200        
-
 @api.route('/login', methods=['POST'])
 def login():
     if request.method == "POST":
@@ -107,22 +96,25 @@ def login():
         if user is not None:
             if check_password(user.password, password, user.salt):
                 token = create_access_token(identity=user.id)
-                return jsonify({"token": token}), 200
+                return jsonify({"token": token, "name":user.name, "image":user.image}), 200
             else:
                 return jsonify({"msg": "Bad credentials"}), 400
         return jsonify({"msg": "Bad credentials"}), 400
+    
 
-@api.route('/user/<int:id>', methods=['GET'])
-#@jwt_required
-def get_user(id):
-    # if request.method == "GET":
-    #     user_id = get_jwt_identity()
-    # if user_id == id:
-         user = User.query.get(id)
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_by_token():
+     if request.method == "GET":
+         user = User.query.get(get_jwt_identity())
+             
          if user:
              return jsonify(user.serialize()), 200
          else:
              return jsonify({'error': 'User not found'}), 404
-    # else:
-    #     return jsonify({'error': 'Unauthorized'}), 401      
-
+    
+@api.route('/ilustration', methods=['GET'] )
+def get_ilustations():
+    ilustrations=Ilustration.query.all()       
+    ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
+    return jsonify(ilustratrations_data), 200

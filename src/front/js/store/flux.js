@@ -1,103 +1,107 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			token: localStorage.getItem("token") || null,
-			message: null,
-			userData:[{id:"", name:""}],
-			
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			registerUser: async (user) => {
-				
-				const store = getStore()
-				try {
-				  let response = await fetch(`${process.env.BACKEND_URL}/user`, {
-					method: "POST",
-		
-					body: user
-				  })
-		
-				  let data = await response.json()
-				  return response.status
-		
-				} catch (error) {
-				  return response.status
-				}
-			  },
-			  
-			login: async (body) => {
-				const store = getStore();
-		
-				try {
-				  let response = await fetch(`${process.env.BACKEND_URL}/login`, {
-					method: "POST",
-					headers: {
-					  "Content-Type": "application/json",
-					},
-					body: JSON.stringify(body),
-				  });
-		
-				  let data = await response.json();
-				  setStore({
-					token: data.token,
-				  });
-		
-				  localStorage.setItem("token", data.token)
-				  return response.status
-				} catch (error) {
-				  return response.status
-				}
-			  },
 
-      // Use getActions to call a function within a fuction
-      exampleFunction: () => {
-        getActions().changeColor(0, "green");
-      },
+  return {
+    store: {
+      token: localStorage.getItem("token") || null,
+      userData: JSON.parse(localStorage.getItem("userData")) || [],
+      ilustrationData: JSON.parse(localStorage.getItem("ilustrationData")) || [],
+      name: "",
+      image:""
+    },
+    actions: {
+      
+		registerUser: async (user) => {
 
-      getUserData: async (id) => {
         const store = getStore();
         try {
-          const response = await fetch(`${process.env.BACKEND_URL}/user/${id}`, {
-            method: "GET",
-            // headers: {
-			// 	//"Content-Type": "application/json"
-            //   //Authorization: `Bearer ${store.token}`,
-            // },
-			//body: JSON.stringify()
+          let response = await fetch(`${process.env.BACKEND_URL}/user`, {
+            method: "POST",
+
+            body: user,
           });
-		  console.log(response)
-		  console.log(id)
-          if (response.ok) {
-            const responseData = await response.json();
-            console.log("User data:", responseData);
-            // Actualizar el estado de la aplicación con los datos del usuario obtenidos
-            setStore({ userData: responseData.userData });
-          } else {
-            
-            console.log("Error fetching user data:", response.status);
-            
-          }
+
+          let data = await response.json();
+          return data.status;
         } catch (error) {
-          
-          console.log("Error fetching user data:", error);
-          
+          return data.status;
         }
       },
-
       
-    },
+	  login: async (body) => {
+		const store = getStore();
+	  
+		
+		  let response = await fetch(`${process.env.BACKEND_URL}/login`, {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		  });
+	  try {
+      let data = await response.json();
+      setStore({
+        token: data.token,
+        name: data.name
+      });
+
+      localStorage.setItem("token", data.token)
+      return response.status
+    } catch (error) {
+      return response.status
+    }
+  },
+
+  getUserData: async () => {
+    const store = getStore();
+    try {
+      const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${store.token}`,
+        },
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("User data:", responseData);
+  
+        localStorage.setItem("userData", JSON.stringify(responseData));
+  
+        
+        setStore({userData:  responseData
+          });
+      } else {
+        console.log("Error fetching user data:", response.status);
+      }
+    } catch (error) {
+      console.log("Error fetching user data:", error);
+    }
+  },
+
+  getIlustrations: async ()=>{
+    const store=getStore()
+    try {
+      const response = await fetch (`${process.env.BACKEND_URL}/ilustration`, {
+        method :"GET",
+        headers: { 	  
+          'Content-Type': 'application/json'
+        }
+      })
+      if (response.ok){
+        const responseData= await response.json()
+        console.log("Ilustration data:", responseData)
+        setStore({ilustrationData: responseData})
+      }
+      else {
+        console.log("Error getting ilustrations:", error)
+      }
+    } catch (error) {
+      console.log("Error getting ilustrations:", error)
+    }
+
+  }
+    }
   };
 };
 

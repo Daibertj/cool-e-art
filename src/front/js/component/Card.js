@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
+
 
 export const Card = () => {
 	return (
@@ -18,7 +20,10 @@ export const Card = () => {
                         </div>
                     </div>
                 </div>
+
             </div>
+          </div>
         
-	);
-};
+      </div>
+    );
+  };
