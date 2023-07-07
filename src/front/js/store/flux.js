@@ -36,7 +36,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  return response.status
 				}
 			  },
-			  login: async (body) => {
+			  
+			login: async (body) => {
 				const store = getStore();
 		
 				try {
