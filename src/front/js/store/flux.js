@@ -56,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			  },
 
-			  getIlustrations: async()=>{
+			  getAllIlustrations: async()=>{
 
 				const store = getStore();
 
