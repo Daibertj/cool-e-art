@@ -76,19 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			  },
-
-      // Use getActions to call a function within a fuction
-      exampleFunction: () => {
-        getActions().changeColor(0, "green");
-      },
-
-
-  
-    
-
-      
-
-
+     
       getUserData: async () => {
         const store = getStore();
         try {
@@ -114,30 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getIlustrations: async () => {
-        const store = getStore();
-        try {
-          const response = await fetch(
-            `${process.env.BACKEND_URL}/ilustration`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          if (response.ok) {
-            const responseData = await response.json();
-            console.log("Ilustration data:", responseData);
-            setStore({ ilustrationData: responseData });
-          } else {
-            console.log("Error getting ilustrations:", error);
-          }
-        } catch (error) {
-          console.log("Error getting ilustrations:", error);
-        }
-      },
-      uploadIlustration: async (ilustration) => {
+           uploadIlustration: async (ilustration) => {
         const store = getStore();
         try {
           let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
