@@ -101,10 +101,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       uploadIlustration: async (ilustration) => {
         const store = getStore();
         try {
-          let response = await fetch(`${process.env.BACKEND_URL}/login`, {
+          let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${store.token}`,
             },
             body: ilustration,
           });

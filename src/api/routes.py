@@ -133,11 +133,11 @@ def upload_new_image():
         if data is None:
             return jsonify({"msg": "Missing JSON in request"}), 400
         if data.get("description") is None:
-            return jsonify({"msg": "Missing last name parameter des"}), 400
+            return jsonify({"msg": "Missing description parameter"}), 400
         if data.get("title") is None:
-            return jsonify({"msg": "Missing email parameter tit"}), 400
+            return jsonify({"msg": "Missing title parameter"}), 400
         if data.get("category") is None:
-            return jsonify({"msg": "Missing password parameter cat"}), 400
+            return jsonify({"msg": "Missing category parameter "}), 400
         
         
         if data.get("image") is not None:

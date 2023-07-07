@@ -44,7 +44,7 @@ const UploadImage = () => {
 
       const response = await actions.uploadIlustration(formData);
      
-      if (response === 201 || 200) {
+      if (response.status === 201 ||response.status === 200) {
         Swal.fire({
           position: "top-end",
           icon: "success",
