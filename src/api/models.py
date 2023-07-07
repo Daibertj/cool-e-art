@@ -9,9 +9,8 @@ class User(db.Model):
     lastname = db.Column(db.String(30), unique=False, nullable=False )
     username = db.Column(db.String(30), unique=False, nullable=True )
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(255), unique=False, nullable=False)
     image = db.Column(db.String(255), unique=False, nullable=True )
-    role = db.Column(db.String(30), nullable=False)
     create_at = db.Column(db.DateTime, nullable=False,default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
@@ -21,21 +20,17 @@ class User(db.Model):
     favorite = db.relationship('Favorite',backref='user', uselist=True )
     salt = db.Column(db.String(100), unique=False, nullable=False)
     
-    ilustration= db.relationship('Ilustration', backref="user", uselist= True)
-    favorite = db.relationship('Favorite', backref="user", uselist= True)
-    
-
     def __repr__(self):
         return f'<User {self.email}>'
 
     def serialize(self):
         return {
-            "id": self.id,
-            "email": self.email,
-            "name": self.name,
-            "lastname": self.lastname,
-            "username": self.username,
-            "role":self.role
+            'id': self.id,
+            'email': self.email,
+            'name': self.name,
+            'lastname': self.lastname,
+            'username': self.username,
+            
             # do not serialize the password, its a security breach
         }
 
@@ -53,12 +48,14 @@ class Ilustration(db.Model):
 
     def serialize(self):
         return {
+
             "id": self.id,
             "title": self.title,
             "description": self.description,
             "user": self.user_id,
             "url_image": self.url_image,
             "category": self.category
+
             }   
 
 
@@ -72,5 +69,8 @@ class Favorite(db.Model):
      
     def serialize(self):
         return {
-            "id": self.id,
+            'id': self.id,
+            'user_id':self.user_id,
+            'ilustration': self.ilustration_id,
+
         }

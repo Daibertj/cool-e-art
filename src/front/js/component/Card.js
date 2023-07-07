@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
+
 
 export const Card = ({title,description, image}) => {
 	return (
@@ -17,9 +19,12 @@ export const Card = ({title,description, image}) => {
                             <p className="card-text">{description ? description : "Sin descripcion" }</p>
                             <h5>@Daibert</h5>
                         </div>
+
                     
             </div>
         </div>
+
         
-	);
-};
+      </div>
+    );
+  };
