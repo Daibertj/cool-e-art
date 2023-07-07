@@ -158,7 +158,7 @@ def upload_new_image():
             return jsonify({"msg": "Upload successfully"}), 201
         except Exception as error:
             db.session.rollback()
-            return jsonify({"msg": "Error occured while trying to upload image"}), 500   
+            return jsonify({"msg": "Error occurred while trying to upload image", "error": str(error)}), 500
         return jsonify([]), 200
 
             

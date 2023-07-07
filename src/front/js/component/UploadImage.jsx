@@ -39,7 +39,7 @@ const UploadImage = () => {
       formData.append("description", imgUpload.description);
       formData.append("title", imgUpload.title);
       formData.append("category", imgUpload.category);
-      formData.append("user", store.currentUser)
+      formData.append("user", store.name)
 
 
       const response = await actions.uploadIlustration(formData);

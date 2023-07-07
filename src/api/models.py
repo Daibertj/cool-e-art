@@ -39,7 +39,7 @@ class Ilustration(db.Model):
     title=db.Column(db.String(255), unique=False, nullable=False)
     description=db.Column(db.String(255))
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
-    url_image=db.Column(db.String(255), unique=True, nullable=False)
+    url_image=db.Column(db.String(255), unique=True)
     category= db.Column(db.String(30), nullable=False)
     
     
@@ -51,7 +51,7 @@ class Ilustration(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'user': self.user_id,
+            'user': self.user.serialize(),
             'category': self.category,
             'image':self.url_image
             
