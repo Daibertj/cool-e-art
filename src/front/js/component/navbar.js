@@ -138,9 +138,12 @@ export const Navbar = () => {
                 </li>
                 
               </ul></div>
-              <li>
+              <Link className="btn btn-primary ms-2" to="/favorite">
+                Favoritos
+              </Link>
+              <Link to="/profile">
                 <span>Hey, {store.name} !</span>
-              </li>
+              </Link>
             </>
           )}
         </div>

@@ -118,3 +118,17 @@ def get_ilustations():
     ilustrations=Ilustration.query.all()       
     ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
     return jsonify(ilustratrations_data), 200
+
+
+@api.route('/favorite/<int:user_id>', methods=['GET'])
+def get_user_favorite(user_id):
+    
+    favorite = Favorite.query.filter_by(user_id=user_id).all()
+    favorite=list(map (lambda favorite: favorite.serialize(), favorite ))
+    return jsonify(favorite), 200
+
+# @api.route('/favorite/<int:ilustration_id>/<int:user_id>', methods=['POST'])
+# def add_fav(ilustration_id, user_id):
+
+# @api.route('/favorite/<int:ilustration_id>/<int:user_id>', methods=['DELETE'])
+# def delete_fav_people(ilustration_id, user_id):
