@@ -48,13 +48,14 @@ class Ilustration(db.Model):
 
     def serialize(self):
         return {
-            'id': self.id,
-            'title': self.title,
-            'description': self.description,
-            'user': self.user_id,
-            'category': self.category,
-            'image':self.url_image
-            
+
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "user": self.user_id,
+            "url_image": self.url_image,
+            "category": self.category
+
             }   
 
 

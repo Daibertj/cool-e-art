@@ -112,9 +112,19 @@ def get_user_by_token():
              return jsonify(user.serialize()), 200
          else:
              return jsonify({'error': 'User not found'}), 404
+
+     else:
+         return jsonify({'error': 'Unauthorized'}), 401      
+
+@api.route('/ilustrations', methods=['GET'])
+def get_ilustrations():
+
+    ilustrations = Ilustration.query.all()
+
+    ilustrations = list(map(lambda item:item.serialize(), ilustrations))
+    return jsonify(ilustrations)
+
+
+
     
-@api.route('/ilustration', methods=['GET'] )
-def get_ilustations():
-    ilustrations=Ilustration.query.all()       
-    ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
-    return jsonify(ilustratrations_data), 200
+
