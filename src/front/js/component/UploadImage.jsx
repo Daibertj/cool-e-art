@@ -113,7 +113,7 @@ const UploadImage = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="pt-2">
         <label htmlFor="category">Category:</label>
         <select id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
@@ -126,7 +126,7 @@ const UploadImage = () => {
         </select>
       </div>
       </form>
-      <button onClick={handleUpload}>Upload</button>
+      <button className="btn btn-primary w-100 mt-3" onClick={handleUpload}>Upload</button>
     </div>
   );
 };

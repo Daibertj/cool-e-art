@@ -5,6 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       userData: JSON.parse(localStorage.getItem("userData")) || [],
       ilustrationData:
         JSON.parse(localStorage.getItem("ilustrationData")) || [],
+        name: "",
+        image:""  
+
     },
     actions: {
       registerUser: async (user) => {
@@ -63,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             localStorage.setItem("userData", JSON.stringify(responseData));
 
-            setStore({ userData: [...store.userData, responseData] });
+            setStore({ responseData });
           } else {
             console.log("Error fetching user data:", response.status);
           }
@@ -88,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const responseData = await response.json();
             console.log("Ilustration data:", responseData);
             setStore({
-              ilustrationData: [...store.ilustrationData, responseData],
+              ilustrationData: responseData,
             });
           } else {
             console.log("Error getting ilustrations:", error);
@@ -109,13 +112,13 @@ const getState = ({ getStore, getActions, setStore }) => {
             body: ilustration,
           });
           if (response.ok) {
-            return response.status;
+            return response.status
           } else {
-            throw new Error("Error uploading ilustration");
+            throw new Error("Error uploading ilustration")
           }
         } catch (error) {
-          console.log("Error uploading ilustration:", error);
-          return 500; // Código de estado de error genérico
+          console.log("Error uploading ilustration:", error)
+          return 500
         }
       },
     },

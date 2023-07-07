@@ -148,8 +148,8 @@ def upload_new_image():
                 title=data.get("title"),
                 description=data.get("description"),
                 category=data.get("category"),
-                image=data.get("image"),
-                user_id=current_user.get("id")
+                url_image=data.get("image"),
+                user_id=current_user
             )
             
         db.session.add(new_upload)
