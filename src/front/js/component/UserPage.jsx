@@ -11,9 +11,9 @@ function UserPage() {
   
  
   
-  useEffect(() => {
-    getIlustrations();
-  }, []);
+  // useEffect(() => {
+  //   getIlustrations();
+  // }, []);
 
   return (
     <>
@@ -31,7 +31,7 @@ function UserPage() {
           <h1 className="fw-light">{store.name}</h1>
         </div>
         </div>
-        <div className="d-flex align-items-center p-3 my-3 border border-primary rounded shadow-sm">
+        <div className="d-flex align-items-center p-3 my-3 border border-success rounded shadow-sm">
   
           <div className="lh-1">
             <h1 className="mb-0 text-blue lh-1">Mis creaciones</h1>
@@ -43,7 +43,7 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               
-            {store.ilustrationData.map((ilustration) => (
+            {store.ilustrations.map((ilustration) => (
                 <div className="col" 
                 key={ilustration.id}
               
@@ -51,7 +51,7 @@ function UserPage() {
                   
                   <Card
        
-      image={ilustration.image}
+      image={ilustration.url_image}
       title={ilustration.title}
       description={ilustration.description}
       user={ilustration.user}
