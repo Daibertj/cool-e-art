@@ -1,24 +1,25 @@
 import React from "react";
 
-export const Card = () => {
+export const Card = ({title,description, image}) => {
 	return (
-		
-            <div className="card" style={{width: "22rem"}} >
-                <div className="col">
-                    <div className="card">
+
+		<div className="col-4">
+            <div className="card"  >
+                
+                    
                         <img 
-                        src="https://st2.depositphotos.com/23395854/44166/v/450/depositphotos_441666184-stock-illustration-fried-traditional-pastry-stuffed-with.jpg" 
+                        src={image ? image : "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"}
                         className="card-img-top" 
                         alt="..."
                         />
                         <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 className="card-title">{title}</h5>
+                            <p className="card-text">{description ? description : "Sin descripcion" }</p>
                             <h5>@Daibert</h5>
                         </div>
-                    </div>
-                </div>
+                    
             </div>
+        </div>
         
 	);
 };

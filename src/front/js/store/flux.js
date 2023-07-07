@@ -4,19 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || null,
 			message: null,
 			userData:[{id:"", name:""}],
+			ilustrations: [], 
 			
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			
 		},
 		actions: {
 			registerUser: async (user) => {
@@ -59,6 +49,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 				  return response.status
 				}
+			  },
+
+			  getIlustrations: async()=>{
+
+				const store = getStore();
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/ilustrations`)
+					if(response.ok){
+						const responseData = await response.json();
+						setStore({ ilustrations: responseData })
+					}  else {
+            
+						console.log("Error fetching ilustrations:", response.status);
+					}
+				} catch (error) {
+					console.log("Error fetching ilustrations:", error);
+				}
+
+
 			  },
 
       // Use getActions to call a function within a fuction

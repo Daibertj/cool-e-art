@@ -57,6 +57,7 @@ class Ilustration(db.Model):
             "title": self.title,
             "description": self.description,
             "user": self.user_id,
+            "url_image": self.url_image,
             "category": self.category
             }   
 
