@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
   return {
     store: {
+      message: null,
       token: localStorage.getItem("token") || null,
       userData: JSON.parse(localStorage.getItem("userData")) || [],
       ilustrationData: JSON.parse(localStorage.getItem("ilustrationData")) || [],
