@@ -1,18 +1,26 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
-export const Card = (props) => {
-    console.log(props)
-    
-    return (
-      <div>
-        
-          <div className="card" style={{ width: "18rem" }} >
-            <img src={props.image} className="card-img-top" alt={props.title} />
-            <div className="card-body">
-              <h5 className="card-title">{props.title}</h5>
-              <p className="card-text">{props.description}</p>
-              <h5>@{props.user}</h5>
+
+export const Card = () => {
+	return (
+		
+            <div className="card" style={{width: "22rem"}} >
+                <div className="col">
+                    <div className="card">
+                        <img 
+                        src="https://st2.depositphotos.com/23395854/44166/v/450/depositphotos_441666184-stock-illustration-fried-traditional-pastry-stuffed-with.jpg" 
+                        className="card-img-top" 
+                        alt="..."
+                        />
+                        <div className="card-body">
+                            <h5 className="card-title">Card title</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5>@Daibert</h5>
+                        </div>
+                    </div>
+                </div>
+
             </div>
           </div>
         

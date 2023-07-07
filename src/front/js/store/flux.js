@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+
   return {
     store: {
       token: localStorage.getItem("token") || null,
@@ -10,6 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       
 		registerUser: async (user) => {
+
         const store = getStore();
         try {
           let response = await fetch(`${process.env.BACKEND_URL}/user`, {
