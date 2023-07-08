@@ -26,17 +26,17 @@ const ExplorePage = () => {
         </div>
 
         <div className="row">
-          {store.ilustrationData.map((ilustration) => {
-            return (
+          {store.ilustrationData.map((ilustration) => 
+             (
               <Card
                 key={ilustration.id}
                 title={ilustration.title}
                 description={ilustration.description}
                 image={ilustration.image}
-                user={ilustration.user}
+                user={ilustration.user.name}
               />
-            );
-          })}
+              
+            ))}
         </div>
       </div>
     </>
