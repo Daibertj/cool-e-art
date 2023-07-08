@@ -13,6 +13,7 @@ export const Card = ({id, title,description, image, user}) => {
                         src={image }
                         className="card-img-top" 
                         alt={title}
+                        style={{width:"100%", height:"auto"}}
                         />
             
 

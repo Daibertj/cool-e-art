@@ -44,7 +44,7 @@ export const Navbar = () => {
  
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <div className="container">
-    <Link className="navbar-brand" to="#">Ilustration</Link>
+    <Link className="navbar-brand" to="#">Cool-e-Art</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -153,7 +153,7 @@ export const Navbar = () => {
 
         {store.token && (
           <li>
-            <span>Hey, {userData.name}!</span>
+            <span>Hey, {userData.alias}!</span>
           </li>
         )}
       </div>

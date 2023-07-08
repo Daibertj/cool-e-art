@@ -17,12 +17,12 @@ function UserPage() {
     <>
       <div>
         <div className="container">
-          {/* <img
-            src="rigo-baby.jpg"
+          <img
+            src={userData.image}
             className="img-thumbnail rounded"
             alt="..."
-          /> */}
-          {userData.image}
+          />
+          
 
           <div className="col-lg-6 col-md-8 mx-auto">
             <h1 className="fw-light">{userData.name}</h1>

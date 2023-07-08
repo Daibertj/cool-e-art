@@ -3,9 +3,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token") || null,
-			message: null,
-			ilustrations: [],
-
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
@@ -29,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				} catch (error) {
 					console.log("Error registering user:", error);
-        			return 500;
+					return 500;
 				}
 			},
 
@@ -54,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
-        			return 500;
+					return 500;
 				}
 			},
 
@@ -67,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						console.log("ilustration data:",responseData)
+						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
 
@@ -92,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					if (response.ok) {
 						const responseData = await response.json();
-						 console.log("User data:", responseData);
+						console.log("User data:", responseData);
 
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
@@ -112,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
 						method: "POST",
 						headers: {
-							
+
 							Authorization: `Bearer ${store.token}`,
 						},
 						body: ilustration,
