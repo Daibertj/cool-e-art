@@ -5,8 +5,8 @@ import { Context } from "../store/appContext";
 export const Card = ({title,description, image}) => {
 	return (
 
-		<div className="col-4">
-            <div className="card"  >
+		<div className="col">
+            <div className="card"     >
                 
                     
                         <img 
@@ -14,6 +14,8 @@ export const Card = ({title,description, image}) => {
                         className="card-img-top" 
                         alt="..."
                         />
+            
+
                         <div className="card-body">
                             <h5 className="card-title">{title}</h5>
                             <p className="card-text">{description ? description : "Sin descripcion" }</p>

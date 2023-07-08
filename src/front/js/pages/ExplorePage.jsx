@@ -25,7 +25,7 @@ const ExplorePage = () => {
               <div className="row">
                 {store.ilustrations.map((ilustration)=> {
                   return(
-                    <Card title={ilustration.title} description={ilustration.description} image={ilustration.url_image}/>
+                    <Card title={ilustration.title} description={ilustration.description} image={ilustration.image}/>
                   )
                 })}
                 

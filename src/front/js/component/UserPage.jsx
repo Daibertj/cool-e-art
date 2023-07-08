@@ -37,10 +37,11 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {store.ilustrations.map((ilustration) => (
+              
+              {store.ilustrationData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card
-                    image={ilustration.url_image}
+                    image={ilustration.image}
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
