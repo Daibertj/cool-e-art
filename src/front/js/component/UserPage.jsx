@@ -46,7 +46,7 @@ function UserPage() {
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               
               {userIlustrations.map((ilustration) => (
-                <div className="col" key={ilustration.user.alias}>
+                <div className="col" key={ilustration.user.id}>
                   <Card
                     image={ilustration.image}
                     title={ilustration.title}

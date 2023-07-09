@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
-			ilustrationPerUser: JSON.parse(localStorage.getItem("ilustrationData")) || [],
+			
 			name: "",
 			image: ""
 
@@ -78,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			getUserData: async () => {
+			getUserData: async (alias) => {
 				const store = getStore();
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
