@@ -175,14 +175,4 @@ def get_ilustations():
     return jsonify(ilustratrations_data), 200
 
 
-@api.route('/ilustration/<alias>', methods=['GET'])
-def get_ilustrations_by_user(alias):
-    user = User.query.filter_by(alias=alias).first()
 
-    if user is None:
-        return jsonify({'error': 'User not found'}), 404
-
-    ilustrations = Ilustration.query.filter_by(user_id=user.id).all()
-    ilustrations_data = [ilustration.serialize() for ilustration in ilustrations]
-
-    return jsonify(ilustrations_data), 200
