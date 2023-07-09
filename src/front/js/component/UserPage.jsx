@@ -16,16 +16,19 @@ function UserPage() {
   return (
     <>
       <div>
-        <div className="container">
+        <div className="container d-inline-flex justify-content-center border border-danger ">
           <img
             src={userData.image}
-            className="img-thumbnail rounded"
+            className="img-thumbnail img-fluid h-25 rounded "
             alt="..."
+            style={{width:"150px"}}
+            
           />
           
 
-          <div className="col-lg-6 col-md-8 mx-auto">
+          <div className="col-lg-6 col-md-8 border h-25 border-danger ">
             <h1 className="fw-light">{userData.name}</h1>
+            <h4>prueba</h4>
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">

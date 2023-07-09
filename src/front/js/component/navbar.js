@@ -54,7 +54,7 @@ export const Navbar = () => {
         {!store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+              <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
           </>
         )}
@@ -62,13 +62,13 @@ export const Navbar = () => {
         {store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+              <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile" className="nav-link active">My Profile</Link>
+              <Link to="/profile" className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
-              <Link to="/upload" className="nav-link active">Upload Creation</Link>
+              <Link to="/upload" className="nav-link ">Upload Creation</Link>
             </li>
           </>
         )}
@@ -152,9 +152,19 @@ export const Navbar = () => {
         )}
 
         {store.token && (
-          <li>
-            <span>Hey, {userData.alias}!</span>
-          </li>
+          <>
+          
+            <span className="m-2">Hey, {userData.alias}!</span>
+          
+          
+      <button
+        className=" btn btn-outline-info "
+        // onClick={handleLogout}
+      >
+        Log Out
+      </button>
+    
+          </>
         )}
       </div>
     </div>

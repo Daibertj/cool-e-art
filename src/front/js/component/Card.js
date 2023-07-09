@@ -21,6 +21,7 @@ export const Card = ({id, title,description, image, user}) => {
                             <h5 className="card-title">{title}</h5>
                             <p className="card-text">{description ? description : "Sin descripcion" }</p>
                             <h5>{user.name}</h5>
+                            
                         </div>
 
                     
