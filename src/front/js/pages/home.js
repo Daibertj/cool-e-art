@@ -10,38 +10,20 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5 container">
-			<div className="row row-cols-1 row-cols-md-3 g-4">
-              <div className="col">
-                <div className="card">
-                <Card/>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card">
-                <Card/>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card">
-                <Card/>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card">
-                <Card/>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card">
-                <Card/>
-                </div>
-              </div>
-              <div className="col">
-                <div className="card">
-				<Card/>
-                </div>
-              </div>
-            </div>
+			
+      <div className="row">
+          {store.ilustrationData.map((ilustration) => 
+             (
+              <Card
+                key={ilustration.id}
+                title={ilustration.title}
+                description={ilustration.description}
+                image={ilustration.image}
+                user={ilustration.user.name}
+              />
+              
+            ))}
+        </div>
 		</div>
 	);
 };
