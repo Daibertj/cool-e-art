@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
-			
+			ilustrationsUser:[], 
 			name: "",
 			image: ""
 
@@ -78,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			getUserData: async (alias) => {
+			getUserData: async () => {
 				const store = getStore();
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
@@ -126,6 +126,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 500;
 				}
 			},
+
+			getUserIllustrations: async (userId) => {
+				const store = getStore();
+			  
+				try {
+				  const response = await fetch(`${process.env.BACKEND_URL}/ilustration/${userId}`, {
+					method: "GET",
+					headers: {
+					  "Content-Type": "application/json",
+					  
+					},
+				  });
+			  
+				  if (response.ok) {
+					const responseData = await response.json();
+					setStore({ ilustrationsUser: responseData });
+				  } else {
+					console.log("Error fetching user illustrations:", response.status);
+				  }
+				} catch (error) {
+				  console.log("Error fetching user illustrations:", error);
+				}
+			  },
 
 			
 		},
