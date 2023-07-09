@@ -7,11 +7,14 @@ import { Card } from "./Card";
 function UserPage() {
   const { actions, store } = useContext(Context);
   const { userData } = store;
-  const { getUserData, getAllIlustrations } = actions;
+  const { getUserData } = actions;
 
   useEffect(() => {
     getUserData();
   }, []);
+  const userIlustrations=store.ilustrationData.filter(
+    (ilustration)=>ilustration.user.alias === userData.alias
+  )
 
   return (
     <>
@@ -27,8 +30,9 @@ function UserPage() {
           
 
           <div className="col-lg-6 col-md-8 border h-25 border-danger ">
-            <h1 className="fw-light">{userData.name}</h1>
-            <h4>prueba</h4>
+            <h1 className="fw-light">{userData.alias}</h1>
+            <span className="fst-italic">{userData.name}</span>
+            <span className="fst-italic">{userData.lastname}</span>
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -41,8 +45,8 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               
-              {store.ilustrationData.map((ilustration) => (
-                <div className="col" key={ilustration.id}>
+              {userIlustrations.map((ilustration) => (
+                <div className="col" key={ilustration.user.alias}>
                   <Card
                     image={ilustration.image}
                     title={ilustration.title}
@@ -77,7 +81,7 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
               
-              {/* cambiar la logica de este map*/}
+              {/* cambiar la logica de este map para agregar favoritos*/}
               {store.ilustrationData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card

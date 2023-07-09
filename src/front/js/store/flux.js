@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
+			ilustrationPerUser: JSON.parse(localStorage.getItem("ilustrationData")) || [],
 			name: "",
 			image: ""
 
@@ -125,6 +126,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 500;
 				}
 			},
+
+			
 		},
 	};
 };

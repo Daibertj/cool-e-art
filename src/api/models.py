@@ -7,7 +7,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=False, nullable=False )
     lastname = db.Column(db.String(30), unique=False, nullable=False )
-    alias = db.Column(db.String(30), unique=False, nullable=False )
+    alias = db.Column(db.String(30), unique=True, nullable=False )
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(255), unique=False, nullable=False)
     image = db.Column(db.String(255), unique=False, nullable=True )

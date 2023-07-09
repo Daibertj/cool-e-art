@@ -23,7 +23,7 @@ export const Navbar = () => {
         confirmButtonText: "Aceptar",
       });
       await actions.getUserData;
-      navigate("/profile");
+      navigate(`/`);
     }
     if (response == 400) {
       Swal.fire({
@@ -65,7 +65,7 @@ export const Navbar = () => {
               <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile" className="nav-link ">My Profile</Link>
+              <Link to={`/profile/${store.userData.alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link ">Upload Creation</Link>
