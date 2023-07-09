@@ -12,6 +12,8 @@ import { Footer } from "./component/footer";
 import Register from "./component/Register.jsx";
 import UserPage from "./component/UserPage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
+import UploadImage from "./component/UploadImage.jsx";
+
 
 //create your first component
 const Layout = () => {
@@ -29,7 +31,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Register/>} path="/register"/>
-
+                        <Route element={<UploadImage/>} path="/upload"/>
                         <Route element={<UserPage/>} path="/profile"/> 
                         <Route element={<ExplorePage/>} path="/explorepage"/>
                         

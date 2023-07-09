@@ -18,7 +18,7 @@ class User(db.Model):
 
     ilustration= db.relationship('Ilustration' ,backref='user', uselist=True )
     favorite = db.relationship('Favorite',backref='user', uselist=True )
-    salt = db.Column(db.String(100), unique=False, nullable=False)
+    
     
     def __repr__(self):
         return f'<User {self.email}>'
@@ -48,14 +48,13 @@ class Ilustration(db.Model):
 
     def serialize(self):
         return {
-
-            "id": self.id,
-            "title": self.title,
-            "description": self.description,
-            "user": self.user_id,
-            "url_image": self.url_image,
-            "category": self.category
-
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'user': self.user.serialize(),
+            'category': self.category,
+            'image':self.url_image
+            
             }   
 
 
@@ -65,12 +64,12 @@ class Favorite(db.Model):
     ilustration_id = db.Column(db.Integer, db.ForeignKey('ilustration.id'))
     
     def __repr__(self):
-        return f'<Favorite {self.id}>'
+        return f'<Favorite {self.user_id}>'
      
     def serialize(self):
         return {
             'id': self.id,
             'user_id':self.user_id,
-            'ilustration': self.ilustration_id,
+            'ilustration_id': self.ilustration_id,
 
         }

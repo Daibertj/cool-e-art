@@ -31,7 +31,7 @@ const injectContext = PassedComponent => {
 			 // <---- calling this function from the flux.js actions
 
 			 state.actions.getUserData(state.store.userData.name)
-			 state.actions.getIlustrations();
+			 state.actions.getAllIlustrations();
 		}, [state.actions.getUserData, state.store.userData.name]);
 
 
