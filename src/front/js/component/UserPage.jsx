@@ -48,18 +48,7 @@ function UserPage() {
                     user={ilustration.user}
                   />
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      Favorite
-                    </button>
+                    
                   </div>
                 </div>
               ))}
@@ -86,12 +75,7 @@ function UserPage() {
                   />
 
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
+                    
 
                   </div>
                 </div>
