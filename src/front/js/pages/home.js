@@ -20,6 +20,7 @@ export const Home = () => {
                 description={ilustration.description}
                 image={ilustration.image}
                 user={ilustration.user.name}
+                id={ilustration.id}
               />
               
             ))}

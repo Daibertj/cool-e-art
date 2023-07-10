@@ -46,6 +46,7 @@ function UserPage() {
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
+                    id={ilustration.id}
                   />
                   <div className="btn-group">
                     
@@ -72,6 +73,7 @@ function UserPage() {
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
+                    id={ilustration.id}
                   />
 
                   <div className="btn-group">

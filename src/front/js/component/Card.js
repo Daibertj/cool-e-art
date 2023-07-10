@@ -24,7 +24,7 @@ export const Card = ({ id, title, description, image, user }) => {
                 </div>
                 <button
                     className="btn btn-dark bg-black fa-solid fa-heart"
-                    onClick={() => actions.addFavorite()}
+                    onClick={() => actions.addFavorite(id)}
                 ></button>
 
 

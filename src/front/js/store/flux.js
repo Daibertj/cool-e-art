@@ -129,10 +129,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			addFavorite: async () => {
+			addFavorite: async (id) => {
 				const store = getStore();
 				try {
-					let response = await fetch(`${process.env.BACKEND_URL}/favorite/1`, {
+					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${id}`, {
 						method: "POST",
 						headers: {
 
