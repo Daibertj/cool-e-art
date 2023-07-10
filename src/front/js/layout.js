@@ -14,6 +14,7 @@ import UserPage from "./component/UserPage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
 import UploadImage from "./component/UploadImage.jsx";
 
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain

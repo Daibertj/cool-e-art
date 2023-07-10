@@ -65,12 +65,12 @@ class Favorite(db.Model):
     ilustration_id = db.Column(db.Integer, db.ForeignKey('ilustration.id'))
     
     def __repr__(self):
-        return f'<Favorite {self.id}>'
+        return f'<Favorite {self.user_id}>'
      
     def serialize(self):
         return {
             'id': self.id,
             'user_id':self.user_id,
-            'ilustration': self.ilustration_id,
+            'ilustration_id': self.ilustration_id,
 
         }

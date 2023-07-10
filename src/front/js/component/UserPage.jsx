@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
+import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
