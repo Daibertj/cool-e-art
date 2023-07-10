@@ -24,7 +24,7 @@ function UserPage() {
   return (
     <>
       <div >
-        <div className="container d-inline-flex justify-content-center border border-danger ">
+        <div className="container-fluid profile d-inline-flex justify-content-center ">
           <img
             src={userProfile.image}
             className="img-thumbnail img-fluid h-25 rounded "
