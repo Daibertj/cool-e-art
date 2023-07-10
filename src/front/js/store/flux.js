@@ -9,6 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
+			favoriteData:
+				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
 			image: ""
 
@@ -149,6 +151,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error", error);
 					return 500;
 				}
+
+			},
+			getFavorite: async () => {
+
+				const store = getStore();
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/favorite/1`)
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("favoriteData", JSON.stringify(responseData));
+						console.log("favorite data:", responseData)
+						setStore({ favoriteData: responseData })
+					} else {
+
+						console.log("Error fetching favorite:", response.status);
+					}
+				} catch (error) {
+					console.log("Error fetching favorite:", error);
+				}
+
 
 			}
 		},

@@ -8,7 +8,7 @@ import { Favorite } from "./Favorite.jsx";
 function UserPage() {
   const { actions, store } = useContext(Context);
   const { userData } = store;
-  const { getUserData, getAllIlustrations } = actions;
+  const { getUserData, getAllIlustrations, getFavorite } = actions;
 
   useEffect(() => {
     getUserData();
@@ -66,13 +66,13 @@ function UserPage() {
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
               {/* cambiar la logica de este map*/}
-              {store.ilustrationData.map((ilustration) => (
+              {store.favoriteData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
-                  <Card
+                  <Favorite
                     image={ilustration.image}
                     title={ilustration.title}
                     description={ilustration.description}
-                    user={ilustration.user}
+                    // user={ilustration.user}
                     id={ilustration.id}
                   />
 
