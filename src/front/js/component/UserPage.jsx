@@ -38,7 +38,7 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              
+
               {store.ilustrationData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card
@@ -70,11 +70,11 @@ function UserPage() {
           <div className="lh-1">
             <h2 className="mb-0 lh-1">Favoritos</h2>
           </div>
-          </div>
-          <div className="album py-5 bg-body-tertiary">
+        </div>
+        <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              
+
               {/* cambiar la logica de este map*/}
               {store.ilustrationData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
@@ -92,7 +92,7 @@ function UserPage() {
                     >
                       View
                     </button>
-                    
+
                   </div>
                 </div>
               ))}

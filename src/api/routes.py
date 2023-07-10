@@ -185,6 +185,7 @@ def get_user_favorite(user_id):
     return jsonify(favorite), 200
 
 @api.route('/favorite/<int:ilustration_id>', methods=['POST'])
+@jwt_required()
 def add_fav(ilustration_id):
     user_id=get_jwt_identity() 
     favorite = Favorite.query.filter_by(user_id= user_id, ilustration_id = ilustration_id).first()
@@ -203,7 +204,9 @@ def add_fav(ilustration_id):
 
 
 @api.route('/favorite/<int:ilustration_id>', methods=['DELETE'])
+@jwt_required()
 def delete_fav_people(ilustration_id):
+    
     user_id=get_jwt_identity() 
     favorite = Favorite.query.filter_by(user_id= user_id, ilustration_id = ilustration_id).first()
     if favorite is None:
