@@ -35,6 +35,7 @@ def register_user():
             "lastname": data_form.get("lastname"),
             "email": data_form.get("email"),
             "password": data_form.get("password"),
+            "alias":data_form.get("alias"),
             "image": data_files.get("image")
         }
 
@@ -49,6 +50,8 @@ def register_user():
             return jsonify({"msg": "Missing email parameter"}), 400
         if data.get("password") is None:
             return jsonify({"msg": "Missing password parameter"}), 400
+        if data.get("alias") is None:
+            return jsonify({"msg": "Missing alias parameter "}), 400
         
 
         user = User.query.filter_by(email=data.get("email")).first()
@@ -68,7 +71,8 @@ def register_user():
             email=data.get("email"),
             password=password_hash,
             image=data.get("image"),
-            salt=password_salt
+            salt=password_salt,
+            alias=data.get("alias")
         )
 
         db.session.add(new_user)
@@ -138,7 +142,6 @@ def upload_new_image():
             return jsonify({"msg": "Missing title parameter"}), 400
         if data.get("description") is None:
             return jsonify({"msg": "Missing description parameter"}), 400
-        
         if data.get("category") is None:
             return jsonify({"msg": "Missing category parameter "}), 400
         
@@ -164,16 +167,14 @@ def upload_new_image():
             return jsonify({"msg": "Error occurred while trying to upload image", "error": str(error)}), 500
         return jsonify([]), 200
 
-            
-        
-     
-
 
 @api.route('/ilustration', methods=['GET'] )
 def get_ilustations():
     ilustrations=Ilustration.query.all()       
     ilustratrations_data= list(map(lambda ilustration : ilustration.serialize() , ilustrations))       
     return jsonify(ilustratrations_data), 200
+
+
 
 
 
@@ -215,4 +216,5 @@ def delete_fav_people(ilustration_id):
             return jsonify({"msg":"se elimino el favorito"}), 200
         except Exception as error:
             return jsonify({"msg": error.args}), 500
+
 

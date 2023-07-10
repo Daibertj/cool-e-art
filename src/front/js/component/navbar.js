@@ -23,7 +23,7 @@ export const Navbar = () => {
         confirmButtonText: "Aceptar",
       });
       await actions.getUserData;
-      navigate("/profile");
+      navigate(`/`);
     }
     if (response == 400) {
       Swal.fire({
@@ -42,9 +42,9 @@ export const Navbar = () => {
   };
   return (
  
-<nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container">
-    <Link className="navbar-brand" to="#">Ilustration</Link>
+<nav className="navbar navbar-expand-lg navbar-light  ">
+  <div className="container ">
+    <Link className="navbar-brand" to="#">Cool-e-Art</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -54,7 +54,7 @@ export const Navbar = () => {
         {!store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+              <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
           </>
         )}
@@ -62,13 +62,13 @@ export const Navbar = () => {
         {store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link active" aria-current="page">Home</Link>
+              <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile" className="nav-link active">My Profile</Link>
+              <Link to={`/profile/${store.userData.alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
-              <Link to="/upload" className="nav-link active">Upload Creation</Link>
+              <Link to="/upload" className="nav-link ">Upload Creation</Link>
             </li>
           </>
         )}
@@ -152,9 +152,19 @@ export const Navbar = () => {
         )}
 
         {store.token && (
-          <li>
-            <span>Hey, {userData.name}!</span>
-          </li>
+          <>
+          
+            <span className="m-2">Hey, {userData.alias}!</span>
+          
+          
+      <button
+        className=" btn btn-outline-info "
+        // onClick={handleLogout}
+      >
+        Log Out
+      </button>
+    
+          </>
         )}
       </div>
     </div>
