@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
+
 
 
 export const Card = ({id, title,description, image, user}) => {
@@ -9,14 +9,14 @@ export const Card = ({id, title,description, image, user}) => {
 		<div className="col">
             <div className="card"     >
                 
-                    
+                    <Link to={`/imageview/${id}`}>
                         <img 
                         src={image }
                         className="card-img-top" 
                         alt={title}
                         style={{width:"100%", height:"auto"}}
                         />
-            
+            </Link>
 
                         <div className="card-body">
                             <h5 className="card-title">{title}</h5>

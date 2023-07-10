@@ -34,7 +34,7 @@ const Layout = () => {
                         <Route element={<UploadImage />} path="/upload" />
                         <Route element={<UserPage />} path="/profile/:alias" />
                         <Route element={<ExplorePage />} path="/" />
-                        <Route element={<Imageview/>} path="/:image" />
+                        <Route element={<Imageview/>} path="/imageview/:id" />
                         <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />
