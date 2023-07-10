@@ -13,14 +13,11 @@ import cloudinary.uploader as uploader
 
 api = Blueprint('api', __name__)
 
-
 def set_password(password, salt):
     return generate_password_hash(f"{password}{salt}")
 
-
 def check_password(hash_password, password, salt):
     return check_password_hash(hash_password, f"{password}{salt}")
-
 
 
 @api.route('/user', methods=['POST'])
@@ -84,6 +81,7 @@ def register_user():
             return jsonify({"msg": "Error registering user", "error": str(error)}), 500
         return jsonify([]), 200
 
+
 @api.route('/login', methods=['POST'])
 def login():
     if request.method == "POST":
@@ -116,6 +114,7 @@ def get_user_by_token():
              return jsonify(user.serialize()), 200
          else:
              return jsonify({'error': 'User not found'}), 404
+
     
 @api.route('/ilustration', methods=['POST'])
 @jwt_required()
@@ -175,15 +174,13 @@ def get_ilustations():
     return jsonify(ilustratrations_data), 200
 
 
-
-
-
 @api.route('/favorite/<int:user_id>', methods=['GET'])
 def get_user_favorite(user_id):
     
     favorite = Favorite.query.filter_by(user_id=user_id).all()
     favorite=list(map (lambda favorite: favorite.serialize(), favorite ))
     return jsonify(favorite), 200
+
 
 @api.route('/favorite/<int:ilustration_id>', methods=['POST'])
 def add_fav(ilustration_id):
@@ -216,5 +213,7 @@ def delete_fav_people(ilustration_id):
             return jsonify({"msg":"se elimino el favorito"}), 200
         except Exception as error:
             return jsonify({"msg": error.args}), 500
+
+
 
 

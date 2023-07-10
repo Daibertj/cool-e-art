@@ -19,6 +19,7 @@ function UserPage() {
   const userIlustrations = ilustrationData.filter(
     (ilustration) => ilustration.user.alias === alias
   );
+  
   const userProfile =
     userIlustrations.length > 0 ? userIlustrations[0].user : null;
   
@@ -37,7 +38,7 @@ function UserPage() {
             <p className="fst-italic">
               {userProfile.name} {userProfile.lastname}
             </p>
-            <p className="fst-italic"></p>
+            
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -56,6 +57,7 @@ function UserPage() {
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
+                    id={ilustration.id}
                   />
                   <div className="btn-group">
                     <button
