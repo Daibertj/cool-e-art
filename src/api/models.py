@@ -74,5 +74,7 @@ class Favorite(db.Model):
             'ilustration_id': self.ilustration_id,
             'title': self.ilustration.title,
             'description': self.ilustration.description,
+            'category': self.ilustration.category,
+            'image': self.ilustration.url_image,
 
         }
