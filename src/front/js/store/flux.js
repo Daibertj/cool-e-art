@@ -59,6 +59,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			
+
 			getAllIlustrations: async () => {
 
 				const store = getStore();
@@ -129,6 +131,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 500;
 				}
 			},
+
+			logout: ()=> {
+				localStorage.removeItem("token")
+				setStore({token: null, name: "", image:""})			
+			}
 
 			
 
