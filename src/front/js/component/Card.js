@@ -22,13 +22,14 @@ export const Card = ({ id, title, description, image, user }) => {
                     <p className="card-text">{description ? description : "Sin descripcion"}</p>
                     <h5>{user.name}</h5>
                 </div>
-                <button
-                    className="btn btn-dark bg-black fa-solid fa-heart"
-                    onClick={() => actions.addFavorite(id)}
-                ></button>
+                
 
 
             </div>
+            <button
+                    className="btn btn-dark bg-black fa-solid fa-heart"
+                    onClick={() => actions.addFavorite(id)}
+                ></button>
         </div>
 
 

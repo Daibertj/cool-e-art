@@ -26,7 +26,7 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id }
 
             </div>
             <button
-                    className="btn btn-dark bg-black fa-solid fa-heart"
+                    className="btn btn-dark bg-black fa-solid fa-trash"
                     onClick={() => actions.deleteFavorite(ilustration_id)}
                 ></button>
         </div>
