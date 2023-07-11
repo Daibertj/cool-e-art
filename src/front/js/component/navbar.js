@@ -159,7 +159,7 @@ export const Navbar = () => {
           
       <button
         className=" btn btn-outline-info "
-        // onClick={handleLogout}
+        onClick={()=> actions.logout()}
       >
         Log Out
       </button>
