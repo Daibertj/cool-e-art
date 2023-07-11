@@ -107,7 +107,7 @@ def login():
 @api.route('/user/<alias>', methods=['GET'])
 def get_user_by_alias(alias):
      if request.method == "GET":
-         user = User.query.filter(alias=alias).first()
+         user = User.query.filter_by(alias=alias).first()
              
          if user:
              return jsonify(user.serialize()), 200

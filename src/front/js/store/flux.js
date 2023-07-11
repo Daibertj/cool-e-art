@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						console.log("ilustration data:", responseData)
+						// console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
@@ -80,12 +80,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUserData: async (alias) => {
 				const store = getStore();
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`, {
-						method: "GET",
-					});
+					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
 					if (response.ok) {
 						const responseData = await response.json();
-						console.log("User data:", responseData);
+						// console.log("User data:", responseData);
 
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
@@ -129,7 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  if (response.ok) {
 					const responseData = await response.json()
 					setStore({ ilustrationsUser: responseData })
-					console.log("User ilustrations:", responseData)
+					// console.log("User ilustrations:", responseData)
 				  } else {
 					console.log("Error fetching user ilustrations:", response.status)
 				  }
