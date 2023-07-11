@@ -12,15 +12,15 @@ export const Home = () => {
 		<div className="text-center mt-5 container">
 			
       <div className="row">
-          {store.ilustrationData.map((ilustration) => 
+          {store.photos.map((photo) => 
              (
               <Card
-                key={ilustration.id}
-                title={ilustration.title}
-                description={ilustration.description}
-                image={ilustration.image}
-                user={ilustration.user.name}
-                id={ilustration.id}
+                key={photo.id}
+                title={photo.photographer}
+                description={photo.photographer}
+                image={photo.src.medium}
+                user={photo.photographer}
+                id={photo.id}
               />
               
             ))}

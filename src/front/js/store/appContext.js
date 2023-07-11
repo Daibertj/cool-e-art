@@ -33,6 +33,7 @@ const injectContext = PassedComponent => {
 			 state.actions.getUserData(state.store.userData.name);
 			 state.actions.getAllIlustrations();
 			 state.actions.getFavorite()
+			 state.actions.getApiImage()
 		}, [state.actions.getUserData, state.store.userData.name]);
 
 
