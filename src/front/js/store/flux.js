@@ -173,7 +173,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 
-			}
+			},
+			deleteFavorite: async (ilustration_id) => {
+				const store = getStore()
+				try{
+					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
+						method:"DELETE",
+						headers: {
+
+							Authorization: `Bearer ${store.token}`,
+						}
+					})
+					
+					console.log(response)
+		
+					if (response.ok){
+						getActions().getContact()
+					}else{
+						console.log("errorrrrr")
+					}
+		
+		
+		
+				}catch(err){
+					console.log(err)
+				}
+		
+			},
 		},
 	};
 };

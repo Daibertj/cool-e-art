@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 
 
-export const Favorite = ({ id, title, description, image, user }) => {
+export const Favorite = ({ id, title, description, image, user, ilustration_id }) => {
     const { store, actions } = useContext(Context) 
     return (
 
@@ -25,6 +25,10 @@ export const Favorite = ({ id, title, description, image, user }) => {
 
 
             </div>
+            <button
+                    className="btn btn-dark bg-black fa-solid fa-heart"
+                    onClick={() => actions.deleteFavorite(ilustration_id)}
+                ></button>
         </div>
 
 

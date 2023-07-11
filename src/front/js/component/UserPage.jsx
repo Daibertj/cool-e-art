@@ -72,8 +72,9 @@ function UserPage() {
                     image={ilustration.image}
                     title={ilustration.title}
                     description={ilustration.description}
-                    // user={ilustration.user}
+                    user={ilustration.user}
                     id={ilustration.id}
+                    ilustration_id={ilustration.ilustration_id}
                   />
 
                   <div className="btn-group">
