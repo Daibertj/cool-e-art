@@ -8,19 +8,22 @@ import { Favorite } from "./Favorite.jsx";
 function UserPage() {
   const { actions, store } = useContext(Context);
   const { ilustrationsUser, userData } = store;
-  const { getUserData, getIlustrationsByUser } = actions;
+  const { getUserData, getIlustrationsByUser, getAllIlustrations, getFavorite } = actions;
   const { alias } = useParams();
   const aliasRef = useRef(alias);
+
 
   useEffect(() => {
     getUserData(alias);
   }, [alias]);
+
 
   useEffect(() => {
     if (aliasRef.current == alias) {
       getIlustrationsByUser(alias);
     }
   }, [alias]);
+
 
   return (
     <>
@@ -37,6 +40,7 @@ function UserPage() {
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
+
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -48,7 +52,9 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
               {ilustrationsUser.map((ilustration) => (
+
                 <div className="col" key={ilustration.id}>
                   <Card
                     image={ilustration.image}
@@ -58,18 +64,7 @@ function UserPage() {
                     id={ilustration.id}
                   />
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      Favorite
-                    </button>
+
                   </div>
                 </div>
               ))}
@@ -84,23 +79,19 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {/* cambiar la logica de este map para agregar favoritos*/}
-              {store.ilustrationData.map((ilustration) => (
+
+              {store.favoriteData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
-                  <Card
+                  <Favorite
                     image={ilustration.image}
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
+                    id={ilustration.id}
+                    ilustration_id={ilustration.ilustration_id}
                   />
 
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
                   </div>
                 </div>
               ))}
