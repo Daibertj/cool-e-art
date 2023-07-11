@@ -36,17 +36,10 @@ const UploadImage = () => {
       const formData = new FormData();
 
       formData.append("image", imgUpload.image);
-      
       formData.append("title", imgUpload.title);
-
       formData.append("description", imgUpload.description);
-
-    
-      
       formData.append("category", imgUpload.category);
       
-
-
       const response = await actions.uploadIlustration(formData);
      
       if (response.status === 201 ||response.status === 200) {

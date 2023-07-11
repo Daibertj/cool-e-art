@@ -35,8 +35,8 @@ const ExplorePage = () => {
                 image={ilustration.image}
                 user={ilustration.user.name}
                 id={ilustration.id}
-              />
-              
+
+              />              
             ))}
         </div>
       </div>
@@ -45,3 +45,4 @@ const ExplorePage = () => {
 };
 
 export default ExplorePage;
+

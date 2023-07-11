@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
@@ -7,26 +7,43 @@ import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
-  const { userData } = store;
-  const { getUserData, getAllIlustrations, getFavorite } = actions;
+
+  
+//   const { getUserData, getAllIlustrations, getFavorite } = actions;
+
+  const { ilustrationData } = store;
+  const { getUserData } = actions;
+
+  const { alias } = useParams();
+
 
   useEffect(() => {
-    getUserData();
-  }, []);
+    getUserData(alias);
+  }, [alias]);
 
+  const userIlustrations = ilustrationData.filter(
+    (ilustration) => ilustration.user.alias === alias
+  );
+  
+  const userProfile =
+    userIlustrations.length > 0 ? userIlustrations[0].user : null;
+  
   return (
     <>
-      <div>
-        <div className="container">
-          {/* <img
-            src="rigo-baby.jpg"
-            className="img-thumbnail rounded"
+      <div >
+        <div className="container-fluid profile d-inline-flex justify-content-center ">
+          <img
+            src={userProfile.image}
+            className="img-thumbnail img-fluid h-25 rounded "
             alt="..."
-          /> */}
-          {userData.image}
-
-          <div className="col-lg-6 col-md-8 mx-auto">
-            <h1 className="fw-light">{userData.name}</h1>
+            style={{ width: "150px" }}
+          />
+          <div className="col-lg-6 col-md-8 h-25  ">
+            <h1 className="fw-light">{userProfile.alias}</h1>
+            <p className="fst-italic">
+              {userProfile.name} {userProfile.lastname}
+            </p>
+            
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -39,7 +56,10 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-              {store.ilustrationData.map((ilustration) => (
+
+//               {store.ilustrationData.map((ilustration) => (
+
+              {userIlustrations.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card
                     image={ilustration.image}
@@ -65,8 +85,10 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-              {/* cambiar la logica de este map*/}
-              {store.favoriteData.map((ilustration) => (
+//               {store.favoriteData.map((ilustration) => (
+
+              {store.ilustrationData.map((ilustration) => (
+
                 <div className="col" key={ilustration.id}>
                   <Favorite
                     image={ilustration.image}
@@ -78,7 +100,13 @@ function UserPage() {
                   />
 
                   <div className="btn-group">
-                    
+
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      View
+                    </button>
 
                   </div>
                 </div>

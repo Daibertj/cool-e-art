@@ -9,6 +9,7 @@ const initialState = {
   email: "",
   password: "",
   image: "",
+  alias:""
 };
 
 const Register = () => {
@@ -18,7 +19,7 @@ const Register = () => {
   const Swal = require("sweetalert2");
 
   const handleSignup = async () => {
-    if (!user.name || !user.email || !user.password) {
+    if (!user.name || !user.email || !user.password || !user.alias) {
       console.log("Por favor completa todos los campos");
       Swal.fire({
         title: "Error!",
@@ -37,6 +38,7 @@ const Register = () => {
       formData.append("email", user.email);
       formData.append("password", user.password);
       formData.append("image", user.image);
+      formData.append("alias", user.alias)
 
       const response = await actions.registerUser(formData);
 
@@ -95,6 +97,18 @@ const Register = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="form-group "> 
+          <label>Alias:</label>
+          <input 
+          className="form-control"
+          type="text"
+          value={user.alias}
+          id="alias"
+          name="alias"
+          onChange={handleChange}
+          />
+        </div>           
+
         <div className="form-group ">
           <label>Email:</label>
           <input

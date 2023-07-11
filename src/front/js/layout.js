@@ -13,7 +13,7 @@ import Register from "./component/Register.jsx";
 import UserPage from "./component/UserPage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
 import UploadImage from "./component/UploadImage.jsx";
-
+import Imageview from "./component/ImageView.jsx"
 
 //create your first component
 const Layout = () => {
@@ -21,7 +21,7 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
@@ -29,14 +29,13 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Register/>} path="/register"/>
-                        <Route element={<UploadImage/>} path="/upload"/>
-                        <Route element={<UserPage/>} path="/profile"/> 
-                        <Route element={<ExplorePage/>} path="/explorepage"/>
-                        
-
-                        <Route element={<h1>Not found!</h1>} />
+                        {/* <Route element={<Home />} path="/" /> */}
+                        <Route element={<Register />} path="/register" />
+                        <Route element={<UploadImage />} path="/upload" />
+                        <Route element={<UserPage />} path="/profile/:alias" />
+                        <Route element={<ExplorePage />} path="/" />
+                        <Route element={<Imageview/>} path="/imageview/:id" />
+                        <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

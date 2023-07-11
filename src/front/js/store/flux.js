@@ -3,9 +3,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token") || null,
-			message: null,
-			ilustrations: [],
-
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
@@ -51,6 +48,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						token: data.token,
 					});
+
+					if (response.ok) {
+						getActions().getUserData()
+					}
 
 					localStorage.setItem("token", data.token)
 					return response.status
@@ -131,6 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+
 			addFavorite: async (id) => {
 				const store = getStore();
 				try {
@@ -200,6 +202,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
+
 		},
 	};
 };
