@@ -47,6 +47,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						token: data.token,
 					});
 
+					if (response.ok) {
+						getActions().getUserData()
+					}
+
 					localStorage.setItem("token", data.token)
 					return response.status
 				} catch (error) {
