@@ -63,6 +63,7 @@ class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     ilustration_id = db.Column(db.Integer, db.ForeignKey('ilustration.id'))
+    ilustration = db.relationship("Ilustration", backref = "favorite") 
     
     def __repr__(self):
         return f'<Favorite {self.user_id}>'
@@ -72,5 +73,9 @@ class Favorite(db.Model):
             'id': self.id,
             'user_id':self.user_id,
             'ilustration_id': self.ilustration_id,
+            'title': self.ilustration.title,
+            'description': self.ilustration.description,
+            'category': self.ilustration.category,
+            'image': self.ilustration.url_image,
 
         }

@@ -6,6 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
+			favoriteData:
+				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
 			image: ""
 
@@ -135,11 +137,80 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: ()=> {
 				localStorage.removeItem("token")
 				setStore({token: null, name: "", image:""})			
-			}
+			},			
 
-			
 
+			addFavorite: async (id) => {
+				const store = getStore();
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${id}`, {
+						method: "POST",
+						headers: {
+
+							Authorization: `Bearer ${store.token}`,
+						},
+						body: [],
+					});
+					if (response.ok) {
+						return response;
+					} else {
+						throw new Error("Error");
+					}
+				} catch (error) {
+					console.log("Error", error);
+					return 500;
+				}
+
+			},
 			
+			getFavorite: async () => {
+
+				const store = getStore();
+
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/favorite/1`)
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("favoriteData", JSON.stringify(responseData));
+						console.log("favorite data:", responseData)
+						setStore({ favoriteData: responseData })
+					} else {
+
+						console.log("Error fetching favorite:", response.status);
+					}
+				} catch (error) {
+					console.log("Error fetching favorite:", error);
+				}
+
+
+			},
+			deleteFavorite: async (ilustration_id) => {
+				const store = getStore()
+				try{
+					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
+						method:"DELETE",
+						headers: {
+
+							Authorization: `Bearer ${store.token}`,
+						}
+					})
+					
+					console.log(response)
+		
+					if (response.ok){
+						getActions().getContact()
+					}else{
+						console.log("errorrrrr")
+					}
+		
+		
+		
+				}catch(err){
+					console.log(err)
+				}
+		
+			},
+
 		},
 	};
 };
