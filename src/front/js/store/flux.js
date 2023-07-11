@@ -3,11 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token") || null,
-			userData: JSON.parse(localStorage.getItem("userData")) || [],
+			userData: JSON.parse(localStorage.getItem("userData")) || '',
 			ilustrationData:
-				JSON.parse(localStorage.getItem("ilustrationData")) || [],
-			name: "",
-			image: ""
+				JSON.parse(localStorage.getItem("ilustrationData")) || '',
+			userIlustration: ""
 
 
 		},
@@ -71,7 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
-
 						console.log("Error fetching ilustrations:", response.status);
 					}
 				} catch (error) {
@@ -108,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			uploadIlustration: async (ilustration) => {
 				const store = getStore();
-				console.log(ilustration)
+
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
 						method: "POST",
@@ -122,17 +120,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// let data = await response.json();
 						return response;
 					} else {
-						throw new Error("Error uploading ilustration");
+						throw new Error("Error uploading ilustration")
 					}
 				} catch (error) {
-					console.log("Error uploading ilustration:", error);
-					return 500;
+					console.log("Error uploading ilustration:", error)
+					return 500
 				}
 			},
 
-			
+			getIlustrationsByUser: async (alias) => {
+				const store = getstore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${alias}`)
+					if (response.ok) {
+						const responseData = await response.json()
+						console.log("user ilustration", responseData)
+						setStore({ userIlustration: responseData })
+					} else {
+						console.log("Error fetching ilustrations:", response.status)
+					}
+				} catch (error) {
+					console.log("Error getting userIlustrations:", error)
+					return 500
+				}
+			}
 
-			
+
+
+
 		},
 	};
 };

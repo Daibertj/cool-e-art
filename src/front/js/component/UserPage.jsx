@@ -16,27 +16,23 @@ function UserPage() {
     getUserData(alias);
   }, [alias]);
 
-  const userIlustrations = ilustrationData.filter(
-    (ilustration) => ilustration.user.alias === alias
-  );
+  useEffect(()=>{getIlustrationsByUser(alias);[alias]})
   
-  const userProfile =
-    userIlustrations.length > 0 ? userIlustrations[0].user : null;
   
   return (
     <>
       <div >
         <div className="container-fluid profile d-inline-flex justify-content-center ">
           <img
-            src={userProfile.image}
+            src={userData.image}
             className="img-thumbnail img-fluid h-25 rounded "
             alt="..."
             style={{ width: "150px" }}
           />
           <div className="col-lg-6 col-md-8 h-25  ">
-            <h1 className="fw-light">{userProfile.alias}</h1>
+            <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
-              {userProfile.name} {userProfile.lastname}
+              {userData.name} {userProfile.lastname}
             </p>
             
           </div>
