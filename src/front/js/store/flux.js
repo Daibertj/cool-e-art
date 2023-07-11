@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
-			ilustrationsUser: []
+			ilustrationsUser: [],
 			favoriteData:
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
