@@ -223,7 +223,7 @@ def get_ilustrations_by_user(alias):
         return jsonify({'error': 'User not found'}), 404
 
     ilustrations = Ilustration.query.filter_by(user_id=user.id).all()
-    ilustrations_data = [ilustration.serialize() for ilustration in ilustrations]
+    ilustrations_data = list(map(lambda ilustration :ilustration.serialize(), ilustrations))
 
     return jsonify(ilustrations_data), 200
 
