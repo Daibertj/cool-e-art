@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
@@ -7,41 +7,38 @@ import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
-
-
-  const { getAllIlustrations, getFavorite } = actions;
-
-  const { ilustrationData } = store;
-  const { getUserData } = actions;
-
+  const { ilustrationsUser, userData } = store;
+  const { getUserData, getIlustrationsByUser, getAllIlustrations, getFavorite } = actions;
   const { alias } = useParams();
+  const aliasRef = useRef(alias);
 
 
   useEffect(() => {
     getUserData(alias);
   }, [alias]);
 
-  const userIlustrations = ilustrationData.filter(
-    (ilustration) => ilustration.user.alias === alias
-  );
 
-  const userProfile =
-    userIlustrations.length > 0 ? userIlustrations[0].user : null;
+  useEffect(() => {
+    if (aliasRef.current == alias) {
+      getIlustrationsByUser(alias);
+    }
+  }, [alias]);
+
 
   return (
     <>
-      <div >
+      <div>
         <div className="container-fluid profile d-inline-flex justify-content-center ">
           <img
-            src={userProfile.image}
+            src={userData.image}
             className="img-thumbnail img-fluid h-25 rounded "
             alt="..."
             style={{ width: "150px" }}
           />
           <div className="col-lg-6 col-md-8 h-25  ">
-            <h1 className="fw-light">{userProfile.alias}</h1>
+            <h1 className="fw-light">{alias}</h1>
             <p className="fst-italic">
-              {userProfile.name} {userProfile.lastname}
+              {userData.name} {userData.lastname}
             </p>
 
           </div>
@@ -56,10 +53,8 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+              {ilustrationsUser.map((ilustration) => (
 
-              {/* {store.ilustrationData.map((ilustration) => ( */}
-
-              {userIlustrations.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card
                     image={ilustration.image}
