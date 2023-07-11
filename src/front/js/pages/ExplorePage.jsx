@@ -35,6 +35,7 @@ const ExplorePage = () => {
                 image={ilustration.image}
                 user={ilustration.user.name}
                 id={ilustration.id}
+
               />              
             ))}
         </div>

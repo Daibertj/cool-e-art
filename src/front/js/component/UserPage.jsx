@@ -7,10 +7,15 @@ import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
+
+  
+//   const { getUserData, getAllIlustrations, getFavorite } = actions;
+
   const { ilustrationData } = store;
   const { getUserData } = actions;
 
   const { alias } = useParams();
+
 
   useEffect(() => {
     getUserData(alias);
@@ -50,6 +55,10 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+//               {store.ilustrationData.map((ilustration) => (
+
               {userIlustrations.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Card
@@ -60,18 +69,7 @@ function UserPage() {
                     id={ilustration.id}
                   />
                   <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      Favorite
-                    </button>
+                    
                   </div>
                 </div>
               ))}
@@ -86,23 +84,30 @@ function UserPage() {
         <div className="album py-5 bg-body-tertiary">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              {/* cambiar la logica de este map para agregar favoritos*/}
+
+//               {store.favoriteData.map((ilustration) => (
+
               {store.ilustrationData.map((ilustration) => (
+
                 <div className="col" key={ilustration.id}>
-                  <Card
+                  <Favorite
                     image={ilustration.image}
                     title={ilustration.title}
                     description={ilustration.description}
                     user={ilustration.user}
+                    id={ilustration.id}
+                    ilustration_id={ilustration.ilustration_id}
                   />
 
                   <div className="btn-group">
+
                     <button
                       type="button"
                       className="btn btn-sm btn-outline-secondary"
                     >
                       View
                     </button>
+
                   </div>
                 </div>
               ))}
