@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 
 export const Favorite = ({ id, title, description, image, user, ilustration_id }) => {
@@ -10,11 +11,14 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id }
             <div className="card"     >
 
 
-                <img
-                    src={image}
-                    className="card-img-top"
-                    alt={title}
-                />
+            <Link to={`/imageview/${ilustration_id}`}>
+                    <img
+                        src={image}
+                        className="card-img-top"
+                        alt={title}
+                        style={{ width: "100%", height: "auto" }}
+                    />
+                </Link>
 
 
                 <div className="card-body">
