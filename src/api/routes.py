@@ -104,11 +104,10 @@ def login():
         return jsonify({"msg": "Bad credentials"}), 400
     
 
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user_by_token():
+@api.route('/user/<alias>', methods=['GET'])
+def get_user_by_alias(alias):
      if request.method == "GET":
-         user = User.query.get(get_jwt_identity())
+         user = User.query.filter(alias=alias).first()
              
          if user:
              return jsonify(user.serialize()), 200

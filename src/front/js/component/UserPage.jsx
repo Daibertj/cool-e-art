@@ -12,17 +12,15 @@ function UserPage() {
   const { alias } = useParams();
   const aliasRef = useRef(alias);
 
-  // useEffect(() => {
-  //   getUserData(alias);
-  // }, [alias]);
+  useEffect(() => {
+    getUserData(alias);
+  }, [alias]);
 
   useEffect(() => {
-    // Verificar si alias ha cambiado desde el último renderizado
-    if (aliasRef.current !== alias) {
+    if (aliasRef.current == alias) {
       getIlustrationsByUser(alias);
-      aliasRef.current = alias; // Actualizar el valor de la variable de referencia
     }
-  }, [alias, getIlustrationsByUser]);
+  }, [alias]);
 
   return (
     <>
@@ -35,7 +33,7 @@ function UserPage() {
             style={{ width: "150px" }}
           />
           <div className="col-lg-6 col-md-8 h-25  ">
-            <h1 className="fw-light">{userData.alias}</h1>
+            <h1 className="fw-light">{alias}</h1>
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
