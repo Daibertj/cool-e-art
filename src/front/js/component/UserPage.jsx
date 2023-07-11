@@ -8,8 +8,8 @@ import { Favorite } from "./Favorite.jsx";
 function UserPage() {
   const { actions, store } = useContext(Context);
 
-  
-//   const { getUserData, getAllIlustrations, getFavorite } = actions;
+
+  const { getAllIlustrations, getFavorite } = actions;
 
   const { ilustrationData } = store;
   const { getUserData } = actions;
@@ -24,10 +24,10 @@ function UserPage() {
   const userIlustrations = ilustrationData.filter(
     (ilustration) => ilustration.user.alias === alias
   );
-  
+
   const userProfile =
     userIlustrations.length > 0 ? userIlustrations[0].user : null;
-  
+
   return (
     <>
       <div >
@@ -43,7 +43,7 @@ function UserPage() {
             <p className="fst-italic">
               {userProfile.name} {userProfile.lastname}
             </p>
-            
+
           </div>
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -57,7 +57,7 @@ function UserPage() {
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
 
-//               {store.ilustrationData.map((ilustration) => (
+              {/* {store.ilustrationData.map((ilustration) => ( */}
 
               {userIlustrations.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
@@ -69,7 +69,7 @@ function UserPage() {
                     id={ilustration.id}
                   />
                   <div className="btn-group">
-                    
+
                   </div>
                 </div>
               ))}
@@ -85,10 +85,7 @@ function UserPage() {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-//               {store.favoriteData.map((ilustration) => (
-
-              {store.ilustrationData.map((ilustration) => (
-
+              {store.favoriteData.map((ilustration) => (
                 <div className="col" key={ilustration.id}>
                   <Favorite
                     image={ilustration.image}
@@ -100,14 +97,6 @@ function UserPage() {
                   />
 
                   <div className="btn-group">
-
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      View
-                    </button>
-
                   </div>
                 </div>
               ))}
