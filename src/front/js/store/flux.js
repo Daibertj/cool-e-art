@@ -9,7 +9,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favoriteData:
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
-			image: ""
+			image: "",
+			photos: []
+
 
 
 		},
@@ -161,6 +163,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 500;
 				}
 
+			},
+
+			getApiImage: async () => {
+				try {
+					const response = await fetch(`https://api.pexels.com/v1/curated?page=2&per_page=10`, {
+						method: "GET",
+						headers: {
+
+							Authorization: `${process.env.API_KEY_PEXEL}`,
+						},
+					})
+					if (response.ok){
+						const data = await response.json();
+						setStore({photos: data.photos})
+					}
+
+				} catch (error) {
+					console.log(error)
+				}
 			},
 			
 			getFavorite: async () => {

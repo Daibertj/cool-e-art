@@ -29,11 +29,11 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        {/* <Route element={<Home />} path="/" /> */}
+                        <Route element={<Home />} path="/" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<UploadImage />} path="/upload" />
                         <Route element={<UserPage />} path="/profile/:alias" />
-                        <Route element={<ExplorePage />} path="/" />
+                        {/* <Route element={<ExplorePage />} path="/explorepage" /> */}
                         <Route element={<Imageview/>} path="/imageview/:id" />
                         <Route element={<h1>Not found!</h1>} path="*" />
                     </Routes>

@@ -7,7 +7,7 @@ export const Card = ({ id, title, description, image, user }) => {
     const { store, actions } = useContext(Context)
     return (
 
-        <div className="col">
+        <div className="col-12 col-md-3 col-sm-4">
             <div className="card">
                 <Link to={`/imageview/${id}`}>
                     <img
