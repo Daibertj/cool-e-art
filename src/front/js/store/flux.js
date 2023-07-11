@@ -143,7 +143,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  console.log("Error getting user ilustrations:", error)
 				  return 500;
 				}
-			  }
+			  },
 
 
 
