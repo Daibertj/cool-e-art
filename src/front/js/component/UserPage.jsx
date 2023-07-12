@@ -7,8 +7,8 @@ import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
   const { actions, store } = useContext(Context);
-  const { ilustrationsUser, userData } = store;
-  const { getUserData, getIlustrationsByUser, getAllIlustrations, getFavorite } = actions;
+  const { ilustrationsUser, userData} = store;
+  const { getUserData, getIlustrationsByUser,  } = actions;
   const { alias } = useParams();
   const aliasRef = useRef(alias);
 

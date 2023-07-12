@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			ilustrationsUser: [],
 			favoriteData:
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
-			name: "",
+			username: "",
 			image: "",
 			photos: []
 
@@ -49,8 +49,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json();
 					setStore({
 						token: data.token,
+						username: data.alias
 					});
-
+					console.log(username)
 					if (response.ok) {
 						getActions().getUserData()
 					}
@@ -90,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
 					if (response.ok) {
 						const responseData = await response.json();
-						// console.log("User data:", responseData);
+						 console.log("User data:", responseData);
 
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
