@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -155,7 +157,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token")
 				localStorage.removeItem("userData")
 				localStorage.removeItem("alias")
-				setStore({ token: null, name: "", image: "", name:"" })
+				setStore({ token: null, name: "", image: "" })
+				
 			},
 
 
