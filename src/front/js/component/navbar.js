@@ -10,7 +10,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData, name, alias } = store;
+  const { userData, alias } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -71,7 +71,7 @@ export const Navbar = () => {
               <Link to="/explorepage" className="nav-link ">Creators</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/myprofile/${alias}`} className="nav-link ">My Profile</Link>
+              <Link to={`/myprofile/${userData.alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link ">Upload Creation</Link>
@@ -163,7 +163,7 @@ export const Navbar = () => {
         {store.token && (
           <>
           
-            <span className="m-2">Hey, {name}!</span>
+            <span className="m-2">Hey, {userData.name}!</span>
           
           
       <button

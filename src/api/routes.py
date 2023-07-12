@@ -229,3 +229,8 @@ def get_ilustrations_by_user(alias):
 
     return jsonify(ilustrations_data), 200
 
+@api.route('/user', methods= ['GET'])
+def get_all_users():
+    users=User.query.all()
+    users_data=list(map(lambda user : user.serialize(), users))
+    return jsonify(users_data), 200

@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			name: "",
 			image: "",
 			photos: [],
-			alias: ""
+			alias: "",
+			allUsersData:[]
 
 
 		},
@@ -80,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						// console.log("ilustration data:", responseData)
+						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
@@ -261,6 +262,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+
+			getAllUsers: async ()=>{
+				const store= getStore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/user`)
+					if (response.ok){
+						const responseData = await response.json()
+						setStore({allUsersData: responseData})
+					}else{
+						console.log("Error Fetching all users",response.status)
+					}
+
+				} catch (error) {
+					console.log("Error Fetching all users",error)
+				}
+			}
 
 
 		},

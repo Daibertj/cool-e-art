@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 export const Card = ({ id, title, description, image, user }) => {
     const { store, actions } = useContext(Context)
     return (
-
+<>
         <div >
             <div className="card">
                 <Link to={`/imageview/${id}`}>
@@ -20,7 +20,7 @@ export const Card = ({ id, title, description, image, user }) => {
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{description ? description : "Sin descripcion"}</p>
-                    <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}</p> </Link>
+                    <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}, aca</p> </Link>
                 </div>
             </div>
             <button
@@ -28,5 +28,6 @@ export const Card = ({ id, title, description, image, user }) => {
                 onClick={() => actions.addFavorite(id)}
             ></button>
         </div>
+</>
     );
 };

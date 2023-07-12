@@ -3,11 +3,11 @@ import { Context } from "../store/appContext";
 import { Card } from "../component/Card";
 
 const ExplorePage = () => {
-  const {  store } = useContext(Context);
-  const { ilustrationData} = store;
-  
+  const { store } = useContext(Context);
+  const { ilustrationData } = store;
 
-  
+
+
 
   return (
     <>
@@ -26,12 +26,12 @@ const ExplorePage = () => {
         </div>
 
         <div className="row">
-          
-          {store.ilustrationData.map((ilustration) => 
-             (
-              <div className="col key={ilustration.id}">
+
+          {ilustrationData.map((ilustration) =>
+          (
+            <div className="col" key={ilustration.id}>
               <Card
-                
+
                 title={ilustration.title}
                 description={ilustration.description}
                 image={ilustration.image}
@@ -39,10 +39,11 @@ const ExplorePage = () => {
                 id={ilustration.id}
                 alias={ilustration.user.alias}
 
-              />    </div>          
-            ))}
+              />    
             </div>
-        
+          ))}
+        </div>
+
       </div>
     </>
   );
