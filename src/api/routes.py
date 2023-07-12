@@ -98,7 +98,7 @@ def login():
         if user is not None:
             if check_password(user.password, password, user.salt):
                 token = create_access_token(identity=user.id)
-                return jsonify({"token": token, "name":user.name, "image":user.image}), 200
+                return jsonify({"token": token, "name":user.name, "image":user.image , "alias":user.alias}), 200
             else:
                 return jsonify({"msg": "Bad credentials"}), 400
         return jsonify({"msg": "Bad credentials"}), 400

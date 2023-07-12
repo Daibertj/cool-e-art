@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			ilustrationsUser: [],
 			favoriteData:
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
-			username: "",
+			name: "",
 			image: "",
 			photos: []
 
@@ -49,13 +49,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json();
 					setStore({
 						token: data.token,
-						username: data.alias
+						name: data.name
 					});
-					console.log(username)
+					
 					if (response.ok) {
 						getActions().getUserData()
 					}
-
+				
 					localStorage.setItem("token", data.token)
 					return response.status
 				} catch (error) {
@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 
 			getAllIlustrations: async () => {
 
@@ -91,11 +91,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
 					if (response.ok) {
 						const responseData = await response.json();
-						 console.log("User data:", responseData);
-
+						console.log("User data:", responseData);
+						setStore({ userData: responseData });
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
-						setStore({ userData: responseData });
+
 					} else {
 						console.log("Error fetching user data:", response.status);
 					}
@@ -132,26 +132,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getIlustrationsByUser: async (alias) => {
 				const store = getStore()
 				try {
-				  let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
-				  if (response.ok) {
-					const responseData = await response.json()
-					setStore({ ilustrationsUser: responseData })
-					// console.log("User ilustrations:", responseData)
-				  } else {
-					console.log("Error fetching user ilustrations:", response.status)
-				  }
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
+					if (response.ok) {
+						const responseData = await response.json()
+						setStore({ ilustrationsUser: responseData })
+						console.log("User ilustrations:", responseData)
+					} else {
+						console.log("Error fetching user ilustrations:", response.status)
+					}
 				} catch (error) {
-				  console.log("Error getting user ilustrations:", error)
-				  return 500;
+					console.log("Error getting user ilustrations:", error)
+					return 500;
 				}
-			  },
+			},
 
 
 
-			logout: ()=> {
+			logout: () => {
 				localStorage.removeItem("token")
-				setStore({token: null, name: "", image:""})			
-			},			
+				localStorage.removeItem("userData")
+				setStore({ token: null, name: "", image: "" })
+			},
 
 
 			addFavorite: async (id) => {
@@ -186,22 +187,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `${process.env.API_KEY_PEXEL}`,
 						},
 					})
-					if (response.ok){
+					if (response.ok) {
 						const data = await response.json();
-						setStore({photos: data.photos})
+						setStore({ photos: data.photos })
 					}
 
 				} catch (error) {
 					console.log(error)
 				}
 			},
-			
-			getFavorite: async () => {
+
+			getFavorite: async (user_id) => {
 
 				const store = getStore();
 
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/favorite/1`)
+					const response = await fetch(`${process.env.BACKEND_URL}/favorite/${user_id}`)
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("favoriteData", JSON.stringify(responseData));
@@ -219,29 +220,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
-				try{
+				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
-						method:"DELETE",
+						method: "DELETE",
 						headers: {
 
 							Authorization: `Bearer ${store.token}`,
 						}
 					})
-					
+
 					console.log(response)
-		
-					if (response.ok){
+
+					if (response.ok) {
 						getActions().getContact()
-					}else{
+					} else {
 						console.log("errorrrrr")
 					}
-		
-		
-		
-				}catch(err){
+
+
+
+				} catch (err) {
 					console.log(err)
 				}
-		
+
 			},
 
 

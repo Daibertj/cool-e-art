@@ -26,8 +26,10 @@ const ExplorePage = () => {
         </div>
 
         <div className="row">
+          
           {store.ilustrationData.map((ilustration) => 
              (
+              <div className="col">
               <Card
                 key={ilustration.id}
                 title={ilustration.title}
@@ -36,9 +38,10 @@ const ExplorePage = () => {
                 user={ilustration.user.name}
                 id={ilustration.id}
 
-              />              
+              />    </div>          
             ))}
-        </div>
+            </div>
+        
       </div>
     </>
   );

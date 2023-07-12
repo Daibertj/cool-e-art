@@ -10,7 +10,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData, username } = store;
+  const { userData, name } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -154,7 +154,7 @@ export const Navbar = () => {
         {store.token && (
           <>
           
-            <span className="m-2">Hey, {username}!</span>
+            <span className="m-2">Hey, {name}!</span>
           
           
       <button
