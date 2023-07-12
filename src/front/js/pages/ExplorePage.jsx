@@ -11,7 +11,7 @@ const ExplorePage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container border border-danger">
         <div className="input-group my-3">
           <span className="input-group-text" id="inputGroup-sizing-default">
             Busqueda
