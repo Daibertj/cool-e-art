@@ -42,19 +42,19 @@ export const Navbar = () => {
   };
   return (
  
-<nav className="navbar navbar-expand-lg navbar-light  ">
-  <div className="container ">
-    <Link className="navbar-brand" to="#">Cool-e-Art</Link>
+<nav className="navbar navbar-expand-lg navbar-secondary  ">
+  <div className="container text-white">
+    <Link className="navbar-brand text-white bold-text text-capitalize fs-4 fw-bold fst-italic" to="#">Cool-e-Art</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
 
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         {!store.token && (
           <>
-            <li className="nav-item">
-              <Link to="/" className="nav-link " aria-current="page">Home</Link>
+            <li className="nav-item text-white">
+              <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
             </li>
           </>
         )}
@@ -62,13 +62,13 @@ export const Navbar = () => {
         {store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link " aria-current="page">Home</Link>
+              <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/profile/${store.userData.alias}`} className="nav-link ">My Profile</Link>
+              <Link to={`/profile/${store.userData.alias}`} className="nav-link text-white">My Profile</Link>
             </li>
             <li className="nav-item">
-              <Link to="/upload" className="nav-link ">Upload Creation</Link>
+              <Link to="/upload" className="nav-link text-white">Upload Creation</Link>
             </li>
           </>
         )}
@@ -78,12 +78,12 @@ export const Navbar = () => {
         {!store.token && (
           <>
             <div className="me-2">
-              <Link to="/register" className="btn btn-primary">Registro</Link>
+              <Link to="/register" className="btn btn-secondary">Registro</Link>
             </div>
             <div className="dropdown">
               <button
                 type="button"
-                className="btn btn-primary dropdown-toggle"
+                className="btn btn-secondary dropdown-toggle"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
                 data-bs-auto-close="outside"
@@ -141,7 +141,7 @@ export const Navbar = () => {
                 </div>
                 <button
                   type="button"
-                  className="btn btn-primary w-100 mt-3"
+                  className="loginButton btn btn-secondary w-100 mt-3"
                   onClick={() => handleLogin()}
                 >
                   Sign in
@@ -158,7 +158,7 @@ export const Navbar = () => {
           
           
       <button
-        className=" btn btn-outline-info "
+        className=" btn btn-secondary "
         onClick={()=> actions.logout()}
       >
         Log Out
