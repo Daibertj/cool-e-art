@@ -71,7 +71,7 @@ export const Navbar = () => {
               <Link to="/explorepage" className="nav-link ">Creators</Link>
             </li>
             <li className="nav-item">
-              <Link to='/myprofile/${alias}' className="nav-link ">My Profile</Link>
+              <Link to={`/myprofile/${alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link ">Upload Creation</Link>

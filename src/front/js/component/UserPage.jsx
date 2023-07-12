@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
@@ -9,10 +9,10 @@ function UserPage() {
   const {  store, actions } = useContext(Context);
   const {getIlustrationsByUser} = actions
   const { ilustrationsUser, userData, favoriteData } = store;
-  const { alias } = useParams();
+  ;
 
-  useEffect(()=>{getIlustrationsByUser(alias)}, 
-  [alias])
+  useEffect(()=>{getIlustrationsByUser(userData.alias)}, 
+  [userData.alias])
   
    return (
     <>

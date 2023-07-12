@@ -29,14 +29,15 @@ const ExplorePage = () => {
           
           {store.ilustrationData.map((ilustration) => 
              (
-              <div className="col">
+              <div className="col key={ilustration.id}">
               <Card
-                key={ilustration.id}
+                
                 title={ilustration.title}
                 description={ilustration.description}
                 image={ilustration.image}
                 user={ilustration.user.name}
                 id={ilustration.id}
+                alias={ilustration.user.alias}
 
               />    </div>          
             ))}
