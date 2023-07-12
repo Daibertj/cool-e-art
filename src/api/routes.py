@@ -98,7 +98,7 @@ def login():
         if user is not None:
             if check_password(user.password, password, user.salt):
                 token = create_access_token(identity=user.id)
-                return jsonify({"token": token, "name":user.name, "image":user.image}), 200
+                return jsonify({"token": token, "name":user.name, "image":user.image , "alias":user.alias}), 200
             else:
                 return jsonify({"msg": "Bad credentials"}), 400
         return jsonify({"msg": "Bad credentials"}), 400
@@ -229,3 +229,8 @@ def get_ilustrations_by_user(alias):
 
     return jsonify(ilustrations_data), 200
 
+@api.route('/user', methods= ['GET'])
+def get_all_users():
+    users=User.query.all()
+    users_data=list(map(lambda user : user.serialize(), users))
+    return jsonify(users_data), 200

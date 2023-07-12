@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -11,7 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
 			image: "",
-			photos: []
+			photos: [],
+			alias: "",
+			allUsersData:[]
 
 
 		},
@@ -49,13 +53,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json();
 					setStore({
 						token: data.token,
+						name: data.name,
+						alias:data.alias
 					});
-
+					
 					if (response.ok) {
-						getActions().getUserData()
+						getActions().getUserData(data.alias)
 					}
-
+				
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("alias", data.alias)
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -63,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 
 			getAllIlustrations: async () => {
 
@@ -74,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						// console.log("ilustration data:", responseData)
+						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
@@ -90,11 +97,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
 					if (response.ok) {
 						const responseData = await response.json();
-						// console.log("User data:", responseData);
-
+						console.log("User data:", responseData);
+						setStore({ userData: responseData });
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
-						setStore({ userData: responseData });
+
 					} else {
 						console.log("Error fetching user data:", response.status);
 					}
@@ -131,26 +138,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getIlustrationsByUser: async (alias) => {
 				const store = getStore()
 				try {
-				  let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
-				  if (response.ok) {
-					const responseData = await response.json()
-					setStore({ ilustrationsUser: responseData })
-					// console.log("User ilustrations:", responseData)
-				  } else {
-					console.log("Error fetching user ilustrations:", response.status)
-				  }
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
+					if (response.ok) {
+						const responseData = await response.json()
+						setStore({ ilustrationsUser: responseData })
+						console.log("User ilustrations:", responseData)
+					} else {
+						console.log("Error fetching user ilustrations:", response.status)
+					}
 				} catch (error) {
-				  console.log("Error getting user ilustrations:", error)
-				  return 500;
+					console.log("Error getting user ilustrations:", error)
+					return 500;
 				}
-			  },
+			},
 
 
 
-			logout: ()=> {
+			logout: () => {
 				localStorage.removeItem("token")
-				setStore({token: null, name: "", image:""})			
-			},			
+				localStorage.removeItem("userData")
+				localStorage.removeItem("alias")
+				setStore({ token: null, name: "", image: "" })
+				
+			},
 
 
 			addFavorite: async (id) => {
@@ -185,63 +195,89 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `${process.env.API_KEY_PEXEL}`,
 						},
 					})
-					if (response.ok){
+					if (response.ok) {
 						const data = await response.json();
-						setStore({photos: data.photos})
+						setStore({ photos: data.photos })
 					}
 
 				} catch (error) {
 					console.log(error)
 				}
 			},
-			
+
 			getFavorite: async () => {
-
 				const store = getStore();
-
-				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/favorite/1`)
-					if (response.ok) {
-						const responseData = await response.json();
-						localStorage.setItem("favoriteData", JSON.stringify(responseData));
-						console.log("favorite data:", responseData)
-						setStore({ favoriteData: responseData })
-					} else {
-
-						console.log("Error fetching favorite:", response.status);
-					}
-				} catch (error) {
-					console.log("Error fetching favorite:", error);
+				const token = store.token;
+				const userData = store.userData;
+				
+				if (!token || !userData) {
+				  
+				  return;
 				}
+				
+				const user_id = userData.id;
+				
+				try {
+				  const response = await fetch(`${process.env.BACKEND_URL}/favorite/${user_id}`, {
+					headers: {
+					  Authorization: `Bearer ${token}`,
+					},
+				  });
+			  
+				  if (response.ok) {
+					const responseData = await response.json();
+					localStorage.setItem("favoriteData", JSON.stringify(responseData));
+					setStore({ favoriteData: responseData });
+				  } else {
+					console.log("Error fetching favorites:", response.status);
+				  }
+				} catch (error) {
+				  console.log("Error fetching favorites:", error);
+				}
+			  },
 
-
-			},
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
-				try{
+				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
-						method:"DELETE",
+						method: "DELETE",
 						headers: {
 
 							Authorization: `Bearer ${store.token}`,
 						}
 					})
-					
+
 					console.log(response)
-		
-					if (response.ok){
+
+					if (response.ok) {
 						getActions().getContact()
-					}else{
+					} else {
 						console.log("errorrrrr")
 					}
-		
-		
-		
-				}catch(err){
+
+
+
+				} catch (err) {
 					console.log(err)
 				}
-		
+
 			},
+
+			getAllUsers: async ()=>{
+				const store= getStore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/user`)
+					if (response.ok){
+						const responseData = await response.json()
+						setStore({allUsersData: responseData})
+					}else{
+						console.log("Error Fetching all users",response.status)
+					}
+
+				} catch (error) {
+					console.log("Error Fetching all users",error)
+				}
+			}
 
 
 		},

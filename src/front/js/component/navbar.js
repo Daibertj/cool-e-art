@@ -10,7 +10,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData } = store;
+  const { userData, alias } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -56,6 +56,9 @@ export const Navbar = () => {
             <li className="nav-item">
               <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
+            <li className="nav-item">
+              <Link to="/explorepage" className="nav-link ">Creators</Link>
+            </li>
           </>
         )}
 
@@ -65,11 +68,15 @@ export const Navbar = () => {
               <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/profile/${store.userData.alias}`} className="nav-link ">My Profile</Link>
+              <Link to="/explorepage" className="nav-link ">Creators</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`/myprofile/${userData.alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link ">Upload Creation</Link>
             </li>
+
           </>
         )}
       </ul>
@@ -77,6 +84,7 @@ export const Navbar = () => {
       <div className="ms-auto d-flex">
         {!store.token && (
           <>
+          
             <div className="me-2">
               <Link to="/register" className="btn btn-primary">Registro</Link>
             </div>
@@ -142,7 +150,8 @@ export const Navbar = () => {
                 <button
                   type="button"
                   className="btn btn-primary w-100 mt-3"
-                  onClick={() => handleLogin()}
+                  onClick={() => handleLogin()
+                  }
                 >
                   Sign in
                 </button>
@@ -154,7 +163,7 @@ export const Navbar = () => {
         {store.token && (
           <>
           
-            <span className="m-2">Hey, {userData.alias}!</span>
+            <span className="m-2">Hey, {userData.name}!</span>
           
           
       <button
