@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import coolLogo from "../../img/logo_no_back.png";
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
-		<h3>
-			soy el footer
-		</h3>
+		<img className= "logo1"  src={coolLogo} />
 	</footer>
 );
