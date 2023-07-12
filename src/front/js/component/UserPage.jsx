@@ -1,28 +1,17 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
 import { Favorite } from "./Favorite.jsx";
 
 function UserPage() {
-  const { actions, store } = useContext(Context);
+  const {  store } = useContext(Context);
   const { ilustrationsUser, userData, favoriteData } = store;
-  const { getUserData, getIlustrationsByUser, getFavorite } = actions;
-  const { alias } = useParams();
-  const aliasRef = useRef(alias);
-
-  useEffect(() => {
-    if (aliasRef.current !== alias) {
-      getUserData(alias);
-      getIlustrationsByUser(alias);
-    }
-    aliasRef.current = alias;
-  }, [alias, getUserData, getIlustrationsByUser]);
+  
  
-
-
-  return (
+  
+   return (
     <>
       <div>
         <div className="container-fluid profile d-inline-flex justify-content-center ">
@@ -33,7 +22,7 @@ function UserPage() {
             style={{ width: "150px" }}
           />
           <div className="col-lg-6 col-md-8 h-25  ">
-            <h1 className="fw-light">{alias}</h1>
+            <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
