@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import coolLogo from "../../img/logo_no_back.png";
 
 const initialState = {
   email: "",
@@ -43,9 +44,11 @@ export const Navbar = () => {
   return (
  
 <nav className="navbar navbar-expand-lg navbar-light  ">
-  <div className="container ">
-    <Link className="navbar-brand" to="#">Cool-e-Art</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <Link className="navbar-brand  " to="/"  ><img className= "logo1"  src={coolLogo} /></Link> 
+  <div className="container  ">
+  
+    
+    <button className="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -54,7 +57,7 @@ export const Navbar = () => {
         {!store.token && (
           <>
             <li className="nav-item">
-              <Link to="/" className="nav-link " aria-current="page">Home</Link>
+              <Link to="/" className="nav-link " color="white" aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
               <Link to="/explorepage" className="nav-link ">Creators</Link>
