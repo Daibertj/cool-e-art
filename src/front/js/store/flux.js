@@ -11,7 +11,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
 			image: "",
-			photos: []
+			photos: [],
+			alias: ""
 
 
 		},
@@ -49,14 +50,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json();
 					setStore({
 						token: data.token,
-						name: data.name
+						name: data.name,
+						alias:data.alias
 					});
 					
 					if (response.ok) {
-						getActions().getUserData()
+						getActions().getUserData(data.alias)
 					}
 				
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("alias", data.alias)
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -151,7 +154,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				localStorage.removeItem("token")
 				localStorage.removeItem("userData")
-				setStore({ token: null, name: "", image: "" })
+				localStorage.removeItem("alias")
+				setStore({ token: null, name: "", image: "", name:"" })
 			},
 
 
@@ -197,27 +201,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getFavorite: async (user_id) => {
-
+			getFavorite: async () => {
 				const store = getStore();
-
-				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/favorite/${user_id}`)
-					if (response.ok) {
-						const responseData = await response.json();
-						localStorage.setItem("favoriteData", JSON.stringify(responseData));
-						console.log("favorite data:", responseData)
-						setStore({ favoriteData: responseData })
-					} else {
-
-						console.log("Error fetching favorite:", response.status);
-					}
-				} catch (error) {
-					console.log("Error fetching favorite:", error);
+				const token = store.token;
+				const userData = store.userData;
+				
+				if (!token || !userData) {
+				  
+				  return;
 				}
+				
+				const user_id = userData.id;
+				
+				try {
+				  const response = await fetch(`${process.env.BACKEND_URL}/favorite/${user_id}`, {
+					headers: {
+					  Authorization: `Bearer ${token}`,
+					},
+				  });
+			  
+				  if (response.ok) {
+					const responseData = await response.json();
+					localStorage.setItem("favoriteData", JSON.stringify(responseData));
+					setStore({ favoriteData: responseData });
+				  } else {
+					console.log("Error fetching favorites:", response.status);
+				  }
+				} catch (error) {
+				  console.log("Error fetching favorites:", error);
+				}
+			  },
 
-
-			},
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
 				try {

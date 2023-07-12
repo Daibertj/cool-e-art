@@ -10,7 +10,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData, name } = store;
+  const { userData, name, alias } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ export const Navbar = () => {
               <Link to="/" className="nav-link " aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/profile/${store.userData.alias}`} className="nav-link ">My Profile</Link>
+              <Link to={`/profile/${store.alias}`} className="nav-link ">My Profile</Link>
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link ">Upload Creation</Link>

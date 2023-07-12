@@ -13,7 +13,7 @@ function UserPage() {
   const aliasRef = useRef(alias);
 
   useEffect(() => {
-    if (aliasRef.current == alias) {
+    if (aliasRef.current !== alias) {
       getUserData(alias);
       getIlustrationsByUser(alias);
     }
