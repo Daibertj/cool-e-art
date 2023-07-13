@@ -98,17 +98,16 @@ def login():
         if user is not None:
             if check_password(user.password, password, user.salt):
                 token = create_access_token(identity=user.id)
-                return jsonify({"token": token, "name":user.name, "image":user.image}), 200
+                return jsonify({"token": token, "name":user.name, "image":user.image , "alias":user.alias}), 200
             else:
                 return jsonify({"msg": "Bad credentials"}), 400
         return jsonify({"msg": "Bad credentials"}), 400
     
 
-@api.route('/user', methods=['GET'])
-@jwt_required()
-def get_user_by_token():
+@api.route('/user/<alias>', methods=['GET'])
+def get_user_by_alias(alias):
      if request.method == "GET":
-         user = User.query.get(get_jwt_identity())
+         user = User.query.filter_by(alias=alias).first()
              
          if user:
              return jsonify(user.serialize()), 200
@@ -218,5 +217,20 @@ def delete_fav_people(ilustration_id):
             return jsonify({"msg": error.args}), 500
 
 
+@api.route('/ilustration/user/<alias>', methods=['GET'])
+def get_ilustrations_by_user(alias):
+    user = User.query.filter_by(alias=alias).first()
 
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
 
+    ilustrations = Ilustration.query.filter_by(user_id=user.id).all()
+    ilustrations_data = list(map(lambda ilustration :ilustration.serialize(), ilustrations))
+
+    return jsonify(ilustrations_data), 200
+
+@api.route('/user', methods= ['GET'])
+def get_all_users():
+    users=User.query.all()
+    users_data=list(map(lambda user : user.serialize(), users))
+    return jsonify(users_data), 200

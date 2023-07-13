@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import coolLogo from "../../img/logo_no_back.png";
 
 const initialState = {
   email: "",
@@ -10,7 +11,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData } = store;
+  const { userData, alias } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -42,10 +43,13 @@ export const Navbar = () => {
   };
   return (
  
+
 <nav className="navbar navbar-expand-lg navbar-secondary  ">
+  <Link className="navbar-brand  " to="/"  ><img className= "logo1"  src={coolLogo} /></Link>   
   <div className="container text-white">
-    <Link className="navbar-brand text-white bold-text text-capitalize fs-4 fw-bold fst-italic" to="#">Cool-e-Art</Link>
+    
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
       <span className="navbar-toggler-icon"></span>
     </button>
 
@@ -53,8 +57,13 @@ export const Navbar = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         {!store.token && (
           <>
+
             <li className="nav-item text-white">
               <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/explorepage" className="nav-link text-white">Creators</Link>
+
             </li>
           </>
         )}
@@ -65,11 +74,17 @@ export const Navbar = () => {
               <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
             </li>
             <li className="nav-item">
-              <Link to={`/profile/${store.userData.alias}`} className="nav-link text-white">My Profile</Link>
+
+              <Link to="/explorepage" className="nav-link text-white">Creators</Link>
+            </li>
+            <li className="nav-item">
+              <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile</Link>
+
             </li>
             <li className="nav-item">
               <Link to="/upload" className="nav-link text-white">Upload Creation</Link>
             </li>
+
           </>
         )}
       </ul>
@@ -77,6 +92,7 @@ export const Navbar = () => {
       <div className="ms-auto d-flex">
         {!store.token && (
           <>
+          
             <div className="me-2">
               <Link to="/register" className="btn btn-secondary">Registro</Link>
             </div>
@@ -141,8 +157,10 @@ export const Navbar = () => {
                 </div>
                 <button
                   type="button"
+
                   className="loginButton btn btn-secondary w-100 mt-3"
                   onClick={() => handleLogin()}
+
                 >
                   Sign in
                 </button>
@@ -154,7 +172,7 @@ export const Navbar = () => {
         {store.token && (
           <>
           
-            <span className="m-2">Hey, {userData.alias}!</span>
+            <span className="m-2">Hey, {userData.name}!</span>
           
           
       <button
