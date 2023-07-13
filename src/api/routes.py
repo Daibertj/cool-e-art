@@ -173,10 +173,12 @@ def get_ilustations():
     return jsonify(ilustratrations_data), 200
 
 
-@api.route('/favorite/<int:user_id>', methods=['GET'])
-def get_user_favorite(user_id):
+@api.route('/favorite', methods=['GET'])
+@jwt_required()
+def get_user_favorite():
     
-    favorite = Favorite.query.filter_by(user_id=user_id).all()
+    
+    favorite = Favorite.query.filter_by(user_id=get_jwt_identity()).all()
     favorite=list(map (lambda favorite: favorite.serialize(), favorite ))
     return jsonify(favorite), 200
 

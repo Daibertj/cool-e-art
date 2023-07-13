@@ -81,15 +81,16 @@ function UserPage() {
               <div className="container">
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-                  {favoriteData.map((favorite) => (
-                    <div className="col" key={favorite.id}>
-                      {favorite.ilustration && (
+                  {favoriteData.map((ilustration) => (
+                    <div className="col" key={ilustration.id}>
+                      {ilustration && (
                       <Favorite
-                        image={favorite.ilustration.image}
-                        title={favorite.ilustration.title}
-                        description={favorite.ilustration.description}
-                        user={favorite.ilustration.user}
-                        id={favorite.ilustration.id}
+                        image={ilustration.image}
+                        title={ilustration.title}
+                        description={ilustration.description}
+                        user={ilustration.user}
+                        id={ilustration.id}
+                        ilustration_id={ilustration.ilustration_id}
                         // ilustration_id={favorite.ilustration_id}
                       />)}
 

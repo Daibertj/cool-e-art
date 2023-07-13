@@ -158,6 +158,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token")
 				localStorage.removeItem("userData")
 				localStorage.removeItem("alias")
+				localStorage.removeItem("favoriteData")
+				localStorage.removeItem("ilustrationData")
 				setStore({ token: null, name: "", image: "" })
 				
 			},
@@ -218,7 +220,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const user_id = userData.id;
 				
 				try {
-				  const response = await fetch(`${process.env.BACKEND_URL}/favorite/${user_id}`, {
+				  const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
 					headers: {
 					  Authorization: `Bearer ${token}`,
 					},
@@ -250,7 +252,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response)
 
 					if (response.ok) {
-						getActions().getContact()
+						getActions().getFavorite()
 					} else {
 						console.log("errorrrrr")
 					}
