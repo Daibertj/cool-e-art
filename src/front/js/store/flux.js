@@ -188,7 +188,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getApiImage: async () => {
 				try {
-					const response = await fetch(`https://api.pexels.com/v1/curated?page=2&per_page=10`, {
+					const response = await fetch(`https://api.pexels.com/v1/curated?page=2&per_page=12`, {
 						method: "GET",
 						headers: {
 

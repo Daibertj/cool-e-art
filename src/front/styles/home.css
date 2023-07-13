@@ -5,6 +5,10 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+body{
+    background-color: #D0CCD0;
+}
+
 .barra{
     background-color:rgb(3, 1, 44)
 }
@@ -15,9 +19,12 @@
 }
 
 .navbar{
-    background-color:rgb(148, 176, 218)
+
+    background-color:#1C6E8C
 }
+
 .logo1{
     width: auto;
     height: 200px;
 }
+
