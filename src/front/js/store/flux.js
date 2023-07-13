@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -6,12 +8,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userData: JSON.parse(localStorage.getItem("userData")) || [],
 			ilustrationData:
 				JSON.parse(localStorage.getItem("ilustrationData")) || [],
+			ilustrationsUser: [],
 			favoriteData:
 				JSON.parse(localStorage.getItem("favoriteData")) || [],
 			name: "",
 			image: "",
-			photos: []
-
+			photos: [],
+			alias: "",
+			allUsersData:[]
 
 
 		},
@@ -49,13 +53,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await response.json();
 					setStore({
 						token: data.token,
+						name: data.name,
+						alias:data.alias
 					});
-
+					
 					if (response.ok) {
-						getActions().getUserData()
+						getActions().getUserData(data.alias)
 					}
-
+				
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("alias", data.alias)
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -63,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 
 			getAllIlustrations: async () => {
 
@@ -77,33 +84,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
 					} else {
-
 						console.log("Error fetching ilustrations:", response.status);
 					}
 				} catch (error) {
 					console.log("Error fetching ilustrations:", error);
 				}
-
-
 			},
 
-			getUserData: async () => {
+			getUserData: async (alias) => {
 				const store = getStore();
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${store.token}`,
-						},
-					});
+					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
 					if (response.ok) {
 						const responseData = await response.json();
 						console.log("User data:", responseData);
-
+						setStore({ userData: responseData });
 						localStorage.setItem("userData", JSON.stringify(responseData));
 
-						setStore({ userData: responseData });
+
 					} else {
 						console.log("Error fetching user data:", response.status);
 					}
@@ -114,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			uploadIlustration: async (ilustration) => {
 				const store = getStore();
-				console.log(ilustration)
+
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
 						method: "POST",
@@ -128,18 +126,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// let data = await response.json();
 						return response;
 					} else {
-						throw new Error("Error uploading ilustration");
+						throw new Error("Error uploading ilustration")
 					}
 				} catch (error) {
-					console.log("Error uploading ilustration:", error);
+					console.log("Error uploading ilustration:", error)
+					return 500
+				}
+			},
+
+
+			getIlustrationsByUser: async (alias) => {
+				const store = getStore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
+					if (response.ok) {
+						const responseData = await response.json()
+						setStore({ ilustrationsUser: responseData })
+						console.log("User ilustrations:", responseData)
+					} else {
+						console.log("Error fetching user ilustrations:", response.status)
+					}
+				} catch (error) {
+					console.log("Error getting user ilustrations:", error)
 					return 500;
 				}
 			},
 
-			logout: ()=> {
+
+
+			logout: () => {
 				localStorage.removeItem("token")
-				setStore({token: null, name: "", image:""})			
-			},			
+				localStorage.removeItem("userData")
+				localStorage.removeItem("alias")
+				localStorage.removeItem("favoriteData")
+				localStorage.removeItem("ilustrationData")
+				setStore({ token: null, name: "", image: "" })
+				
+			},
 
 
 			addFavorite: async (id) => {
@@ -174,63 +197,90 @@ const getState = ({ getStore, getActions, setStore }) => {
 							Authorization: `${process.env.API_KEY_PEXEL}`,
 						},
 					})
-					if (response.ok){
+					if (response.ok) {
 						const data = await response.json();
-						setStore({photos: data.photos})
+						setStore({ photos: data.photos })
 					}
 
 				} catch (error) {
 					console.log(error)
 				}
 			},
-			
+
 			getFavorite: async () => {
-
 				const store = getStore();
-
-				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/favorite/1`)
-					if (response.ok) {
-						const responseData = await response.json();
-						localStorage.setItem("favoriteData", JSON.stringify(responseData));
-						console.log("favorite data:", responseData)
-						setStore({ favoriteData: responseData })
-					} else {
-
-						console.log("Error fetching favorite:", response.status);
-					}
-				} catch (error) {
-					console.log("Error fetching favorite:", error);
+				const token = store.token;
+				const userData = store.userData;
+				
+				if (!token || !userData) {
+				  
+				  return;
 				}
+				
+				const user_id = userData.id;
+				
+				try {
+				  const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
+					headers: {
+					  Authorization: `Bearer ${token}`,
+					},
+				  });
+			  
+				  if (response.ok) {
+					const responseData = await response.json();
+					localStorage.setItem("favoriteData", JSON.stringify(responseData));
+					setStore({ favoriteData: responseData });
+				  } else {
+					console.log("Error fetching favorites:", response.status);
+				  }
+				} catch (error) {
+				  console.log("Error fetching favorites:", error);
+				}
+			  },
 
-
-			},
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
-				try{
+				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
-						method:"DELETE",
+						method: "DELETE",
 						headers: {
 
 							Authorization: `Bearer ${store.token}`,
 						}
 					})
-					
+
 					console.log(response)
-		
-					if (response.ok){
-						getActions().getContact()
-					}else{
+
+					if (response.ok) {
+						getActions().getFavorite()
+					} else {
 						console.log("errorrrrr")
 					}
-		
-		
-		
-				}catch(err){
+
+
+
+				} catch (err) {
 					console.log(err)
 				}
-		
+
 			},
+
+			getAllUsers: async ()=>{
+				const store= getStore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/user`)
+					if (response.ok){
+						const responseData = await response.json()
+						setStore({allUsersData: responseData})
+					}else{
+						console.log("Error Fetching all users",response.status)
+					}
+
+				} catch (error) {
+					console.log("Error Fetching all users",error)
+				}
+			}
+
 
 		},
 	};

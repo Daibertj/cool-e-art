@@ -51,21 +51,15 @@ export const Navbar = () => {
 
         <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* {!store.token && (
-              <>
-                <li className="nav-item text-white">
-                  <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
-                </li>
-              </>
-            )} */}
+
 
             {store.token && (
               <>
-                {/* <li className="nav-item">
-                  <Link to="/" className="nav-link text-white" aria-current="page">Home</Link>
-                </li> */}
                 <li className="nav-item">
-                  <Link to={`/profile/${store.userData.alias}`} className="nav-link text-white">My Profile</Link>
+                  <Link to="/explorepage" className="nav-link text-white">Creators</Link>
+                </li>
+                <li className="nav-item">                  
+                  <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile</Link>
                 </li>
                 <li className="nav-item">
                   <Link to="/upload" className="nav-link text-white">Upload Creation</Link>
@@ -153,8 +147,8 @@ export const Navbar = () => {
 
             {store.token && (
               <>
-
-                <span className="m-2">Hey, {userData.alias}!</span>
+                <span className="m-2">Hey, {userData.name}!</span>
+                
 
 
                 <button
