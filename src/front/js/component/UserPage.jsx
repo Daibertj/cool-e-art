@@ -4,26 +4,28 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
 import { Favorite } from "./Favorite.jsx";
+import UserSVG from "./UserSVG.jsx";
 
 function UserPage() {
-  const {  store, actions } = useContext(Context);
-  const {getIlustrationsByUser} = actions
+  const { store, actions } = useContext(Context);
+  const { getIlustrationsByUser } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
   ;
 
-  useEffect(()=>{getIlustrationsByUser(userData.alias)}, 
-  [userData.alias])
-  
-   return (
+  useEffect(() => { getIlustrationsByUser(userData.alias) },
+    [userData.alias])
+
+  return (
     <>
       <div>
         <div className="container-fluid profile d-inline-flex justify-content-center ">
-          <img
+          {!userData.image ? <UserSVG /> : <img
             src={userData.image}
             className="img-thumbnail img-fluid h-25 rounded "
             alt="..."
             style={{ width: "150px" }}
-          />
+          />}
+
           <div className="col-lg-6 col-md-8 h-25  ">
             <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
@@ -84,15 +86,15 @@ function UserPage() {
                   {favoriteData.map((ilustration) => (
                     <div className="col" key={ilustration.id}>
                       {ilustration && (
-                      <Favorite
-                        image={ilustration.image}
-                        title={ilustration.title}
-                        description={ilustration.description}
-                        user={ilustration.user}
-                        id={ilustration.id}
-                        ilustration_id={ilustration.ilustration_id}
+                        <Favorite
+                          image={ilustration.image}
+                          title={ilustration.title}
+                          description={ilustration.description}
+                          user={ilustration.user}
+                          id={ilustration.id}
+                          ilustration_id={ilustration.ilustration_id}
                         // ilustration_id={favorite.ilustration_id}
-                      />)}
+                        />)}
 
 
                       <div className="btn-group">
