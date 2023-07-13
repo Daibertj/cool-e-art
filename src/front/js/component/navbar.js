@@ -34,6 +34,11 @@ export const Navbar = () => {
     }
   };
 
+  const handleLogout = () => {
+    actions.logout()
+    navigate("/")
+  }
+
   const handleChange = ({ target }) => {
     setUser({
       ...user,
@@ -58,7 +63,7 @@ export const Navbar = () => {
                 <li className="nav-item">
                   <Link to="/explorepage" className="nav-link text-white">Creators</Link>
                 </li>
-                <li className="nav-item">                  
+                <li className="nav-item">
                   <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile</Link>
                 </li>
                 <li className="nav-item">
@@ -148,12 +153,12 @@ export const Navbar = () => {
             {store.token && (
               <>
                 <span className="m-2">Hey, {userData.name}!</span>
-                
+
 
 
                 <button
                   className=" btn btn-secondary "
-                  onClick={() => actions.logout()}
+                  onClick={handleLogout}
                 >
                   Log Out
                 </button>
