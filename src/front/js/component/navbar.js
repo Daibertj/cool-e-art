@@ -47,7 +47,7 @@ export const Navbar = () => {
   };
   return (
 
-    <nav className="navbar navbar-expand-lg navbar-secondary  ">
+    <nav className="navbar navbar-expand-lg navbar-dark  ">
       <div className="container text-white">
         <Link className="navbar-brand text-white bold-text text-capitalize fs-3 fw-bold fst-italic" to="/">Cool-e-Art</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
