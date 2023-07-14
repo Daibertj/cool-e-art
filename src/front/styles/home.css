@@ -5,3 +5,32 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+body{
+    background-color: #D0CCD0;
+}
+
+.barra{
+    background-color:rgb(3, 1, 44)
+}
+
+.profile{
+    background-color:rgb(220, 237, 255);
+    color:white 
+}
+
+.navbar{
+
+    background-color:#1C6E8C
+}
+
+.logo1{
+    width: auto;
+    height: 200px;
+}
+.formulario{
+    width: 300px !important;
+}
+.btn{
+    border-radius: 0px 0px 5px 5px;
+    
+}
