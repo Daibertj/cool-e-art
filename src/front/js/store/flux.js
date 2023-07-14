@@ -177,6 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: [],
 					});
 					if (response.ok) {
+						getActions().getFavorite()
 						return response;
 					} else {
 						throw new Error("Error");
