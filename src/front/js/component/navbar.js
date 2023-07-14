@@ -89,7 +89,7 @@ export const Navbar = () => {
                   >
                     Login
                   </button>
-                  <form className="w-100 border border-danger dropdown-menu dropdown-menu-end p-4">
+                  <form className="formulario w-100 dropdown-menu dropdown-menu-end p-4">
                     <div className="mb-3" >
                       <label
                         htmlFor="exampleDropdownFormEmail2"

@@ -27,4 +27,6 @@ body{
     width: auto;
     height: 200px;
 }
-
+.formulario{
+    width: 300px !important;
+}
