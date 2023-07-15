@@ -76,7 +76,10 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, onupdate=db.func.current_timestamp(
     ), default=db.func.current_timestamp())
     salt = db.Column(db.String(100), unique=False, nullable=False)
-
+    twitter = db.Column(db.String(255), unique=False, nullable=True)
+    facebook = db.Column(db.String(255), unique=False, nullable=True)
+    instagram = db.Column(db.String(255), unique=False, nullable=True)
+    
     ilustration = db.relationship('Ilustration', backref='user', uselist=True)
     favorite = db.relationship('Favorite', backref='user', uselist=True)
 
@@ -90,7 +93,7 @@ class User(db.Model):
             'name': self.name,
             'lastname': self.lastname,
             'alias': self.alias,
-            'image': self.image
+            'image': self.image,
 
             # do not serialize the password, its a security breach
         }
