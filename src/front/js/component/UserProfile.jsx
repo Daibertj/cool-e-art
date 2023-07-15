@@ -42,7 +42,7 @@ function UserProfile() {
           <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Contactame
           </button>
-          <ContactModal />
+          <ContactModal alias={alias} />
         </div>
 
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">

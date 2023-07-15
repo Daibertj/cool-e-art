@@ -94,6 +94,9 @@ class User(db.Model):
             'lastname': self.lastname,
             'alias': self.alias,
             'image': self.image,
+            'twitter': self.twitter,
+            'facebook': self.facebook,
+            'instagram': self.instagram,
 
             # do not serialize the password, its a security breach
         }
