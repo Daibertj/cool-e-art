@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 import { Card } from "./Card";
 import { Favorite } from "./Favorite.jsx";
 import UserSVG from "./UserSVG.jsx";
-import ContactModal from "./ContactModal.jsx";
+
 
 function UserPage() {
   const { store, actions } = useContext(Context);
@@ -32,11 +32,9 @@ function UserPage() {
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
-<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-<ContactModal/>
+
           </div>
+          
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
           <div className="lh-1">

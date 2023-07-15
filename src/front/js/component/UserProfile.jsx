@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
+import ContactModal from "./ContactModal.jsx";
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
@@ -38,6 +39,10 @@ function UserProfile() {
               {ilustratorVisited.name} {ilustratorVisited.lastname}
             </p>
           </div>
+          <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Contactame
+          </button>
+          <ContactModal />
         </div>
 
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -49,7 +54,7 @@ function UserProfile() {
         {ilustrationsUser.length > 0 ? (
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div className="col d-flex inline ">
 
                 {ilustrationsUser.map((ilustration) => (
 
