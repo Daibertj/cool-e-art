@@ -16,6 +16,7 @@ import UploadImage from "./component/UploadImage.jsx";
 import Imageview from "./component/ImageView.jsx"
 import UserProfile from "./component/UserProfile.jsx";
 import { NotFound } from "./component/NotFound.jsx";
+import { Edit } from "./component/Edit.jsx";
 
 //create your first component
 const Layout = () => {
@@ -38,7 +39,9 @@ const Layout = () => {
                         <Route element= {<UserProfile/>} path="/profile/:alias"/>
                         <Route element={<ExplorePage />} path="/explorepage" />
                         <Route element={<Imageview/>} path="/imageview/:id" />
+                        <Route element={<Edit />} path="/edit" />
                         <Route element={<NotFound/>} path="*" />
+                        
                     </Routes>
                     <Footer />
                 </ScrollToTop>
