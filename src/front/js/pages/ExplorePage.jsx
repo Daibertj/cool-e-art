@@ -24,6 +24,7 @@ const ExplorePage = () => {
             placeholder="que tipo de imagen estas buscando?"
           />
         </div>
+        
 
         <div className="row">
 
