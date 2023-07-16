@@ -2,11 +2,11 @@ import React, { useContext } from 'react'
 import { Context } from '../store/appContext'
 import { SocialIcon } from 'react-social-icons'
 
-function ContactModal({alias}) {
+function ContactModal({ alias }) {
     const { store } = useContext(Context)
     const { allUsersData } = store
     const ilustratorVisited = allUsersData.find((user) => user.alias === alias)
-    console.log("este es",ilustratorVisited)
+    console.log("este es", ilustratorVisited)
 
     return (
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

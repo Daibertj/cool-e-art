@@ -6,7 +6,7 @@ import ContactModal from "./ContactModal.jsx";
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
-  const { ilustrationsUser, allUsersData } = store;
+  const { ilustrationsUser, allUsersData, token } = store;
   const { getIlustrationsByUser, getAllUsers } = actions;
   const { alias } = useParams();
 
@@ -19,7 +19,7 @@ function UserProfile() {
 
   if (!ilustratorVisited) {
     return (
-    <h1>No existe este ilustrador</h1>
+      <h1>No existe este ilustrador</h1>
     )
   }
 
@@ -39,10 +39,16 @@ function UserProfile() {
               {ilustratorVisited.name} {ilustratorVisited.lastname}
             </p>
           </div>
-          <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Contactame
-          </button>
-          <ContactModal alias={alias} />
+          {token && (
+            <>
+              <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Contactame
+              </button>
+              <ContactModal alias={alias} />
+            </>
+          )}
+
+
         </div>
 
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
