@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
 import ContactModal from "./ContactModal.jsx";
+import Card2 from "./Card2.jsx"
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
@@ -60,12 +61,12 @@ function UserProfile() {
         {ilustrationsUser.length > 0 ? (
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
-              <div className="col d-flex inline ">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="col" key={ilustration.id}>
-                    <Card
+                  <div className="row" key={ilustration.id}>
+                    <Card2
                       image={ilustration.image}
                       title={ilustration.title}
                       description={ilustration.description}

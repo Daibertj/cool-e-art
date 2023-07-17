@@ -5,7 +5,7 @@ import { Card } from "./Card";
 import { Favorite } from "./Favorite.jsx";
 import UserSVG from "./UserSVG.jsx";
 import { SocialIcon } from 'react-social-icons'
-
+import Card2 from "./Card2.jsx"
 
 
 function UserPage() {
@@ -36,7 +36,7 @@ function UserPage() {
               {userData.name} {userData.lastname}
             </p>
           </div>
-          <div className="row flex-column border border-danger text-black">
+          <div className="row flex-column  text-black">
             <div>
               <SocialIcon network="facebook" className="p-2" /> {userData.facebook}
             </div>
@@ -59,19 +59,20 @@ function UserPage() {
         </div>
 
         {ilustrationsUser.length > 0 ? (
-          <div className="album py-5 bg-body-tertiary">
-            <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div className=" py-5 bg-body-tertiary">
+            <div className="container  ">
+              <div className=" row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="col" key={ilustration.id}>
-                    <Card
+                  <div className="row pb-2" key={ilustration.id}>
+                    <Card2 
                       image={ilustration.image}
                       title={ilustration.title}
                       description={ilustration.description}
                       user={ilustration.user}
                       id={ilustration.id}
+                      alias={userData.alias}
                     />
                     <div className="btn-group">
 
