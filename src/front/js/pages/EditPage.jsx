@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
-import { Edit } from "./Edit.jsx";
-import { Favorite } from "./Favorite.jsx";
-import UserSVG from "./UserSVG.jsx";
+import { Edit } from "../component/Edit.jsx";
+import { Favorite } from "../component/Favorite.jsx";
+import UserSVG from "../component/UserSVG.jsx";
 
 function EditPage() {
     const { store, actions } = useContext(Context);
@@ -36,12 +36,7 @@ function EditPage() {
                 </div>
                 <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white barra">
                     <div className="lh-1">
-                        <h2 className="mb-0 lh-1">Mis creaciones</h2>
-                    </div>
-                    <div>
-                        <Link to={`/edit`}>
-                            <button type="button" class="btn btn-light">Edit</button>
-                        </Link>
+                        <h2 className="mb-0 lh-1">Editar</h2>
                     </div>
                 </div>
                 {ilustrationsUser.length > 0 ? (
@@ -69,53 +64,21 @@ function EditPage() {
                     </div>
                 ) : (
 
-                    <div className="alert alert-warning mx-3" role="alert">
-                        Por favor, agrega alguna ilustración.
+                    <div>
+                        <div className="alert alert-warning mx-3" role="alert">
+                            Ups, Parece que no estas logeado.
+                        </div>
+                        <Link to={`/`}>
+                            <button type="button" class="btn btn-light">Volver a Home</button>
+                        </Link>
                     </div>
+
+
+
 
                 )}
 
-                {favoriteData.length > 0 ? (
-                    <>
-                        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
-                            <div className="lh-1">
-                                <h2 className="mb-0 lh-1">Favoritos</h2>
-                            </div>
-                        </div>
 
-                        <div className="album py-5 bg-body-tertiary">
-                            <div className="container">
-                                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-                                    {favoriteData.map((ilustration) => (
-                                        <div className="col" key={ilustration.id}>
-                                            {ilustration && (
-                                                <Favorite
-
-                                                    image={ilustration.image}
-                                                    title={ilustration.title}
-                                                    description={ilustration.description}
-                                                    user={ilustration.user}
-                                                    id={ilustration.id}
-                                                    ilustration_id={ilustration.ilustration_id}
-                                                // ilustration_id={favorite.ilustration_id}
-                                                />)}
-
-
-                                            <div className="btn-group">
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                ) : (
-
-                    <div className="alert alert-info mx-3" role="alert">
-                        No tienes Favoritos.
-                    </div>
-                )}
             </div>
         </>
     );

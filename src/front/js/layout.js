@@ -16,7 +16,7 @@ import UploadImage from "./component/UploadImage.jsx";
 import Imageview from "./component/ImageView.jsx"
 import UserProfile from "./component/UserProfile.jsx";
 import { NotFound } from "./component/NotFound.jsx";
-import { EditPage } from "./pages/EditPage.jsx";
+import EditPage from "./pages/EditPage.jsx";
 
 //create your first component
 const Layout = () => {

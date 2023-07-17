@@ -7,7 +7,7 @@ export const Edit = ({ id, title, description, image, user }) => {
     const { store, actions } = useContext(Context)
     return (
         <>
-            <div className="col-12 col-md-3 col-sm-4">
+            <div>
                 <div className="card">
                     <Link to={`/imageview/${id}`}>
                         <img
@@ -23,10 +23,7 @@ export const Edit = ({ id, title, description, image, user }) => {
                         <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}</p> </Link>
                     </div>
                     { }
-                    <button
-                        className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-secondary fa-solid fa-heart" : "btn btn-outline-secondary fa-solid fa-heart"}
-                        onClick={() => actions.addFavorite(id)}
-                    ></button>
+                    
 
                 </div>
 
