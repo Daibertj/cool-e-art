@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Card } from "./Card";
-import ContactModal from "./ContactModal.jsx";
-import Card2 from "./Card2.jsx"
+import { Card } from "../component/Card";
+import ContactModal from "../component/ContactModal.jsx";
+import Card2 from "../component/Card2.jsx"
 
 function UserProfile() {
   const { actions, store } = useContext(Context);

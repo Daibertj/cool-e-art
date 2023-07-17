@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import { Card } from "./Card";
-import { Favorite } from "./Favorite.jsx";
-import UserSVG from "./UserSVG.jsx";
+import { Card } from "../component/Card";
+import { Favorite } from "../component/Favorite.jsx";
+import UserSVG from "../component/UserSVG.jsx";
 import { SocialIcon } from 'react-social-icons'
-import Card2 from "./Card2.jsx"
+import Card2 from "../component/Card2.jsx"
 
 
 function UserPage() {
@@ -44,7 +44,7 @@ function UserPage() {
               <SocialIcon network="instagram" /> {userData.instagram}
             </div>
             <div>
-              <SocialIcon network="twitter" className=""/> {userData.twitter}
+              <SocialIcon network="twitter" className="" /> {userData.twitter}
             </div>
 
 
@@ -66,7 +66,7 @@ function UserPage() {
                 {ilustrationsUser.map((ilustration) => (
 
                   <div className="row pb-2" key={ilustration.id}>
-                    <Card2 
+                    <Card2
                       image={ilustration.image}
                       title={ilustration.title}
                       description={ilustration.description}
