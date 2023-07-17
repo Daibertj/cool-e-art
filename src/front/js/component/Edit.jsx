@@ -24,6 +24,10 @@ export const Edit = ({ id, title, description, image, user }) => {
                                 <p className="card-text">{description ? description : "Sin descripcion"}</p>
                                 <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}</p> </Link>
                             </div>
+                            <button
+                className="btn btn-dark bg-black fa-solid fa-trash"
+                onClick={() => actions.deleteIlustration(id)}
+            ></button>
                         </div>
                     </div>
                 </div>

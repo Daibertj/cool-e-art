@@ -1,15 +1,13 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Context } from "../store/appContext";
 import { Edit } from "../component/Edit.jsx";
-import { Favorite } from "../component/Favorite.jsx";
 import UserSVG from "../component/UserSVG.jsx";
 
 function EditPage() {
     const { store, actions } = useContext(Context);
     const { getIlustrationsByUser } = actions
-    const { ilustrationsUser, userData, favoriteData } = store;
+    const { ilustrationsUser, userData } = store;
     ;
 
     useEffect(() => { getIlustrationsByUser(userData.alias) },
@@ -66,7 +64,7 @@ function EditPage() {
 
                     <div>
                         <div className="alert alert-warning mx-3" role="alert">
-                            Ups, Parece que no estas logeado.
+                            Ups.
                         </div>
                         <Link to={`/`}>
                             <button type="button" class="btn btn-light">Volver a Home</button>

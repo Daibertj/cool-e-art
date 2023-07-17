@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 
 export const Favorite = ({ id, title, description, image, user, ilustration_id }) => {
-    const { store, actions } = useContext(Context) 
+    const { store, actions } = useContext(Context)
     return (
 
         <div className="col">
             <div className="card"     >
 
 
-            <Link to={`/imageview/${ilustration_id}`}>
+                <Link to={`/imageview/${ilustration_id}`}>
                     <img
                         src={image}
                         className="card-img-top"
@@ -30,9 +30,9 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id }
 
             </div>
             <button
-                    className="btn btn-dark bg-black fa-solid fa-trash"
-                    onClick={() => actions.deleteFavorite(ilustration_id)}
-                ></button>
+                className="btn btn-dark bg-black fa-solid fa-trash"
+                onClick={() => actions.deleteFavorite(ilustration_id)}
+            ></button>
         </div>
 
 

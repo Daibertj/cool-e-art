@@ -280,7 +280,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error Fetching all users",error)
 				}
-			}
+			},
+
+			deleteIlustration: async (ilustration_id) => {
+				const store = getStore()
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${ilustration_id}`, {
+						method: "DELETE",
+						headers: {
+
+							Authorization: `Bearer ${store.token}`,
+						}
+					})
+
+					console.log(response)
+
+					if (response.ok) {
+						getActions().getFavorite()
+					} else {
+						console.log("errorrrrr")
+					}
+
+
+
+				} catch (err) {
+					console.log(err)
+				}
+
+			},
 
 
 		},
