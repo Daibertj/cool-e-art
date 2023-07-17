@@ -1,16 +1,20 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
 import { Favorite } from "./Favorite.jsx";
 import UserSVG from "./UserSVG.jsx";
+import { SocialIcon } from 'react-social-icons'
+import Card2 from "./Card2.jsx"
+
 
 function UserPage() {
   const { store, actions } = useContext(Context);
   const { getIlustrationsByUser } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
-  ;
+  const [isEditing, setIsEditing] = useState(false);
+
+
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },
     [userData.alias])
@@ -26,13 +30,27 @@ function UserPage() {
             style={{ width: "150px" }}
           />}
 
-          <div className="col-lg-6 col-md-8 h-25  ">
+          <div className="col-lg-5 col-md-8 h-25 text-black ">
             <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
+          </div>
+          <div className="row flex-column  text-black">
+            <div>
+              <SocialIcon network="facebook" className="p-2" /> {userData.facebook}
+            </div>
+            <div>
+              <SocialIcon network="instagram" /> {userData.instagram}
+            </div>
+            <div>
+              <SocialIcon network="twitter" className=""/> {userData.twitter}
+            </div>
+
+
 
           </div>
+
         </div>
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
           <div className="lh-1">
@@ -41,19 +59,20 @@ function UserPage() {
         </div>
 
         {ilustrationsUser.length > 0 ? (
-          <div className="album py-5 bg-body-tertiary">
-            <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div className=" py-5 bg-body-tertiary">
+            <div className="container  ">
+              <div className=" row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="col" key={ilustration.id}>
-                    <Card
+                  <div className="row pb-2" key={ilustration.id}>
+                    <Card2 
                       image={ilustration.image}
                       title={ilustration.title}
                       description={ilustration.description}
                       user={ilustration.user}
                       id={ilustration.id}
+                      alias={userData.alias}
                     />
                     <div className="btn-group">
 

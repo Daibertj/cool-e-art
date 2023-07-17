@@ -20,7 +20,8 @@ export const Navbar = () => {
       Swal.fire({
         title: "Usuario logueado con éxito",
         icon: "success",
-        confirmButtonText: "Aceptar",
+        showConfirmButton: false,
+        timer: 1000
       });
       await actions.getUserData;
       navigate(`/`);

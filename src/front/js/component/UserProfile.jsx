@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card } from "./Card";
+import ContactModal from "./ContactModal.jsx";
+import Card2 from "./Card2.jsx"
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
-  const { ilustrationsUser, allUsersData } = store;
+  const { ilustrationsUser, allUsersData, token } = store;
   const { getIlustrationsByUser, getAllUsers } = actions;
   const { alias } = useParams();
 
@@ -18,7 +20,7 @@ function UserProfile() {
 
   if (!ilustratorVisited) {
     return (
-    <h1>No existe este ilustrador</h1>
+      <h1>No existe este ilustrador</h1>
     )
   }
 
@@ -38,6 +40,16 @@ function UserProfile() {
               {ilustratorVisited.name} {ilustratorVisited.lastname}
             </p>
           </div>
+          {token && (
+            <>
+              <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Contactame
+              </button>
+              <ContactModal alias={alias} />
+            </>
+          )}
+
+
         </div>
 
         <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
@@ -49,12 +61,12 @@ function UserProfile() {
         {ilustrationsUser.length > 0 ? (
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="col" key={ilustration.id}>
-                    <Card
+                  <div className="row" key={ilustration.id}>
+                    <Card2
                       image={ilustration.image}
                       title={ilustration.title}
                       description={ilustration.description}
