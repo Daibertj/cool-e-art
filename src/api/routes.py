@@ -202,7 +202,7 @@ def add_fav(ilustration_id):
 
 @api.route('/favorite/<int:ilustration_id>', methods=['DELETE'])
 @jwt_required()
-def delete_fav_people(ilustration_id):
+def delete_fav(ilustration_id):
 
     user_id = get_jwt_identity()
     favorite = Favorite.query.filter_by(
@@ -216,6 +216,24 @@ def delete_fav_people(ilustration_id):
             return jsonify({"msg": "se elimino el favorito"}), 200
         except Exception as error:
             return jsonify({"msg": error.args}), 500
+        
+@api.route('/ilustration/<int:ilustration_id>', methods=['DELETE'])
+@jwt_required()
+def delete_ilustration(ilustration_id):
+
+    user_id = get_jwt_identity()
+    ilustration = Ilustration.query.filter_by(
+        user_id=user_id, id=ilustration_id).first()
+    if ilustration is None:
+        return jsonify({"msg": "esta ilustracion no existe"}), 404
+    else:
+        db.session.delete(ilustration)
+        try:
+            db.session.commit()
+            return jsonify({"msg": "se elimino la ilustracion"}), 200
+        except Exception as error:
+            return jsonify({"msg": error.args}), 500
+
 
 
 @api.route('/ilustration/user/<alias>', methods=['GET'])
