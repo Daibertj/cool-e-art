@@ -282,8 +282,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteIlustration: async (ilustration_id) => {
+			deleteIlustration: async (ilustration_id, alias) => {
 				const store = getStore()
+				console.log(alias)
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${ilustration_id}`, {
 						method: "DELETE",
@@ -297,6 +298,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if (response.ok) {
 						getActions().getFavorite()
+						getActions().getIlustrationsByUser(alias) 
 					} else {
 						console.log("errorrrrr")
 					}
