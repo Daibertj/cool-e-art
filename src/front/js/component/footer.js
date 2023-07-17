@@ -3,7 +3,7 @@ import coolLogo from "../../img/logo_no_back.png";
 import { Link } from "react-router-dom";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center navbar sticky-xl-bottom ">
+	<footer className="footer mt-auto py-3 text-center navbar ">
 		<img className="logo1 " src={coolLogo} />
 		<ul className="nav justify-content-center border-bottom pb-3 mb-3">
 
