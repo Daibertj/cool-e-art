@@ -257,17 +257,54 @@ def get_all_users():
     return jsonify(users_data), 200
 
 
-@api.route('/user/<int:user_id>/social', methods=['PUT'])
-def update_social_media(user_id):
-    user=User.query.get(user_id)
+@api.route('/user', methods=['PUT'])
+@jwt_required()
+def update_social_media():
+    user=User.query.get(get_jwt_identity())
     if not user :
         return jsonify({'message': 'User not exist'})
     
-    data=request.json
-    user.twitter=data.get('twitter', user.twitter)
-    user.facebook=data.get('facebook', user.facebook)
-    user.instagram=data.get('instagram', user.instagram)
+    data_files = request.files
+    data_form = request.form
+
+    data = {
+        "name": data_form.get("name"),
+        "lastname": data_form.get("lastname"),
+        "email": data_form.get("email"),
+        "password": data_form.get("password"),
+        "alias": data_form.get("alias"),
+        "twitter": data_form.get('twitter'),
+        "facebook": data_form.get('facebook'),
+        "instagram": data_form.get('instagram'),
+        "image": data_files.get("image")
+        }    
     
-    db.session.commit()
+    if data.get('name') is not None:
+        user.name= data.get('name')
+    if data.get('lastname') is not None:
+        user.lastname= data.get("lastname")
+    if data.get('email') is not None:
+        user.email= data.get("email")
+    if data.get('alias') is not None:
+        user.alias= data.get("alias")
+    if data.get('twitter') is not None:
+        user.twitter= data.get('twitter')
+    if data.get('facebook') is not None:
+        user.facebook= data.get('facebook')
+    if data.get('instagram') is not None:
+        user.instagram= data.get('instagram')
+    if data.get('password') is not None:
+        user.salt = b64encode(os.urandom(32)).decode('utf-8')
+        password_hash = set_password(data.get("password"), user.salt)
+        user.password= password_hash
+    if data.get("image") is not None:
+        response_image = uploader.upload(data.get("image"))
+        data.update({"image": response_image.get("url")})
+        user.image= data.get('image')
     
-    return jsonify({'message': 'Social Media updated'})
+    try:
+        db.session.commit()    
+        return jsonify({'message': 'Social Media updated'})
+    except Exception as error:
+        return jsonify({'message': f'{error.args}'})
+
