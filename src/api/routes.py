@@ -255,3 +255,19 @@ def get_all_users():
     users = User.query.all()
     users_data = list(map(lambda user: user.serialize(), users))
     return jsonify(users_data), 200
+
+
+@api.route('/user/<int:user_id>/social', methods=['PUT'])
+def update_social_media(user_id):
+    user=User.query.get(user_id)
+    if not user :
+        return jsonify({'message': 'User not exist'})
+    
+    data=request.json
+    user.twitter=data.get('twitter', user.twitter)
+    user.facebook=data.get('facebook', user.facebook)
+    user.instagram=data.get('instagram', user.instagram)
+    
+    db.session.commit()
+    
+    return jsonify({'message': 'Social Media updated'})

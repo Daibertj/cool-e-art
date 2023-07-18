@@ -74,7 +74,7 @@ const UploadImage = () => {
   };
 
   return (
-    <div className="container-fluid  w-25">
+    <div className="container-fluid  w-25 vh-100">
       <h1>Upload</h1>
       <form>
         <div className="form-group">

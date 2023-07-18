@@ -9,12 +9,13 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import Register from "./component/Register.jsx";
-import UserPage from "./component/UserPage.jsx";
+import Register from "./pages/Register.jsx";
+import UserPage from "./pages/UserPage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
-import UploadImage from "./component/UploadImage.jsx";
-import Imageview from "./component/ImageView.jsx"
-import UserProfile from "./component/UserProfile.jsx";
+import UploadImage from "./pages/UploadImage.jsx";
+import Imageview from "./pages/ImageView.jsx"
+import UserProfile from "./pages/UserProfile.jsx";
+
 import { NotFound } from "./component/NotFound.jsx";
 import EditPage from "./pages/EditPage.jsx";
 
@@ -38,10 +39,9 @@ const Layout = () => {
                         <Route element={<UserPage />} path="/myprofile/:alias" />
                         <Route element={<UserProfile />} path="/profile/:alias" />
                         <Route element={<ExplorePage />} path="/explorepage" />
-                        <Route element={<Imageview />} path="/imageview/:id" />
+                        <Route element={<Imageview/>} path="/imageview/:id" />
                         <Route element={<EditPage />} path="/edit" />
                         <Route element={<NotFound />} path="*" />
-
                     </Routes>
                     <Footer />
                 </ScrollToTop>

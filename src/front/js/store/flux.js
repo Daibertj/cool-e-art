@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -15,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			image: "",
 			photos: [],
 			alias: "",
-			allUsersData:[]
+			allUsersData: []
 
 
 		},
@@ -54,13 +52,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						token: data.token,
 						name: data.name,
-						alias:data.alias
+						alias: data.alias
 					});
-					
+
 					if (response.ok) {
 						getActions().getUserData(data.alias)
 					}
-				
+
 					localStorage.setItem("token", data.token)
 					localStorage.setItem("alias", data.alias)
 					return response.status
@@ -161,7 +159,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("favoriteData")
 				localStorage.removeItem("ilustrationData")
 				setStore({ token: null, name: "", image: "" })
-				
+
 			},
 
 
@@ -212,32 +210,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const token = store.token;
 				const userData = store.userData;
-				
+
 				if (!token || !userData) {
-				  
-				  return;
+
+					return;
 				}
-				
+
 				const user_id = userData.id;
-				
+
 				try {
-				  const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
-					headers: {
-					  Authorization: `Bearer ${token}`,
-					},
-				  });
-			  
-				  if (response.ok) {
-					const responseData = await response.json();
-					localStorage.setItem("favoriteData", JSON.stringify(responseData));
-					setStore({ favoriteData: responseData });
-				  } else {
-					console.log("Error fetching favorites:", response.status);
-				  }
+					const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("favoriteData", JSON.stringify(responseData));
+						setStore({ favoriteData: responseData });
+					} else {
+						console.log("Error fetching favorites:", response.status);
+					}
 				} catch (error) {
-				  console.log("Error fetching favorites:", error);
+					console.log("Error fetching favorites:", error);
 				}
-			  },
+			},
 
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
@@ -266,19 +264,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			getAllUsers: async ()=>{
-				const store= getStore()
+			getAllUsers: async () => {
+				const store = getStore()
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/user`)
-					if (response.ok){
+					if (response.ok) {
 						const responseData = await response.json()
-						setStore({allUsersData: responseData})
-					}else{
-						console.log("Error Fetching all users",response.status)
+						setStore({ allUsersData: responseData })
+					} else {
+						console.log("Error Fetching all users", response.status)
 					}
 
 				} catch (error) {
-					console.log("Error Fetching all users",error)
+					console.log("Error Fetching all users", error)
 				}
 			},
 
@@ -311,6 +309,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
+			updateSocialMedia: async (userId, socialMediaData) => {
+				const store = getStore()
+				const response = await fetch(`${process.env.BACKEND_URL}/user/${userId}/social`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'aplication/json'
+					},
+					body: JSON.stringify(socialMediaData)
+				})
+				if (response.ok){
+					const updatedUserData = { ...getStore().userData, ...socialMediaData };
+					setStore({ userData: updatedUserData })
+				}else {
+					console.log("Error updating social media")
+				}
+				
+			}
 
 		},
 	};
