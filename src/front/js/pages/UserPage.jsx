@@ -52,12 +52,16 @@ function UserPage() {
           </div>
 
         </div>
-        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
+        <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white barra">
           <div className="lh-1">
             <h2 className="mb-0 lh-1">Mis creaciones</h2>
           </div>
+          <div>
+            <Link to={`/edit`}>
+              <button type="button" class="btn btn-light">Edit</button>
+            </Link>
+          </div>
         </div>
-
         {ilustrationsUser.length > 0 ? (
           <div className=" py-5 bg-body-tertiary">
             <div className="container  ">
@@ -106,6 +110,7 @@ function UserPage() {
                     <div className="col" key={ilustration.id}>
                       {ilustration && (
                         <Favorite
+
                           image={ilustration.image}
                           title={ilustration.title}
                           description={ilustration.description}

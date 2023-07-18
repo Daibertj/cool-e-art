@@ -279,6 +279,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error Fetching all users", error)
 				}
 			},
+
+			deleteIlustration: async (ilustration_id, alias) => {
+				const store = getStore()
+				console.log(alias)
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${ilustration_id}`, {
+						method: "DELETE",
+						headers: {
+
+							Authorization: `Bearer ${store.token}`,
+						}
+					})
+
+					console.log(response)
+
+					if (response.ok) {
+						getActions().getFavorite()
+						getActions().getIlustrationsByUser(alias) 
+					} else {
+						console.log("errorrrrr")
+					}
+
+
+
+				} catch (err) {
+					console.log(err)
+				}
+
+			},
+
 			updateSocialMedia: async (userId, socialMediaData) => {
 				const store = getStore()
 				const response = await fetch(`${process.env.BACKEND_URL}/user/${userId}/social`, {

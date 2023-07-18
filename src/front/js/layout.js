@@ -16,6 +16,9 @@ import UploadImage from "./pages/UploadImage.jsx";
 import Imageview from "./pages/ImageView.jsx"
 import UserProfile from "./pages/UserProfile.jsx";
 
+import { NotFound } from "./component/NotFound.jsx";
+import EditPage from "./pages/EditPage.jsx";
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -36,8 +39,9 @@ const Layout = () => {
                         <Route element={<UserPage />} path="/myprofile/:alias" />
                         <Route element={<UserProfile />} path="/profile/:alias" />
                         <Route element={<ExplorePage />} path="/explorepage" />
-                        <Route element={<Imageview />} path="/imageview/:id" />
-                        <Route element={<h1>Not found!</h1>} path="*" />
+                        <Route element={<Imageview/>} path="/imageview/:id" />
+                        <Route element={<EditPage />} path="/edit" />
+                        <Route element={<NotFound />} path="*" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
