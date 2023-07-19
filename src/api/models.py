@@ -2,10 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
-
-
-
 class Ilustration(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), unique=False, nullable=False)
@@ -28,10 +24,6 @@ class Ilustration(db.Model):
             'image': self.url_image
 
         }
-
-
-
-
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,10 +62,6 @@ class User(db.Model):
 
             # do not serialize the password, its a security breach
         }
-
-
-
-
 
 class Favorite(db.Model):
     id = db.Column(db.Integer, primary_key=True)
