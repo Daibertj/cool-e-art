@@ -18,6 +18,7 @@ import UserProfile from "./pages/UserProfile.jsx";
 
 import { NotFound } from "./component/NotFound.jsx";
 import EditPage from "./pages/EditPage.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
 
 //create your first component
 const Layout = () => {
@@ -42,6 +43,7 @@ const Layout = () => {
                         <Route element={<Imageview/>} path="/imageview/:id" />
                         <Route element={<EditPage />} path="/edit" />
                         <Route element={<NotFound />} path="*" />
+                        <Route element={<AboutUs/>} path ="/aboutus" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
