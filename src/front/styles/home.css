@@ -6,21 +6,21 @@
     on that page only (the ones not reused in other pages).
 */
 body{
-    background-color: #D0CCD0;
+    background-color: #1a1d1a;
 }
 
 .barra{
-    background-color:rgb(3, 1, 44)
+    background-color:#d81e5b;
 }
 
 .profile{
-    background-color:rgb(220, 237, 255);
-    color:white 
+    background-color:#50514f;
+    color:white;
 }
 
 .navbar{
-
-    background-color:#1C6E8C
+    height: 49px;
+    background-color:#00100b;
 }
 
 .logo1{
@@ -31,7 +31,8 @@ body{
     width: 300px !important;
 }
 .btn{
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    height: 40px;
     
 }
 
