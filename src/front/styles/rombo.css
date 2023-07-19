@@ -19,8 +19,8 @@
     position: relative;
     flex-grow: 1;
     margin: auto;
-    max-width: 1200px;
-    max-height: 1200px;
+    max-width: 1000px;
+    max-height: 1000px;
     
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -44,8 +44,8 @@
     }
     
     &:hover {
-      z-index: 2;
-      transform: scale(2);
+      z-index: 1.2;
+      transform: scale(1.2);
     }
   }
   
