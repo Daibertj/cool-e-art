@@ -49,18 +49,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					let data = await response.json();
-					setStore({
-						token: data.token,
-						name: data.name,
-						alias: data.alias
-					});
-
+					
+					
 					if (response.ok) {
-						getActions().getUserData(data.alias)
+						setStore({
+							token: data.token,
+							name: data.name,
+							alias: data.alias
+						});						
+						localStorage.setItem("token", data.token)
+						localStorage.setItem("alias", data.alias)
+						getActions().getUserData()
 					}
 
-					localStorage.setItem("token", data.token)
-					localStorage.setItem("alias", data.alias)
+					
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -89,10 +91,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getUserData: async (alias) => {
+			getUserData: async () => {
 				const store = getStore();
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
+					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "aplication/JSON",
+							"Authorization": `Bearer ${store.token}`
+						}
+					});
 					if (response.ok) {
 						const responseData = await response.json();
 						console.log("User data:", responseData);
@@ -309,21 +317,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			updateSocialMedia: async (userId, socialMediaData) => {
+			updateUser: async (user) => {
 				const store = getStore()
-				const response = await fetch(`${process.env.BACKEND_URL}/user/${userId}/social`, {
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'aplication/json'
-					},
-					body: JSON.stringify(socialMediaData)
-				})
-				if (response.ok){
-					const updatedUserData = { ...getStore().userData, ...socialMediaData };
-					setStore({ userData: updatedUserData })
-				}else {
-					console.log("Error updating social media")
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+						method: 'PUT',	
+						headers:{
+							Authorization: `Bearer ${store.token}`
+						},			
+						body: user
+					})
+					if (response.ok){
+						console.log("se actualizo usuario")
+						getActions().getUserData()
+						return response.status
+					}else {
+						console.log("Error updating social media")
+						return response.status
+					}
+				} catch (error) {
+					console.log(error)
 				}
+				
 				
 			}
 
