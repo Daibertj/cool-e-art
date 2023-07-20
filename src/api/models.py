@@ -9,7 +9,7 @@ class Ilustration(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     url_image = db.Column(db.String(255), unique=True, nullable=False)
     category = db.Column(db.String(30), nullable=False)
-    user = db.relationship("User", backref="ilustration", uselist=False)
+    
 
     def __repr__(self):
         return f'<Ilustration {self.id}>'
