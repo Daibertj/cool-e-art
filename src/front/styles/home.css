@@ -41,3 +41,16 @@ img{
     height:100%;
   }
 
+  #banner{
+    background-attachment: scroll,							fixed;
+		background-color: #857979;
+		background-image: url("../img/pic04.jpg");
+		background-position: top left,						center center;
+		background-repeat: repeat,							no-repeat;
+		background-size: auto,							cover;
+		color: #fff;
+		padding: 12em 0 20em 0;
+		text-align: center;
+    
+    color: rgb(252, 246, 246)
+  }
