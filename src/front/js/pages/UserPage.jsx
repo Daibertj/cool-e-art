@@ -10,7 +10,7 @@ import Card2 from "../component/Card2.jsx"
 
 function UserPage() {
   const { store, actions } = useContext(Context);
-  const { getIlustrationsByUser } = actions
+  const { getIlustrationsByUser, getFavorite } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
   
 
@@ -19,7 +19,7 @@ function UserPage() {
   useEffect(() => { getIlustrationsByUser(userData.alias) },
     [userData.alias])
 
-  useEffect(())  
+  useEffect(() =>{getFavorite},[])  
   return (
     <>
       <div>
