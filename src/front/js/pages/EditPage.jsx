@@ -66,7 +66,7 @@ function EditPage() {
 
                     <div>
                         <div className="alert alert-warning mx-3" role="alert">
-                            Ups.
+                            No tienes ilustraciones cargadas.
                         </div>
                         <Link to={`/`}>
                             <button type="button" class="btn btn-light">Volver a Home</button>
