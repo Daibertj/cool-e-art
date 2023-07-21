@@ -27,24 +27,7 @@ const ExplorePage = () => {
         </div>
         
 
-        <div className="row">
-
-          {ilustrationData.map((ilustration) =>
-          (
-            <div className="col pb-2" key={ilustration.id}>
-              <Card2
-
-                title={ilustration.title}
-                description={ilustration.description}
-                image={ilustration.image}
-                user={ilustration.user.name}
-                id={ilustration.id}
-                alias={ilustration.user.alias}
-
-              />    
-            </div>
-          ))}
-        </div>
+     
 
         {creators.map((creator) => (
           <div key={creator}>
