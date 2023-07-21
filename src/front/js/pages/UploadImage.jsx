@@ -74,7 +74,7 @@ const UploadImage = () => {
   };
 
   return (
-    <div className="container-fluid  w-25 vh-100">
+    <div className="container-fluid text-white w-25 vh-100">
       <h1>Upload</h1>
       <form>
         <div className="form-group">
@@ -124,7 +124,7 @@ const UploadImage = () => {
         </select>
       </div>
       </form>
-      <button className="btn btn-primary w-100 mt-3" onClick={handleUpload}>Upload</button>
+      <button className="btn btn-secondary w-100 mt-3" onClick={handleUpload}>Upload</button>
     </div>
   );
 };
