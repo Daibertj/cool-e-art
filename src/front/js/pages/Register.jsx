@@ -146,7 +146,7 @@ const Register = () => {
         </div>
 
         <button
-          className="btn btn-primary mt-3"
+          className="btn btn-secondary mt-3"
           type="button"
           onClick={handleSignup}
         >
