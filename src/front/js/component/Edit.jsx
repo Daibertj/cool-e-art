@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import EditUser from "./EditUser.jsx";
 
-export const Edit = ({ id, title, description, image, user }) => {
+export const Edit = ({ id, title, description, image, user, ilustration_id }) => {
     const { store, actions } = useContext(Context)
     return (
         <>
@@ -28,7 +28,7 @@ export const Edit = ({ id, title, description, image, user }) => {
                             
                             <button
                                 className="btn btn-dark bg-black fa-solid fa-trash"
-                                onClick={() => actions.deleteIlustration(id, user.alias)}
+                                onClick={() => actions.deleteFavorite(id) && actions.deleteIlustration(id, user.alias)}
                             ></button>
                         </div>
                     </div>

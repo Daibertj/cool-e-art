@@ -10,18 +10,25 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div>
-      <div className="wrapper">
-      {store.photos.slice(0,10).map((photo) =>
-      (
-        <Rombo
-          key={photo.id}
-          image={photo.src.medium}
-        />
-      ))}
-    </div>
+    <div className="container p-5">
+      <div class="row">
+        <div class="col-12">
+          <div className="wrapper">
+            {store.photos.slice(0, 10).map((photo) =>
+            (
+              <Rombo
+                key={photo.id}
+                image={photo.src.large2x}
+              />
+            ))}
+          </div>
+        </div>
+
+
+      </div>
+
     </div>
 
-    
+
   );
 };
