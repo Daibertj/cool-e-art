@@ -68,7 +68,7 @@ export const Navbar = () => {
                   <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile&nbsp;&nbsp; |</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/upload" className="nav-link text-white">Upload Creation</Link>
+                  <Link to="/upload" className="nav-link text-white">Upload Creation&nbsp;&nbsp; |</Link>
                 </li>
               </>
             )}
