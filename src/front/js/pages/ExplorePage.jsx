@@ -4,11 +4,12 @@ import { Card } from "../component/Card";
 import Card2 from "../component/Card2.jsx"
 
 const ExplorePage = () => {
-  const { store } = useContext(Context);
+  const { store,actions } = useContext(Context);
   const { ilustrationData } = store;
+  const {getAllIlustrations} = actions
   const creators = [...new Set(ilustrationData.map((ilustration) => ilustration.user.alias))]
 
-
+  useEffect(()=>{getAllIlustrations()},[])  
 
   return (
     <>
@@ -26,7 +27,7 @@ const ExplorePage = () => {
           />
         </div>
         
-
+       
      
 
         {creators.map((creator) => (

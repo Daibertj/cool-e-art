@@ -12,13 +12,14 @@ function UserPage() {
   const { store, actions } = useContext(Context);
   const { getIlustrationsByUser } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
-  const [isEditing, setIsEditing] = useState(false);
+  
 
 
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },
     [userData.alias])
 
+  useEffect(())  
   return (
     <>
       <div>
