@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <div>
       <div className="wrapper">
-      {store.photos.map((photo) =>
+      {store.photos.slice(0,10).map((photo) =>
       (
         <Rombo
           key={photo.id}
