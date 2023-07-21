@@ -69,7 +69,7 @@ function EditPage() {
                             No tienes ilustraciones cargadas.
                         </div>
                         <Link to={`/`}>
-                            <button type="button" class="btn btn-light">Volver a Home</button>
+                            <button type="button" classname="btn btn-light">Volver a Home</button>
                         </Link>
                     </div>
 

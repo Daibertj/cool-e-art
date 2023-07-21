@@ -11,8 +11,8 @@ export const Home = () => {
 
   return (
     <div className="container p-5">
-      <div class="row">
-        <div class="col-12">
+      <div className="row">
+        <div className="col-12">
           <div className="wrapper">
             {store.photos.slice(0, 10).map((photo) =>
             (
