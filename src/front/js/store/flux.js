@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: "POST",
 						body: user
 					})
-
+					
 					let data = await response.json()
 					return response.status
 

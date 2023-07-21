@@ -8,7 +8,7 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id }
     return (
 
         <div className="col">
-            <div className="card"     >
+            <div className="card negro"     >
 
 
                 <Link to={`/imageview/${ilustration_id}`}>
@@ -26,13 +26,14 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id }
                     <p className="card-text">{description ? description : "Sin descripcion"}</p>
                     {/* <h5>{user.name}</h5> */}
                 </div>
+                <button
+                    className="btn btn-dark bg-black fa-solid fa-trash"
+                    onClick={() => actions.deleteFavorite(ilustration_id)}
+                ></button>
 
 
             </div>
-            <button
-                className="btn btn-dark bg-black fa-solid fa-trash"
-                onClick={() => actions.deleteFavorite(ilustration_id)}
-            ></button>
+
         </div>
 
 

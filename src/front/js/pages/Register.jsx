@@ -17,7 +17,7 @@ const Register = () => {
   const { actions } = useContext(Context);
   const navigate = useNavigate();
   const Swal = require("sweetalert2");
-
+  
   const handleSignup = async () => {
     if (!user.name || !user.email || !user.password || !user.alias) {
       console.log("Por favor completa todos los campos");
@@ -29,7 +29,7 @@ const Register = () => {
       });
       return;
     }
-
+    
     try {
       const formData = new FormData();
 
@@ -72,7 +72,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container-fluid  w-25  ">
+    <div className="container-fluid text-white w-25  ">
       <h1>Register</h1>
       <form>
         <div className="form-group  ">
@@ -146,7 +146,7 @@ const Register = () => {
         </div>
 
         <button
-          className="btn btn-primary mt-3"
+          className="btn btn-secondary mt-3"
           type="button"
           onClick={handleSignup}
         >
