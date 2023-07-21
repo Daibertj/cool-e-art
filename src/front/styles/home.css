@@ -43,8 +43,8 @@ img{
 
   #banner{
     background-attachment: scroll,							fixed;
-		background-color: #857979;
-		background-image: url("../img/pic04.jpg");
+		background-color: rgb(128, 170, 146);
+		background-image:url("../img/pic04.jpg");
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
@@ -54,3 +54,8 @@ img{
     
     color: rgb(252, 246, 246)
   }
+  .perfiles{
+    width: auto;
+    height: 250px;
+    border-radius: 50px ;
+}
