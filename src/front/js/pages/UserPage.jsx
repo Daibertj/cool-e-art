@@ -58,7 +58,7 @@ function UserPage() {
           </div>
           <div>
             <Link to={`/edit`}>
-              <button type="button" class="btn btn-light">Edit</button>
+              <button type="button" className="btn btn-secondary">Edit</button>
             </Link>
           </div>
         </div>
