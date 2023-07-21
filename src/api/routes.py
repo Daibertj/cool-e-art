@@ -103,10 +103,11 @@ def login():
         return jsonify({"msg": "Bad credentials"}), 400
 
 
-@api.route('/user/<alias>', methods=['GET'])
-def get_user_by_alias(alias):
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_by_alias():
     if request.method == "GET":
-        user = User.query.filter_by(alias=alias).first()
+        user = User.query.filter_by(id=get_jwt_identity()).first()
 
         if user:
             return jsonify(user.serialize()), 200
@@ -278,33 +279,33 @@ def update_social_media():
         "instagram": data_form.get('instagram'),
         "image": data_files.get("image")
         }    
-    
-    if data.get('name') is not None:
+    print(data_form)
+    if data.get('name') is not None and data.get('name') != "":
         user.name= data.get('name')
-    if data.get('lastname') is not None:
+    if data.get('lastname') is not None and data.get('lastname') != "":
         user.lastname= data.get("lastname")
-    if data.get('email') is not None:
+    if data.get('email') is not None and data.get('email') != "":
         user.email= data.get("email")
-    if data.get('alias') is not None:
+    if data.get('alias') is not None and data.get('alias') != "":
         user.alias= data.get("alias")
-    if data.get('twitter') is not None:
+    if data.get('twitter') is not None and data.get('twitter') != "":
         user.twitter= data.get('twitter')
-    if data.get('facebook') is not None:
+    if data.get('facebook') is not None and data.get('facebook') != "":
         user.facebook= data.get('facebook')
-    if data.get('instagram') is not None:
+    if data.get('instagram') is not None and data.get('instagram') != "":
         user.instagram= data.get('instagram')
-    if data.get('password') is not None:
+    if data.get('password') is not None and data.get('password') != "":
         user.salt = b64encode(os.urandom(32)).decode('utf-8')
         password_hash = set_password(data.get("password"), user.salt)
         user.password= password_hash
-    if data.get("image") is not None:
+    if data.get("image") is not None and data.get('image') != "":
         response_image = uploader.upload(data.get("image"))
         data.update({"image": response_image.get("url")})
         user.image= data.get('image')
     
     try:
         db.session.commit()    
-        return jsonify({'message': 'Social Media updated'})
+        return jsonify({'message': 'Social Media updated'}), 200
     except Exception as error:
-        return jsonify({'message': f'{error.args}'})
+        return jsonify({'message': f'{error.args[0]}'}), 500
 

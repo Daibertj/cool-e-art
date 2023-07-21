@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import EditUser from "./EditUser.jsx";
 
 export const Edit = ({ id, title, description, image, user }) => {
     const { store, actions } = useContext(Context)
@@ -24,6 +25,7 @@ export const Edit = ({ id, title, description, image, user }) => {
                                 <p className="card-text">{description ? description : "Sin descripcion"}</p>
                                 <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}</p> </Link>
                             </div>
+                            
                             <button
                                 className="btn btn-dark bg-black fa-solid fa-trash"
                                 onClick={() => actions.deleteIlustration(id, user.alias)}

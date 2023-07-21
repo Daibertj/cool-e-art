@@ -72,6 +72,8 @@ export const Navbar = () => {
                 </li>
               </>
             )}
+             <li className="nav-item"><Link to={`/aboutus`} className="nav-link text-white">About Us</Link></li>
+
           </ul>
 
           <div className="ms-auto d-flex">

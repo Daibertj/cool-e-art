@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Edit } from "../component/Edit.jsx";
 import UserSVG from "../component/UserSVG.jsx";
+import EditUser from "../component/EditUser.jsx";
 
 function EditPage() {
     const { store, actions } = useContext(Context);
@@ -29,8 +30,9 @@ function EditPage() {
                         <p className="fst-italic">
                             {userData.name} {userData.lastname}
                         </p>
-
+                        <EditUser />
                     </div>
+                    
                 </div>
                 <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white barra">
                     <div className="lh-1">
