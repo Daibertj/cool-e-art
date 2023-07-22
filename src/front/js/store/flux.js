@@ -275,7 +275,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getAllUsers: async () => {
 				const store = getStore()
 				try {
-					let response = await fetch(`${process.env.BACKEND_URL}/user`)
+					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+						method: 'GET',
+						headers: {'Content-Type': 'application/json'}
+
+					  });
 					if (response.ok) {
 						const responseData = await response.json()
 						setStore({ allUsersData: responseData })
