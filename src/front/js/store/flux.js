@@ -94,10 +94,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUserData: async () => {
 				const store = getStore();
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+					const response = await fetch(`${process.env.BACKEND_URL}/user/by-alias`, {
 						method: "GET",
 						headers: {
-							"Content-Type": "aplication/JSON",
+							"Content-Type": "aplication/json",
 							"Authorization": `Bearer ${store.token}`
 						}
 					});

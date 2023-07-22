@@ -1,15 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Card } from "../component/Card";
 import Card2 from "../component/Card2.jsx"
+import { useNavigate } from "react-router-dom";
 
 const ExplorePage = () => {
   const { store,actions } = useContext(Context);
   const { ilustrationData } = store;
   const {getAllIlustrations} = actions
   const creators = [...new Set(ilustrationData.map((ilustration) => ilustration.user.alias))]
+  const navigate = useNavigate()
+  const redirectProfile = (alias)=>{navigate(`/profile/${alias}`)}
 
   useEffect(()=>{getAllIlustrations()},[])  
+
 
   return (
     <>
@@ -37,7 +40,7 @@ const ExplorePage = () => {
             
             <div className="row ">
               {ilustrationData
-                .filter((ilustration) => ilustration.user.alias === creator)
+                .filter((ilustration) => ilustration.user.alias === creator).slice(0,6)
                 .map((ilustration) => (
                   <div className="col pb-2" key={ilustration.id}>
                     <Card2
@@ -51,9 +54,14 @@ const ExplorePage = () => {
                   </div>
                 ))}
             </div>
+
           </div>
         ))}
+<button 
+className="btn btn-primary mt-3"
+onClick={()=>redirectProfile(creators)}> Ver mas de {creators}
 
+</button>
       </div>
     </>
   );
