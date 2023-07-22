@@ -74,10 +74,10 @@ const UploadImage = () => {
   };
 
   return (
-    <div className="container-fluid text-white w-25 vh-100">
+    <div className="container-fluid text-white my-5 pt-5 w-25 vh-100">
       <h1>Upload</h1>
       <form>
-        <div className="form-group">
+        <div className="form-group pt-2">
           <label htmlFor="image">Upload your Creation </label>
           <input
             type="file"
@@ -89,7 +89,7 @@ const UploadImage = () => {
             }
           />
         </div>
-        <div className="form-group  ">
+        <div className="form-group pt-2 ">
           <label htmlFor="title">Title:</label>
           <input
             className="form-control "
@@ -100,7 +100,7 @@ const UploadImage = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group  ">
+        <div className="form-group pt-2 ">
           <label htmlFor="description">Description:</label>
           <input
             className="form-control "
@@ -113,7 +113,7 @@ const UploadImage = () => {
         </div>
         <div className="pt-2">
         <label htmlFor="category">Category:</label>
-        <select id="category" value={imgUpload.category} 
+        <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
           <option value="nature">Nature</option>

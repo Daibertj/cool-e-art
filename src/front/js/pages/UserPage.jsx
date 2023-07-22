@@ -23,7 +23,7 @@ function UserPage() {
   return (
     <>
       <div>
-        <div className="container-fluid profile d-inline-flex justify-content-center ">
+        <div className="container-fluid profile d-inline-flex justify-content-center py-3">
           {!userData.image ? <UserSVG /> : <img
             src={userData.image}
             className="img-thumbnail img-fluid h-25 rounded "

@@ -72,7 +72,7 @@ const Register = () => {
   };
 
   return (
-    <div className="container-fluid text-white w-25  ">
+    <div className="container-fluid text-white w-25 my-4 ">
       <h1>Register</h1>
       <form>
         <div className="form-group  ">
