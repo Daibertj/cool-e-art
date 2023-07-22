@@ -348,7 +348,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			},
 
-		
+			countAllFavorites : async()=>{
+
+			}
 
 		},
 	};

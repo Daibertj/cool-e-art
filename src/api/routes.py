@@ -310,6 +310,7 @@ def update_social_media():
         return jsonify({'message': f'{error.args[0]}'}), 500
 
 @api.route('/favorites/all', methods=['GET'])
+@jwt_required()
 def get_all_favorites():
     all_favorites = Favorite.query.all()
     all_favorites_data = [favorite.serialize() for favorite in all_favorites]
