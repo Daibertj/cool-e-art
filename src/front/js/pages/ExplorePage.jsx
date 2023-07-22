@@ -4,11 +4,12 @@ import { Card } from "../component/Card";
 import Card2 from "../component/Card2.jsx"
 
 const ExplorePage = () => {
-  const { store } = useContext(Context);
+  const { store,actions } = useContext(Context);
   const { ilustrationData } = store;
+  const {getAllIlustrations} = actions
   const creators = [...new Set(ilustrationData.map((ilustration) => ilustration.user.alias))]
 
-
+  useEffect(()=>{getAllIlustrations()},[])  
 
   return (
     <>
@@ -26,30 +27,13 @@ const ExplorePage = () => {
           />
         </div>
         
-
-        <div className="row">
-
-          {ilustrationData.map((ilustration) =>
-          (
-            <div className="col pb-2" key={ilustration.id}>
-              <Card2
-
-                title={ilustration.title}
-                description={ilustration.description}
-                image={ilustration.image}
-                user={ilustration.user.name}
-                id={ilustration.id}
-                alias={ilustration.user.alias}
-
-              />    
-            </div>
-          ))}
-        </div>
+       
+     
 
         {creators.map((creator) => (
           <div key={creator}>
             
-            <h2 className=" m-3 lh-1 barra text-white">Ilustraciones de {creator}</h2>
+            <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
             
             <div className="row ">
               {ilustrationData

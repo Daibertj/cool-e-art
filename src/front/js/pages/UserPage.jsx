@@ -10,15 +10,16 @@ import Card2 from "../component/Card2.jsx"
 
 function UserPage() {
   const { store, actions } = useContext(Context);
-  const { getIlustrationsByUser } = actions
+  const { getIlustrationsByUser, getFavorite } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
-  const [isEditing, setIsEditing] = useState(false);
+  
 
 
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },
     [userData.alias])
 
+  useEffect(() =>{getFavorite},[])  
   return (
     <>
       <div>
@@ -38,13 +39,13 @@ function UserPage() {
           </div>
           <div className="row flex-column  text-black">
             <div>
-              <SocialIcon network="facebook" className="p-2" /> {userData.facebook}
+              <SocialIcon network="facebook" className="p-2" /> <Link to={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</Link> 
             </div>
             <div>
-              <SocialIcon network="instagram" /> {userData.instagram}
+              <SocialIcon network="instagram" /><Link to={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</Link>
             </div>
             <div>
-              <SocialIcon network="twitter" className="" /> {userData.twitter}
+              <SocialIcon network="twitter" className="" /> <Link to={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</Link>
             </div>
 
 

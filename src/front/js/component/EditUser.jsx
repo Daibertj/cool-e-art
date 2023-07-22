@@ -55,7 +55,7 @@ const EditUser = () => {
     return (
         <>
             <button type="button" className="btn btn-secondary bg-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="fas fa-pencil-alt"></i>
+            <i className="fas fa-pencil-alt"></i>
             </button>
 
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

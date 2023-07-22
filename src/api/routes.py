@@ -103,7 +103,7 @@ def login():
         return jsonify({"msg": "Bad credentials"}), 400
 
 
-@api.route('/user', methods=['GET'])
+@api.route('/user/by-alias', methods=['GET'])
 @jwt_required()
 def get_user_by_alias():
     if request.method == "GET":

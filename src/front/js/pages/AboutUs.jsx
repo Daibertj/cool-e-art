@@ -30,7 +30,7 @@ function AboutUs() {
                     </div>
                 </div>
 
-                <div className='container p-4'>
+                <div className='container p-4 text-white'>
                     <h2>Agradecimientos</h2>
                     <h4><Link to="https://4geeksacademy.com" className='text-center'>4GeeksAcademy</Link></h4>
 
