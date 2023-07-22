@@ -14,6 +14,8 @@ const ExplorePage = () => {
   useEffect(()=>{getAllIlustrations()},[])  
 
 
+  
+
   return (
     <>
       <div className="container">
@@ -54,14 +56,14 @@ const ExplorePage = () => {
                   </div>
                 ))}
             </div>
-
-          </div>
-        ))}
 <button 
 className="btn btn-primary mt-3"
-onClick={()=>redirectProfile(creators)}> Ver mas de {creators}
+onClick={()=>redirectProfile(creator)}> Ver mas de {creator}
 
 </button>
+          </div>
+        ))}
+
       </div>
     </>
   );
