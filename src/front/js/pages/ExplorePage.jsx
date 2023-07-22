@@ -33,7 +33,7 @@ const ExplorePage = () => {
         {creators.map((creator) => (
           <div key={creator}>
             
-            <h2 className=" m-3 lh-1 barra text-white">Ilustraciones de {creator}</h2>
+            <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
             
             <div className="row ">
               {ilustrationData

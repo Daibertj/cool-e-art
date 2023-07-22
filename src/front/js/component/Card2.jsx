@@ -17,7 +17,7 @@ function Card2({ id, title, description, image, alias }) {
           />
         </Link>
         <div className="card-body">
-          <h5 className="card-title">{title}</h5>
+          <h5 className="card-title text-white">{title}</h5>
           <p className="card-text">{description ? description : "Sin descripcion"}</p>
           <Link to={`/profile/${alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{alias}</p> </Link>
         </div>
