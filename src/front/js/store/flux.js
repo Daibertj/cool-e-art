@@ -237,6 +237,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const responseData = await response.json();
 						localStorage.setItem("favoriteData", JSON.stringify(responseData));
 						setStore({ favoriteData: responseData });
+						console.log(favoriteData)
+						console.log("favorite added")
 					} else {
 						console.log("Error fetching favorites:", response.status);
 					}

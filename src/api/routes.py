@@ -309,3 +309,11 @@ def update_social_media():
     except Exception as error:
         return jsonify({'message': f'{error.args[0]}'}), 500
 
+@api.route('/favorites/all', methods=['GET'])
+def get_all_favorites():
+    all_favorites = Favorite.query.all()
+    all_favorites_data = [favorite.serialize() for favorite in all_favorites]
+    return jsonify(all_favorites_data), 200
+    
+    
+    

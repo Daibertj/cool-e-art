@@ -13,7 +13,7 @@ function UserPage() {
   const { getIlustrationsByUser, getFavorite } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
   
-
+console.log("favs",favoriteData)
 
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },

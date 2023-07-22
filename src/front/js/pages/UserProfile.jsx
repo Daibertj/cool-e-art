@@ -16,7 +16,7 @@ function UserProfile() {
   }, [alias, getIlustrationsByUser, getAllUsers]);
 
   const ilustratorVisited = allUsersData.find((user) => user.alias === alias)
-  console.log("ilustrador visitado",ilustratorVisited)
+  
   
   if (!ilustratorVisited) {
     return (

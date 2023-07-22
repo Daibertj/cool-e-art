@@ -6,7 +6,7 @@ function ContactModal({ alias }) {
     const { store } = useContext(Context)
     const { allUsersData } = store
     const ilustratorVisited = allUsersData.find((user) => user.alias === alias)
-    console.log("este es", ilustratorVisited)
+    
 
     return (
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
