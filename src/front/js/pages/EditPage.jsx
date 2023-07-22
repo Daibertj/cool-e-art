@@ -17,7 +17,7 @@ function EditPage() {
     return (
         <>
             <div>
-                <div className="container-fluid profile d-inline-flex justify-content-center ">
+                <div className="container-fluid profile d-inline-flex justify-content-center py-3">
                     {!userData.image ? <UserSVG /> : <img
                         src={userData.image}
                         className="img-thumbnail img-fluid h-25 rounded "
@@ -25,8 +25,8 @@ function EditPage() {
                         style={{ width: "150px" }}
                     />}
 
-                    <div className="col-lg-6 col-md-8 h-25  ">
-                        <h1 className="fw-light">{userData.alias}</h1>
+                    <div className="col-lg-6 col-md-8 h-25 ps-3 ">
+                        <h1 className="fw-light text-black pt-1">{userData.alias}</h1>
                         <p className="fst-italic">
                             {userData.name} {userData.lastname}
                         </p>

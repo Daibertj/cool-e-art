@@ -12,7 +12,7 @@ function Card2({ id, title, description, image, alias }) {
             src={image}
             className="card-img-top"
             alt={title}
-
+            style={{ width: "100%", height: "300px" }}
 
           />
         </Link>
@@ -23,7 +23,7 @@ function Card2({ id, title, description, image, alias }) {
         </div>
       </div>
       <button
-        className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-secondary fa-solid fa-heart" : "btn btn-outline-secondary fa-solid fa-heart"}
+        className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-dark bg-black fa-solid fa-heart" : "btn btn-outline-dark bg-black fa-solid fa-heart"}
         onClick={() => actions.addFavorite(id)}
       ></button>
     </>

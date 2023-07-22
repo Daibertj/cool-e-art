@@ -9,7 +9,7 @@ export const Edit = ({ id, title, description, image, user, ilustration_id }) =>
     return (
         <>
             <div>
-                <div className="card mb-3" style={{ width: "700px", height: "250px" }}>
+                <div className="card mb-3 " style={{ width: "700px", height: "250px" }}>
                     <div className="row g-0">
                         <div classname="col-md-4">
                             <img

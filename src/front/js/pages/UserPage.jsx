@@ -31,7 +31,7 @@ function UserPage() {
             style={{ width: "150px" }}
           />}
 
-          <div className="col-lg-5 col-md-8 h-25 text-black ">
+          <div className="col-lg-5 col-md-8 h-25 text-black ps-3 pt-4 ">
             <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
               {userData.name} {userData.lastname}

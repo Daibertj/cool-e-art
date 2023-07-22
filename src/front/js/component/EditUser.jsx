@@ -172,8 +172,8 @@ const EditUser = () => {
 
                                
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={handleEdit}>Save changes</button>
+                                    <button type="button" className="btn btn-secondary bg-secondary bg-gradient" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-dark" data-bs-dismiss="modal" onClick={handleEdit}>Save changes</button>
                                 </div>
                             </form>
                         </div>

@@ -62,7 +62,7 @@ export const Navbar = () => {
             {store.token && (
               <>
                 <li className="nav-item">
-                  <Link to="/explorepage" className="nav-link text-white">Creators&nbsp;&nbsp;&nbsp;|</Link>
+                  <Link to="/explorepage" className="nav-link text-white">Explore&nbsp;&nbsp;&nbsp;|</Link>
                 </li>
                 <li className="nav-item">
                   <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile&nbsp;&nbsp; |</Link>
