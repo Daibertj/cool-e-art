@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			image: "",
 			photos: [],
 			alias: "",
-			allUsersData: []
+			allUsersData: [],
+			countFavorites: []
 
 
 		},
@@ -26,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: "POST",
 						body: user
 					})
-					
+
 					let data = await response.json()
 					return response.status
 
@@ -49,20 +50,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					let data = await response.json();
-					
-					
+
+
 					if (response.ok) {
 						setStore({
 							token: data.token,
 							name: data.name,
 							alias: data.alias
-						});						
+						});
 						localStorage.setItem("token", data.token)
 						localStorage.setItem("alias", data.alias)
 						getActions().getUserData()
 					}
 
-					
+
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -81,7 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						console.log("ilustration data:", responseData)
+						
 						setStore({ ilustrationData: responseData })
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
@@ -279,9 +280,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
 						method: 'GET',
-						headers: {'Content-Type': 'application/json'}
+						headers: { 'Content-Type': 'application/json' }
 
-					  });
+					});
 					if (response.ok) {
 						const responseData = await response.json()
 						setStore({ allUsersData: responseData })
@@ -310,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if (response.ok) {
 						getActions().getFavorite()
-						getActions().getIlustrationsByUser(alias) 
+						getActions().getIlustrationsByUser(alias)
 					} else {
 						console.log("errorrrrr")
 					}
@@ -327,28 +328,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore()
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
-						method: 'PUT',	
-						headers:{
+						method: 'PUT',
+						headers: {
 							Authorization: `Bearer ${store.token}`
-						},			
+						},
 						body: user
 					})
-					if (response.ok){
+					if (response.ok) {
 						console.log("se actualizo usuario")
 						getActions().getUserData()
 						return response.status
-					}else {
+					} else {
 						console.log("Error updating social media")
 						return response.status
 					}
 				} catch (error) {
 					console.log(error)
 				}
-				
-				
+
+
 			},
 
-			countAllFavorites : async()=>{
+			getCountAllFavorites: async () => {
+				const store = getStore()
+				const response = await fetch(`${process.env.BACKEND_URL}/favorites/all`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${store.token}`,
+					}
+
+				})
+				try {
+					if (response.ok) {
+
+						const allFavotites = await response.json()
+						const ilustrationCount = {}
+						allFavotites.forEach((favorite) => {
+							const ilustrationId = favorite.ilustration_id
+							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
+							ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+						})
+						setStore({ countFavorites: ilustrationCount })
+						
+
+					} else {
+						console.log('error getting all favorites')
+					}
+
+				} catch (error) {
+					console.log("Error fetching all favorites:", error);
+				}
+
+
+
 
 			}
 

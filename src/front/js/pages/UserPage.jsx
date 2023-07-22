@@ -13,7 +13,7 @@ function UserPage() {
   const { getIlustrationsByUser, getFavorite } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
   
-console.log("favs",favoriteData)
+
 
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },
@@ -79,9 +79,7 @@ console.log("favs",favoriteData)
                       id={ilustration.id}
                       alias={userData.alias}
                     />
-                    <div className="btn-group">
-
-                    </div>
+                    
                   </div>
                 ))}
               </div>
