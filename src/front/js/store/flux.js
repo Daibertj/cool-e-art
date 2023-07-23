@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			photos: [],
 			alias: "",
 			allUsersData: [],
-			countFavorites: []
+			countFavorites: ''
 
 
 		},
@@ -82,8 +82,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						
+
 						setStore({ ilustrationData: responseData })
+						return responseData
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
 					}
@@ -351,6 +352,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getCountAllFavorites: async () => {
 				const store = getStore()
+				//actualiza las ilustraciones antes de contar los favoritos
+				
 				const response = await fetch(`${process.env.BACKEND_URL}/favorites/all`, {
 					method: 'GET',
 					headers: {
@@ -369,21 +372,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
 							ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
 						})
-						setStore({ countFavorites: ilustrationCount })
-						
+						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos
+						const sortedIlustrationIds = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a]);
+
+						// Toma solo los primeros 6 elementos del objeto
+						const top6Favorites = sortedIlustrationIds.slice(0, 6).map((ilustrationId) => [ilustrationId, ilustrationCount[ilustrationId]]);
+
+						setStore({ countFavorites: top6Favorites });
+						console.log('Top 6 favorites:', top6Favorites);
 
 					} else {
-						console.log('error getting all favorites')
+						console.log('error getting all favorites');
 					}
-
 				} catch (error) {
-					console.log("Error fetching all favorites:", error);
+					console.log('Error fetching all favorites:', error);
 				}
-
-
-
-
 			}
+
 
 		},
 	};
