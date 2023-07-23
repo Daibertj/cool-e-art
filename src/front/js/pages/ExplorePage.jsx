@@ -21,8 +21,6 @@ const ExplorePage = () => {
   }, [getAllIlustrations, getCountAllFavorites]);
 
 
-  console.log("el ranking", sortedIlustrationCount)
-
   return (
     <>
       <div className="container">
@@ -39,33 +37,38 @@ const ExplorePage = () => {
           />
         </div>
 
-        <div>
-          <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
-          <div className="row">
-            {sortedIlustrationCount.length > 0 &&
-              sortedIlustrationCount.map((ilustrationInfo) => {
-                // Obtener el ID y la cantidad de favoritos del elemento
-                const [ilustrationId, favoritesCount] = ilustrationInfo;
-                // Buscar la ilustración correspondiente usando el ID
-                const ilustration = ilustrationData.find((ilustration) => ilustration.id === parseInt(ilustrationId));
 
-                if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
+        <div className="container">
+          {Object.keys(countFavorites).length > 0 && (
+            <>
+              <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
+              <div className="row">
+                {sortedIlustrationCount.length > 0 &&
+                  sortedIlustrationCount.map((ilustrationInfo) => {
+                    // Obtener el ID y la cantidad de favoritos del elemento
+                    const [ilustrationId, favoritesCount] = ilustrationInfo;
+                    // Buscar la ilustración correspondiente usando el ID
+                    const ilustration = ilustrationData.find((ilustration) => ilustration.id === parseInt(ilustrationId));
 
-                return (
-                  <div className="col pb-2" key={ilustration.id}>
-                    <Card2
-                      title={ilustration.title}
-                      description={ilustration.description}
-                      image={ilustration.image}
-                      user={ilustration.user.name}
-                      id={ilustration.id}
-                      alias={ilustration.user.alias}
-                    />
-                  </div>
-                );
-              })}
+                    if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
 
-          </div>
+                    return (
+                      <div className="col pb-2" key={ilustration.id}>
+                        <Card2
+                          title={ilustration.title}
+                          description={ilustration.description}
+                          image={ilustration.image}
+                          user={ilustration.user.name}
+                          id={ilustration.id}
+                          alias={ilustration.user.alias}
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
+            </>
+          )}
+
 
         </div>
 

@@ -372,20 +372,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
 							ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
 						})
-						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos
-						const sortedIlustrationIds = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a]);
+						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos que son los keys
+						const sortedIlustration = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a])
 
-						// Toma solo los primeros 6 elementos del objeto
-						const top6Favorites = sortedIlustrationIds.slice(0, 6).map((ilustrationId) => [ilustrationId, ilustrationCount[ilustrationId]]);
+						// Toma solo los primeros 6 elementos del objeto, con map se crea un nuevo array donde cada elemento es otro array de dos elementos
+						const top6Favorites = sortedIlustration.slice(0, 6).map((ilustrationId) => [ilustrationId, ilustrationCount[ilustrationId]])
 
-						setStore({ countFavorites: top6Favorites });
-						console.log('Top 6 favorites:', top6Favorites);
+						setStore({ countFavorites: top6Favorites })	
+					
 
 					} else {
-						console.log('error getting all favorites');
+						console.log('error getting all favorites')
 					}
 				} catch (error) {
-					console.log('Error fetching all favorites:', error);
+					console.log('Error fetching all favorites:', error)
 				}
 			}
 
