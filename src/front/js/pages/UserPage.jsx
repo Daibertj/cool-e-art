@@ -39,13 +39,13 @@ function UserPage() {
           </div>
           <div className="row flex-column  text-black">
             <div>
-              <SocialIcon network="facebook" className="p-2" /> <Link to={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</Link> 
+              <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a> 
             </div>
             <div>
-              <SocialIcon network="instagram" /><Link to={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</Link>
+              <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
             </div>
             <div>
-              <SocialIcon network="twitter" className="" /> <Link to={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</Link>
+              <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
             </div>
 
 
@@ -79,9 +79,7 @@ function UserPage() {
                       id={ilustration.id}
                       alias={userData.alias}
                     />
-                    <div className="btn-group">
-
-                    </div>
+                    
                   </div>
                 ))}
               </div>

@@ -1,15 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Card } from "../component/Card";
 import Card2 from "../component/Card2.jsx"
+import { useNavigate } from "react-router-dom";
+
 
 const ExplorePage = () => {
-  const { store,actions } = useContext(Context);
-  const { ilustrationData } = store;
-  const {getAllIlustrations} = actions
+  const { store, actions } = useContext(Context);
+  const { ilustrationData, countFavorites } = store;
+  const { getAllIlustrations, getCountAllFavorites } = actions
   const creators = [...new Set(ilustrationData.map((ilustration) => ilustration.user.alias))]
+  const navigate = useNavigate()
+  const redirectProfile = (alias) => { navigate(`/profile/${alias}`) }
+  //va a traer los keys del objeto donde esta el contador de favoritos
+  const sortedIlustrationCount = countFavorites.slice(0, 6)
 
-  useEffect(()=>{getAllIlustrations()},[])  
+  useEffect(() => {
+    // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
+    getAllIlustrations();
+    getCountAllFavorites();
+  }, [getAllIlustrations, getCountAllFavorites]);
+
 
   return (
     <>
@@ -26,18 +36,50 @@ const ExplorePage = () => {
             placeholder="que tipo de imagen estas buscando?"
           />
         </div>
-        
-       
-     
+
+
+        <div className="container">
+          {Object.keys(countFavorites).length > 0 && (
+            <>
+              <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
+              <div className="row">
+                {sortedIlustrationCount.length > 0 &&
+                  sortedIlustrationCount.map((ilustrationInfo) => {
+                    // Obtener el ID y la cantidad de favoritos del elemento
+                    const [ilustrationId, favoritesCount] = ilustrationInfo;
+                    // Buscar la ilustración correspondiente usando el ID
+                    const ilustration = ilustrationData.find((ilustration) => ilustration.id === parseInt(ilustrationId));
+
+                    if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
+
+                    return (
+                      <div className="col pb-2" key={ilustration.id}>
+                        <Card2
+                          title={ilustration.title}
+                          description={ilustration.description}
+                          image={ilustration.image}
+                          user={ilustration.user.name}
+                          id={ilustration.id}
+                          alias={ilustration.user.alias}
+                        />
+                      </div>
+                    );
+                  })}
+              </div>
+            </>
+          )}
+
+
+        </div>
 
         {creators.map((creator) => (
           <div key={creator}>
-            
+
             <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
-            
+
             <div className="row ">
               {ilustrationData
-                .filter((ilustration) => ilustration.user.alias === creator)
+                .filter((ilustration) => ilustration.user.alias === creator).slice(0, 6)
                 .map((ilustration) => (
                   <div className="col pb-2" key={ilustration.id}>
                     <Card2
@@ -51,8 +93,16 @@ const ExplorePage = () => {
                   </div>
                 ))}
             </div>
+            <button
+              className="btn btn-primary mt-3"
+              onClick={() => redirectProfile(creator)}> Ver mas de {creator}
+
+            </button>
           </div>
         ))}
+
+
+
 
       </div>
     </>

@@ -16,8 +16,8 @@ function UserProfile() {
   }, [alias, getIlustrationsByUser, getAllUsers]);
 
   const ilustratorVisited = allUsersData.find((user) => user.alias === alias)
-  console.log("ilustrador visitado",ilustratorVisited)
-  console.log("allUsersData:", allUsersData)
+  
+  
   if (!ilustratorVisited) {
     return (
       <h1>No existe este ilustrador</h1>
