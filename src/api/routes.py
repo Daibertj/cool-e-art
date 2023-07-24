@@ -103,7 +103,7 @@ def login():
         return jsonify({"msg": "Bad credentials"}), 400
 
 
-@api.route('/user', methods=['GET'])
+@api.route('/user/by-alias', methods=['GET'])
 @jwt_required()
 def get_user_by_alias():
     if request.method == "GET":
@@ -235,8 +235,6 @@ def delete_ilustration(ilustration_id):
         except Exception as error:
             return jsonify({"msg": error.args}), 500
 
-
-
 @api.route('/ilustration/user/<alias>', methods=['GET'])
 def get_ilustrations_by_user(alias):
     user = User.query.filter_by(alias=alias).first()
@@ -249,7 +247,6 @@ def get_ilustrations_by_user(alias):
         map(lambda ilustration: ilustration.serialize(), ilustrations))
 
     return jsonify(ilustrations_data), 200
-
 
 @api.route('/user', methods=['GET'])
 def get_all_users():

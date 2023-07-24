@@ -69,10 +69,7 @@ const ExplorePage = () => {
               </div>
             </>
           )}
-
-
         </div>
-
         {creators.map((creator) => (
           <div key={creator}>
 
@@ -90,6 +87,7 @@ const ExplorePage = () => {
                       user={ilustration.user.name}
                       id={ilustration.id}
                       alias={ilustration.user.alias}
+                      category={ilustration.category}
                     />
                   </div>
                 ))}
@@ -101,10 +99,6 @@ const ExplorePage = () => {
             </button>
           </div>
         ))}
-
-
-
-
       </div>
     </>
   );

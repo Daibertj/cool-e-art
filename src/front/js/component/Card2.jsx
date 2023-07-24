@@ -20,6 +20,7 @@ function Card2({ id, title, description, image, alias, category }) {
           <h5 className="card-title text-black">{title}</h5>
           <p className="card-text">{description ? description : "Sin descripcion"}</p>
           <Link to={`/profile/${alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{alias}</p> </Link>
+          <span className="badge bg-secondary">{category}</span>
         </div>
         <button
         className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-dark bg-black fa-solid fa-heart" : "btn btn-outline-dark bg-black fa-solid fa-heart"}
