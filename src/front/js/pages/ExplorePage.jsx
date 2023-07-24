@@ -93,7 +93,7 @@ const ExplorePage = () => {
                 ))}
             </div>
             <button
-              className="btn btn-primary mt-3"
+              className="btn btn-success mt-3"
               onClick={() => redirectProfile(creator)}> Ver mas de {creator}
 
             </button>
