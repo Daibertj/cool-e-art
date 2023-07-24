@@ -12,14 +12,12 @@ function UserPage() {
   const { store, actions } = useContext(Context);
   const { getIlustrationsByUser, getFavorite } = actions
   const { ilustrationsUser, userData, favoriteData } = store;
-  
-
-
 
   useEffect(() => { getIlustrationsByUser(userData.alias) },
     [userData.alias])
 
-  useEffect(() =>{getFavorite},[])  
+  useEffect(() => { getFavorite }, [])
+
   return (
     <>
       <div>
@@ -39,7 +37,7 @@ function UserPage() {
           </div>
           <div className="row flex-column  text-black">
             <div>
-              <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a> 
+              <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a>
             </div>
             <div>
               <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
@@ -47,9 +45,6 @@ function UserPage() {
             <div>
               <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
             </div>
-
-
-
           </div>
 
         </div>
@@ -78,8 +73,8 @@ function UserPage() {
                       user={ilustration.user}
                       id={ilustration.id}
                       alias={userData.alias}
+                      category={ilustration.category}
                     />
-                    
                   </div>
                 ))}
               </div>
@@ -118,8 +113,6 @@ function UserPage() {
                           ilustration_id={ilustration.ilustration_id}
                         // ilustration_id={favorite.ilustration_id}
                         />)}
-
-
                       <div className="btn-group">
                       </div>
                     </div>
@@ -129,7 +122,6 @@ function UserPage() {
             </div>
           </>
         ) : (
-
           <div className="alert alert-info mx-3" role="alert">
             No tienes Favoritos.
           </div>

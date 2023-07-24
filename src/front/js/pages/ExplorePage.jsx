@@ -61,6 +61,7 @@ const ExplorePage = () => {
                           user={ilustration.user.name}
                           id={ilustration.id}
                           alias={ilustration.user.alias}
+                          category={ilustration.category}
                         />
                       </div>
                     );
@@ -68,10 +69,7 @@ const ExplorePage = () => {
               </div>
             </>
           )}
-
-
         </div>
-
         {creators.map((creator) => (
           <div key={creator}>
 
@@ -89,21 +87,18 @@ const ExplorePage = () => {
                       user={ilustration.user.name}
                       id={ilustration.id}
                       alias={ilustration.user.alias}
+                      category={ilustration.category}
                     />
                   </div>
                 ))}
             </div>
             <button
-              className="btn btn-primary mt-3"
+              className="btn btn-success mt-3"
               onClick={() => redirectProfile(creator)}> Ver mas de {creator}
 
             </button>
           </div>
         ))}
-
-
-
-
       </div>
     </>
   );

@@ -16,8 +16,8 @@ function UserProfile() {
   }, [alias, getIlustrationsByUser, getAllUsers]);
 
   const ilustratorVisited = allUsersData.find((user) => user.alias === alias)
-  
-  
+
+
   if (!ilustratorVisited) {
     return (
       <h1>No existe este ilustrador</h1>
@@ -72,10 +72,8 @@ function UserProfile() {
                       description={ilustration.description}
                       user={ilustration.user}
                       id={ilustration.id}
+                      category={ilustration.category}
                     />
-                    <div className="btn-group">
-
-                    </div>
                   </div>
                 ))}
               </div>
