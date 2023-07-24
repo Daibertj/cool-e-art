@@ -2,9 +2,8 @@ import React from 'react'
 import daibert from "../../img/Daibert.jpg"
 import victor from "../../img/Victor.jpg"
 import edgar from '../../img/Edgar.png'
-import fondo from "../../img/pic04.jpg"
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
+import geeks from '../../img/geeks.png'
 
 function AboutUs() {
 
@@ -21,8 +20,8 @@ function AboutUs() {
 
 
                 <div className='my-5 text-white '>
-                    <h2 className="display-5">Miembros</h2>
-                    <div className='row justify-content-center'>
+                    <h2 className="display pt-5">Miembros</h2>
+                    <div className='row justify-content-center m-5 p-4'>
 
                         <h4><Link to="https://github.com/tuquepantin"><img className="perfiles rounded-circle " src={victor} /></Link>  Victor Pantin</h4>
                         <h4>Daibert Ramirez <Link to="https://github.com/Daibertj"><img className="perfiles rounded-circle  " src={daibert} /></Link></h4>
@@ -32,14 +31,11 @@ function AboutUs() {
 
                 <div className='container p-4 text-white'>
                     <h2>Agradecimientos</h2>
-                    <h4><Link to="https://4geeksacademy.com" className='text-center'>4GeeksAcademy</Link></h4>
+                    <img className="perfiles rounded-circle p-5 " src={geeks} />
+                    <h4><Link to="https://4geeksacademy.com" className='text-center '>4GeeksAcademy</Link></h4>
 
                 </div>
             </div>
-
-
-
-
         </>
     )
 }
