@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Card2 from "../component/Card2.jsx"
 import { useNavigate } from "react-router-dom";
-
+import Pagination from "../component/Pagination.jsx";
 
 const ExplorePage = () => {
   const { store, actions } = useContext(Context);
@@ -13,6 +13,8 @@ const ExplorePage = () => {
   const redirectProfile = (alias) => { navigate(`/profile/${alias}`) }
   //va a traer los keys del objeto donde esta el contador de favoritos
   const sortedIlustrationCount = countFavorites.slice(0, 6)
+  const [creatorsPerPage, setCreatorsPerPage] =useState(4)
+  const [currentPage, setCurrentPage]= useState(1)
 
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
@@ -100,6 +102,7 @@ const ExplorePage = () => {
           </div>
         ))}
       </div>
+      <Pagination/>
     </>
   );
 };
