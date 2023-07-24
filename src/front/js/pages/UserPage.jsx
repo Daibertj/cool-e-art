@@ -78,6 +78,7 @@ function UserPage() {
                       user={ilustration.user}
                       id={ilustration.id}
                       alias={userData.alias}
+                      category={ilustration.category}
                     />
                     
                   </div>

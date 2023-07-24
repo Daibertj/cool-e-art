@@ -72,6 +72,7 @@ function UserProfile() {
                       description={ilustration.description}
                       user={ilustration.user}
                       id={ilustration.id}
+                      category={ilustration.category}
                     />
                     <div className="btn-group">
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from "../store/appContext";
 
-function Card2({ id, title, description, image, alias }) {
+function Card2({ id, title, description, image, alias, category }) {
   const { store, actions } = useContext(Context)
   return (
     <>

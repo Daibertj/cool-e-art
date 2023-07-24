@@ -61,6 +61,7 @@ const ExplorePage = () => {
                           user={ilustration.user.name}
                           id={ilustration.id}
                           alias={ilustration.user.alias}
+                          category={ilustration.category}
                         />
                       </div>
                     );
