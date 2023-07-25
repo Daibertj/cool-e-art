@@ -65,7 +65,7 @@ function UserPage() {
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="row pb-2" key={ilustration.id}>
+                  <div className="d-flex gap-2 pb-2" key={ilustration.id}>
                     <Card2
                       image={ilustration.image}
                       title={ilustration.title}

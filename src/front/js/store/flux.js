@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			photos: [],
 			alias: "",
 			allUsersData: [],
-			countFavorites: ''
+			countFavorites: '',
+			ilustrationsByCategory: [],
 		},
 		actions: {
 			registerUser: async (user) => {
@@ -84,6 +85,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error fetching ilustrations:", error);
 				}
+			},
+
+			getIlustrationsByCategory: (category)=> {
+				const store = getStore();
+				if (category != ""){
+					let ilustrations= store.ilustrationData.filter(ilustration=> ilustration.category == category)
+					setStore({ilustrationsByCategory: ilustrations})
+				}else{
+					setStore({ilustrationsByCategory: store.ilustrationData})
+				}
+				
 			},
 
 			getUserData: async () => {
