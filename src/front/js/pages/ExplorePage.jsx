@@ -13,8 +13,9 @@ const ExplorePage = () => {
   const redirectProfile = (alias) => { navigate(`/profile/${alias}`) }
   //va a traer los keys del objeto donde esta el contador de favoritos
   const sortedIlustrationCount = countFavorites.slice(0, 6)
-  const [creatorsPerPage, setCreatorsPerPage] =useState(4)
-  const [currentPage, setCurrentPage]= useState(1)
+
+  const [currentPage, setCurrentPage] = useState(1)
+
 
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
@@ -22,7 +23,23 @@ const ExplorePage = () => {
     getCountAllFavorites();
   }, [getAllIlustrations, getCountAllFavorites]);
 
+  // Filtrar y ordenar la lista de creadores según el conteo de favoritos
+  const sortedCreators = creators.sort((a, b) => {
+    const countA = countFavorites[a] || 0
+    const countB = countFavorites[b] || 0
+    return countB - countA;
+  });
 
+  // cantidad de creadores a mostrar por página
+  const creatorsPerPage = 4;
+
+  // Calcular el índice inicial y final de los creadores a mostrar en la página actual
+  const startIndex = (currentPage - 1) * creatorsPerPage;
+  const endIndex = startIndex + creatorsPerPage;
+
+  // Obtener los creadores que se mostrarán en la página actual
+  const creatorsToShow = sortedCreators.slice(startIndex, endIndex)
+  
   return (
     <>
       <div className="container">
@@ -72,7 +89,7 @@ const ExplorePage = () => {
             </>
           )}
         </div>
-        {creators.map((creator) => (
+        {creatorsToShow.map((creator) => (
           <div key={creator}>
 
             <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
@@ -102,7 +119,14 @@ const ExplorePage = () => {
           </div>
         ))}
       </div>
-      <Pagination/>
+    
+
+
+      <Pagination
+        creatorsPerPage={creatorsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 };
