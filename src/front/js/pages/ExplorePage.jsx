@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Card2 from "../component/Card2.jsx"
 import { useNavigate } from "react-router-dom";
 
 
 const ExplorePage = () => {
+  const [searchCategory, setSearchCategory] = useState("");
   const { store, actions } = useContext(Context);
-  const { ilustrationData, countFavorites } = store;
+  const { ilustrationData, countFavorites, ilustrationsByCategory } = store;
   const { getAllIlustrations, getCountAllFavorites } = actions
   const creators = [...new Set(ilustrationData.map((ilustration) => ilustration.user.alias))]
   const navigate = useNavigate()
@@ -20,21 +21,24 @@ const ExplorePage = () => {
     getCountAllFavorites();
   }, [getAllIlustrations, getCountAllFavorites]);
 
+  useEffect(() => {
+    actions.getIlustrationsByCategory(searchCategory);
+  }, [searchCategory]);
+  console.log(sortedIlustrationCount)
+  console.log(countFavorites)
 
   return (
     <>
       <div className="container">
         <div className="input-group my-3">
-          <span className="input-group-text" id="inputGroup-sizing-default">
-            Busqueda
-          </span>
-          <input
+
+          {/* <input
             type="text"
             className="form-control"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
             placeholder="que tipo de imagen estas buscando?"
-          />
+          /> */}
         </div>
 
 
@@ -42,13 +46,24 @@ const ExplorePage = () => {
           {Object.keys(countFavorites).length > 0 && (
             <>
               <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
+              <span className="input-group-text" id="inputGroup-sizing-default">
+                <select className="form-control" id="category" value={searchCategory}
+                  name="category" onChange={(event) => setSearchCategory(event.target.value)}>
+                  <option value="">Select a category</option>
+                  <option value="nature">Nature</option>
+                  <option value="food">Food</option>
+                  <option value="sports">Sports</option>
+                  <option value="art">Art</option>
+                  <option value="others">Others</option>
+                </select>
+              </span>
               <div className="row">
                 {sortedIlustrationCount.length > 0 &&
                   sortedIlustrationCount.map((ilustrationInfo) => {
                     // Obtener el ID y la cantidad de favoritos del elemento
                     const [ilustrationId, favoritesCount] = ilustrationInfo;
                     // Buscar la ilustración correspondiente usando el ID
-                    const ilustration = ilustrationData.find((ilustration) => ilustration.id === parseInt(ilustrationId));
+                    const ilustration = ilustrationsByCategory.find((ilustration) => ilustration.id === parseInt(ilustrationId));
 
                     if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
 
