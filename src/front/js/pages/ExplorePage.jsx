@@ -15,7 +15,6 @@ const ExplorePage = () => {
   const sortedIlustrationCount = countFavorites.slice(0, 6)
 
   const [currentPage, setCurrentPage] = useState(1)
-console.log("conteo",countFavorites)
 
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
@@ -29,8 +28,8 @@ console.log("conteo",countFavorites)
     const countB = countFavorites[b] || 0
     return countB - countA;
   });
-//cantidad total de creadores
-const totalSortedCreators= sortedCreators.length
+  //cantidad total de creadores
+  const totalSortedCreators = sortedCreators.length
 
   // cantidad de creadores a mostrar por página
   const creatorsPerPage = 3;
@@ -39,12 +38,10 @@ const totalSortedCreators= sortedCreators.length
   const startIndex = (currentPage - 1) * creatorsPerPage;
   const endIndex = startIndex + creatorsPerPage;
 
-console.log("current",currentPage)
-
   // Obtener los creadores que se mostrarán en la página actual
   const creatorsToShow = sortedCreators.slice(startIndex, endIndex)
   const totalCreators = creatorsToShow.length
-  
+
   //Numero total de hojas
   const totalPages = Math.ceil(totalSortedCreators / creatorsPerPage)
 
@@ -66,7 +63,7 @@ console.log("current",currentPage)
 
 
         <div className="container">
-          {currentPage===1 && (
+          {currentPage === 1 && (
             <>
               <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
               <div className="row">
@@ -128,8 +125,6 @@ console.log("current",currentPage)
           </div>
         ))}
       </div>
-    
-
 
       <Pagination
         creatorsPerPage={creatorsPerPage}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalPages }) {
-    
+
     // Función para cambiar a la página anterior
     const goToPrevPage = () => {
         if (currentPage > 1) {
@@ -13,14 +13,10 @@ function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalPages }
     const goToNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1)
-            console.log("next")
         }
     };
 
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
-
-    console.log(pageNumbers)
-
 
     return (
         <>
