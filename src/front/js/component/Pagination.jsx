@@ -1,26 +1,25 @@
 import React from 'react'
 
-function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalCreators }) {
-    const totalPages = Math.ceil(totalCreators / creatorsPerPage);
-
+function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalPages }) {
+    
     // Función para cambiar a la página anterior
     const goToPrevPage = () => {
         if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
+            setCurrentPage(currentPage - 1)
         }
     };
 
     // Función para cambiar a la página siguiente
     const goToNextPage = () => {
         if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage(currentPage + 1)
+            console.log("next")
         }
     };
 
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i)
-    }
+    const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+    console.log(pageNumbers)
 
 
     return (
@@ -33,20 +32,12 @@ function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalCreator
                         </button>
                     </li>
                     {pageNumbers.map((pageNumber) => (
-                        <li
-                            key={pageNumber}
-                            className={`page-item ${pageNumber === currentPage ? "active" : ""}`}
-                        >
-                            <button className="page-link" onClick={() => setCurrentPage(pageNumber)}
-                                disabled={pageNumber === currentPage}>
+                        <li key={pageNumber} className={`page-item ${pageNumber === currentPage ? 'active' : ''}`}>
+                            <button className="page-link" onClick={() => setCurrentPage(pageNumber)}>
                                 {pageNumber}
                             </button>
-
-
-
                         </li>
                     ))}
-
                     <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
                         <button className="page-link" onClick={goToNextPage}>
                             Next
