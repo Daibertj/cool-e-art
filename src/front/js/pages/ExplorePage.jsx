@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import Card2 from "../component/Card2.jsx"
 import { useNavigate } from "react-router-dom";
-
+import Pagination from "../component/Pagination.jsx";
 
 const ExplorePage = () => {
   const [searchCategory, setSearchCategory] = useState("");
@@ -15,17 +15,44 @@ const ExplorePage = () => {
   //va a traer los keys del objeto donde esta el contador de favoritos
   const sortedIlustrationCount = countFavorites.slice(0, 6)
 
+  const [currentPage, setCurrentPage] = useState(1)
+
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
     getAllIlustrations();
     getCountAllFavorites();
   }, [getAllIlustrations, getCountAllFavorites]);
 
+
+  // Filtrar y ordenar la lista de creadores según el conteo de favoritos
+  const sortedCreators = creators.sort((a, b) => {
+    const countA = countFavorites[a] || 0
+    const countB = countFavorites[b] || 0
+    return countB - countA;
+  });
+  //cantidad total de creadores
+  const totalSortedCreators = sortedCreators.length
+
+  // cantidad de creadores a mostrar por página
+  const creatorsPerPage = 3;
+
+  // Calcular el índice inicial y final de los creadores a mostrar en la página actual
+  const startIndex = (currentPage - 1) * creatorsPerPage;
+  const endIndex = startIndex + creatorsPerPage;
+
+  // Obtener los creadores que se mostrarán en la página actual
+  const creatorsToShow = sortedCreators.slice(startIndex, endIndex)
+  const totalCreators = creatorsToShow.length
+
+  //Numero total de hojas
+  const totalPages = Math.ceil(totalSortedCreators / creatorsPerPage)
+
   useEffect(() => {
     actions.getIlustrationsByCategory(searchCategory);
   }, [searchCategory]);
   console.log(sortedIlustrationCount)
   console.log(countFavorites)
+
 
   return (
     <>
@@ -43,7 +70,7 @@ const ExplorePage = () => {
 
 
         <div className="container">
-          {Object.keys(countFavorites).length > 0 && (
+          {currentPage === 1 && (
             <>
               <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
               <span className="input-group-text" id="inputGroup-sizing-default">
@@ -85,7 +112,8 @@ const ExplorePage = () => {
             </>
           )}
         </div>
-        {creators.map((creator) => (
+
+        {creatorsToShow.map((creator) => (
           <div key={creator}>
 
             <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
@@ -115,6 +143,13 @@ const ExplorePage = () => {
           </div>
         ))}
       </div>
+
+      <Pagination
+        creatorsPerPage={creatorsPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </>
   );
 };
