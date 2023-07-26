@@ -12,8 +12,13 @@ body {
 }
 
 .navbar {
-  height: 49px;
+  height: 60px;
   background-color: #00100b;
+}
+.logonav {
+  width: 250px;
+  height: 90px;
+  margin-left: -70px;
 }
 
 .logo1 {

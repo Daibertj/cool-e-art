@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import coolLogo2 from "../../img/Cool-e-Art-04.png";
 
 const initialState = {
   email: "",
@@ -50,7 +51,7 @@ export const Navbar = () => {
 
     <nav className="navbar navbar-expand-lg navbar-dark  ">
       <div className="container text-white">
-        <Link className="navbar-brand text-white bold-text text-capitalize fs-3 fw-bold fst-italic" to="/">Cool-e-Art</Link>
+        <Link className="navbar-brand text-white bold-text text-capitalize fs-3 fw-bold fst-italic" to="/"><img className="logonav " src={coolLogo2} /></Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
