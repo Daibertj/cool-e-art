@@ -61,7 +61,7 @@ const ExplorePage = () => {
         <div className="container">
           {currentPage === 1 && (
             <>
-              <h2 className=" my-3 lh-1 barra text-white  p-2">Los que mas gustan</h2>
+              <h2 className=" my-3 lh-1 barra text-white  p-2">Trending topic</h2>
               <span className="d-grid gap-2 col-6 mx-auto " id="inputGroup-sizing-default">
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
