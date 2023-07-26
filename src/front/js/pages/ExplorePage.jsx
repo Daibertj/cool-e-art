@@ -56,25 +56,14 @@ const ExplorePage = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="input-group my-3">
-
-          {/* <input
-            type="text"
-            className="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default"
-            placeholder="que tipo de imagen estas buscando?"
-          /> */}
-        </div>
-
-
+      <div className="container ">
+        
         <div className="container">
           {currentPage === 1 && (
             <>
-              <h2 className=" m-3 lh-1 barra text-white p-2">Los que mas gustan</h2>
-              <span className="input-group-text" id="inputGroup-sizing-default">
-                <select className="form-control" id="category" value={searchCategory}
+              <h2 className=" my-3 lh-1 barra text-white  p-2">Los que mas gustan</h2>
+              <span className="d-grid gap-2 col-6 mx-auto " id="inputGroup-sizing-default">
+                <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
                   <option value="">Select a category</option>
                   <option value="nature">Nature</option>
@@ -84,7 +73,7 @@ const ExplorePage = () => {
                   <option value="others">Others</option>
                 </select>
               </span>
-              <div className="row">
+              <div className="row pt-5">
                 {sortedIlustrationCount.length > 0 &&
                   sortedIlustrationCount.map((ilustrationInfo) => {
                     // Obtener el ID y la cantidad de favoritos del elemento
@@ -136,7 +125,7 @@ const ExplorePage = () => {
                 ))}
             </div>
             <button
-              className="btn btn-success mt-3"
+              className="btn btn-dark bg-black mt-3"
               onClick={() => redirectProfile(creator)}> Ver mas de {creator}
 
             </button>

@@ -20,7 +20,7 @@ function EditPage() {
                 <div className="container-fluid profile d-inline-flex justify-content-center py-3">
                     {!userData.image ? <UserSVG /> : <img
                         src={userData.image}
-                        className="img-thumbnail img-fluid h-25 rounded "
+                        className="rounded-circle "
                         alt="..."
                         style={{ width: "150px" }}
                     />}
