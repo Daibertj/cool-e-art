@@ -24,7 +24,7 @@ export const Navbar = () => {
         timer: 1000
       });
       await actions.getUserData;
-      navigate(`/`);
+      navigate(`/myprofile/${userData.alias}`);
     }
     if (response == 400) {
       Swal.fire({
