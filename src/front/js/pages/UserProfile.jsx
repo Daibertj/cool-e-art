@@ -27,22 +27,22 @@ function UserProfile() {
   return (
     <>
       {ilustratorVisited && (<>
-        <div className="container-fluid profile d-inline-flex justify-content-center ">
+        <div className="container-fluid profile d-inline-flex justify-content-center py-3 ">
           <img
             src={ilustratorVisited.image}
-            className="img-thumbnail img-fluid h-25 rounded "
+            className="rounded-circle "
             alt="..."
             style={{ width: "150px" }}
           />
-          <div className="col-lg-6 col-md-8 h-25  ">
-            <h1 className="fw-light">{ilustratorVisited.alias}</h1>
+          <div className="col-lg-6 col-md-8 h-25 ps-3 pt-4 ">
+            <h1 className="fw-light text-black">{ilustratorVisited.alias}</h1>
             <p className="fst-italic">
               {ilustratorVisited.name} {ilustratorVisited.lastname}
             </p>
           </div>
           {token && (
             <>
-              <button type="button" className="btn btn-primary m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Contactame
               </button>
               <ContactModal alias={alias} />
