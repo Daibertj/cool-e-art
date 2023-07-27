@@ -12,7 +12,7 @@ const initialState = {
 const UploadImage = () => {
   const [imgUpload, setImgUpload] = useState(initialState);
   const { actions, store } = useContext(Context);
-
+  const {categories} =store
   
   const handleUpload = async () => {
     if (
@@ -28,7 +28,7 @@ const UploadImage = () => {
         icon: "error",
         confirmButtonText: "OK",
       })
-      console.log("missing cat");
+      console.log("missing parameter");
       return;
     }
 
@@ -116,11 +116,11 @@ const UploadImage = () => {
         <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
-          <option value="nature">Nature</option>
-          <option value="food">Food</option>
-          <option value="sports">Sports</option>
-          <option value="art">Art</option>
-          <option value="others">Others</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
       </form>
