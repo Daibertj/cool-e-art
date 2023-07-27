@@ -61,8 +61,9 @@ const ExplorePage = () => {
         <div className="container">
           {currentPage === 1 && (
             <>
-              <h2 className=" my-3 lh-1 barra text-white  p-2">Trending topic</h2>
-              <span className="d-grid gap-2 col-6 mx-auto " id="inputGroup-sizing-default">
+              <h2 className=" my-3 lh-1 text-white  p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
+              <span className="d-grid gap-2 col-3 mx-auto " id="inputGroup-sizing-default">
+
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
                   <option value="">Select a category</option>
@@ -105,7 +106,7 @@ const ExplorePage = () => {
         {creatorsToShow.map((creator) => (
           <div key={creator}>
 
-            <h2 className=" m-3 lh-1 barra text-white p-2">Ilustraciones de {creator}</h2>
+            <h2 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h2>
 
             <div className="row ">
               {ilustrationData
