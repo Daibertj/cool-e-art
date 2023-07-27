@@ -48,9 +48,9 @@ function UserPage() {
           </div>
 
         </div>
-        <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white barra">
+        <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
           <div className="lh-1">
-            <h2 className="mb-0 lh-1">Mis creaciones</h2>
+            <h2 className="mb-0 lh-1"><i class="fa-solid fa-palette"></i>&nbsp;My Art</h2>
           </div>
           <div>
             <Link to={`/edit`}>
@@ -92,7 +92,7 @@ function UserPage() {
           <>
             <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
               <div className="lh-1">
-                <h2 className="mb-0 lh-1">Favoritos</h2>
+                <h2 className="mb-0 lh-1"><i class="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h2>
               </div>
             </div>
 
