@@ -4,28 +4,27 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
-    image: "",
-    description: "",
-    title: "",
-    category: "",
-  };
+  image: "",
+  description: "",
+  title: "",
+  category: "",
+};
 
 const UploadImage = () => {
   const [imgUpload, setImgUpload] = useState(initialState);
   const { actions, store } = useContext(Context);
-  const {categories} =store
-  
+  const { categories } = store;
+
   const handleUpload = async () => {
     if (
       !imgUpload.image ||
       !imgUpload.description ||
       !imgUpload.title ||
       !imgUpload.category
-    
     ) {
-      toast.error("Please fill all ")
+      toast.error("Please fill all fields");
       console.log("missing parameter");
-      return
+      return;
     }
 
     try {
@@ -35,37 +34,33 @@ const UploadImage = () => {
       formData.append("title", imgUpload.title);
       formData.append("description", imgUpload.description);
       formData.append("category", imgUpload.category);
-      
+
       const response = await actions.uploadIlustration(formData);
-     
-      if (response.status === 201 ||response.status === 200) {
-        await toast.promise(
-          () => {
-            return new Promise((resolve) => {
-              resolve();
-            });
-          },
-        
-        );
-       
+
+      if (response.status === 201 || response.status === 200) {
+        toast.success("Image Uploaded", { theme: "dark" });
         console.log("Image Uploaded:", {
-          image,
-          description,
-          title,
-          category,
+          imgUpload,
         });
       } else {
-        toast.error("No Uploaded"),{theme: "dark"}
+        toast.error("Upload failed", { theme: "dark" });
         console.log("Error en Upload");
       }
     } catch (error) {
       console.log("Error en la solicitud de Upload:", error);
     }
   };
- 
 
   const handleChange = ({ target }) => {
     setImgUpload({ ...imgUpload, [target.name]: target.value });
+  };
+
+  const handleUploadPromise = () => {
+    return new Promise((resolve, reject) => {
+      handleUpload()
+        .then(() => resolve())
+        .catch((error) => reject(error));
+    });
   };
 
   return (
@@ -121,17 +116,17 @@ const UploadImage = () => {
         </select>
       </div>
       </form>
-      <button className="btn btn-secondary w-100 mt-3" onClick={() => {toast.promise(
-      handleUpload(),
-      {
-        pending: "Uploading...",
-        success: "Uploaded",
-        error: "Upload failed",
-        theme: "dark",
-        // Otras opciones de toast si es necesario
-      }
-    )
-  }}>Upload</button>
+      <button
+  className="btn btn-secondary w-100 mt-3"
+  onClick={() =>
+    toast.promise(handleUploadPromise(), {
+      pending: "Uploading...",
+      success: "Uploaded",
+      error: "Upload failed",
+      theme: "dark",
+    })
+  }
+>Upload</button>
     </div>
 </>
   );
