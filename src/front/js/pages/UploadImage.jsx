@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialState = {
     image: "",
@@ -24,10 +24,9 @@ const UploadImage = () => {
       !imgUpload.category
     
     ) {
-      toast.error('Cound not fetch nationalities, please try again later', {
-        position: toast.POSITION.TOP_RIGHT})
+      toast.error("Please fill all ")
       console.log("missing parameter");
-      return;
+      return
     }
 
     try {
@@ -41,13 +40,7 @@ const UploadImage = () => {
       const response = await actions.uploadIlustration(formData);
      
       if (response.status === 201 ||response.status === 200) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Uploaded",
-          showConfirmButton: false,
-          timer: 1000,
-        });
+       toast.success("Uploaded");
         console.log("Image Uploaded:", {
           image,
           description,
@@ -55,13 +48,8 @@ const UploadImage = () => {
           category,
         });
       } else {
-        Swal.fire({
-          title: "Error!",
-          text: "No Uploaded",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-        console.log("Error en el Upload");
+        toast.error("No Uploaded")
+        console.log("Error en Upload");
       }
     } catch (error) {
       console.log("Error en la solicitud de Upload:", error);
@@ -72,6 +60,8 @@ const UploadImage = () => {
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="container-fluid text-white my-5 pt-5 w-25 vh-100">
       <h1>Upload</h1>
       <form>
@@ -124,6 +114,7 @@ const UploadImage = () => {
       </form>
       <button className="btn btn-secondary w-100 mt-3" onClick={handleUpload}>Upload</button>
     </div>
+</>
   );
 };
 
