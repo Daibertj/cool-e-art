@@ -12,7 +12,7 @@ const initialState = {
 const UploadImage = () => {
   const [imgUpload, setImgUpload] = useState(initialState);
   const { actions, store } = useContext(Context);
-
+  const {categories} =store
   
   const handleUpload = async () => {
     if (
@@ -116,15 +116,11 @@ const UploadImage = () => {
         <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
-          <option value="2D">2D</option>
-          <option value="3D">3D</option>
-          <option value="Concept Art">Concept Art</option>
-          <option value="Enviroment Desing">Enviroment Desing</option>
-          <option value="Character Desing">Character Desing</option>
-          <option value="Ilustration">Others</option>
-          <option value="Portraits">Portraits</option>
-          <option value="Abstract">Abstract</option>
-          <option value="Characters">Characters</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
       </form>

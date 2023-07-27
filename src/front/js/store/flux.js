@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			allUsersData: [],
 			countFavorites: '',
 			ilustrationsByCategory: [],
+			categories:["2D","3D", "Concept Art", "Enviroment Desing", "Character Desing","Ilustration","Portraits","Abstract","Characters"]
 		},
 		actions: {
 			registerUser: async (user) => {
