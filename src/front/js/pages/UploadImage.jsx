@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,7 +39,15 @@ const UploadImage = () => {
       const response = await actions.uploadIlustration(formData);
      
       if (response.status === 201 ||response.status === 200) {
-       toast.success("Uploaded");
+        await toast.promise(
+          () => {
+            return new Promise((resolve) => {
+              resolve();
+            });
+          },
+        
+        );
+       
         console.log("Image Uploaded:", {
           image,
           description,
@@ -48,20 +55,22 @@ const UploadImage = () => {
           category,
         });
       } else {
-        toast.error("No Uploaded")
+        toast.error("No Uploaded"),{theme: "dark"}
         console.log("Error en Upload");
       }
     } catch (error) {
       console.log("Error en la solicitud de Upload:", error);
     }
   };
+ 
+
   const handleChange = ({ target }) => {
     setImgUpload({ ...imgUpload, [target.name]: target.value });
   };
 
   return (
     <>
-    <ToastContainer/>
+    <ToastContainer theme="dark"/>
     <div className="container-fluid text-white my-5 pt-5 w-25 vh-100">
       <h1>Upload</h1>
       <form>
@@ -112,7 +121,17 @@ const UploadImage = () => {
         </select>
       </div>
       </form>
-      <button className="btn btn-secondary w-100 mt-3" onClick={handleUpload}>Upload</button>
+      <button className="btn btn-secondary w-100 mt-3" onClick={() => {toast.promise(
+      handleUpload(),
+      {
+        pending: "Uploading...",
+        success: "Uploaded",
+        error: "Upload failed",
+        theme: "dark",
+        // Otras opciones de toast si es necesario
+      }
+    )
+  }}>Upload</button>
     </div>
 </>
   );
