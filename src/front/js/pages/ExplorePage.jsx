@@ -56,12 +56,12 @@ const ExplorePage = () => {
 
   return (
     <>
-      <div className="container ">
+      <div className=" ">
         
-        <div className="container">
+        <div className="">
           {currentPage === 1 && (
-            <>
-              <h2 className=" my-3 lh-1 text-white  p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
+            <div>
+              <h2 className="m-3 lh-1 text-white p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
               <span className="d-grid gap-2 col-3 mx-auto " id="inputGroup-sizing-default">
 
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
@@ -74,7 +74,8 @@ const ExplorePage = () => {
                   <option value="others">Others</option>
                 </select>
               </span>
-              <div className="row pt-5">
+              <div className="container">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {sortedIlustrationCount.length > 0 &&
                   sortedIlustrationCount.map((ilustrationInfo) => {
                     // Obtener el ID y la cantidad de favoritos del elemento
@@ -85,7 +86,7 @@ const ExplorePage = () => {
                     if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
 
                     return (
-                      <div className="col pb-2" key={ilustration.id}>
+                      <div className="d-flex gap-2 pb-2" key={ilustration.id}>
                         <Card2
                           title={ilustration.title}
                           description={ilustration.description}
@@ -99,7 +100,8 @@ const ExplorePage = () => {
                     );
                   })}
               </div>
-            </>
+              </div>
+            </div>
           )}
         </div>
 
@@ -107,12 +109,12 @@ const ExplorePage = () => {
           <div key={creator}>
 
             <h2 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h2>
-
-            <div className="row ">
+            <div className="container">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
               {ilustrationData
                 .filter((ilustration) => ilustration.user.alias === creator).slice(0, 6)
                 .map((ilustration) => (
-                  <div className="col pb-2" key={ilustration.id}>
+                  <div className="d-flex gap-2 pb-2" key={ilustration.id}>
                     <Card2
                       title={ilustration.title}
                       description={ilustration.description}
@@ -125,6 +127,8 @@ const ExplorePage = () => {
                   </div>
                 ))}
             </div>
+            </div>
+            
             <button
               className="btn btn-dark bg-black mt-3"
               onClick={() => redirectProfile(creator)}> Ver mas de {creator}

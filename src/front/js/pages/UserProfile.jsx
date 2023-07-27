@@ -52,9 +52,9 @@ function UserProfile() {
 
         </div>
 
-        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
+        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
           <div className="lh-1">
-            <h2 className="mb-0 lh-1">Creaciones de {ilustratorVisited.alias}</h2>
+            <h2 className="mb-0 lh-1"> <i class="fa-solid fa-palette"></i>&nbsp;{ilustratorVisited.alias}'s Arts</h2>
           </div>
         </div>
 

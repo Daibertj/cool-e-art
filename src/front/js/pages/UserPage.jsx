@@ -90,7 +90,7 @@ function UserPage() {
 
         {favoriteData.length > 0 ? (
           <>
-            <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white barra">
+            <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
               <div className="lh-1">
                 <h2 className="mb-0 lh-1"><i class="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h2>
               </div>
