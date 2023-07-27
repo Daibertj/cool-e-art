@@ -28,7 +28,7 @@ const UploadImage = () => {
         icon: "error",
         confirmButtonText: "OK",
       })
-      console.log("missing cat");
+      console.log("missing parameter");
       return;
     }
 
@@ -116,11 +116,15 @@ const UploadImage = () => {
         <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
-          <option value="nature">Nature</option>
-          <option value="food">Food</option>
-          <option value="sports">Sports</option>
-          <option value="art">Art</option>
-          <option value="others">Others</option>
+          <option value="2D">2D</option>
+          <option value="3D">3D</option>
+          <option value="Concept Art">Concept Art</option>
+          <option value="Enviroment Desing">Enviroment Desing</option>
+          <option value="Character Desing">Character Desing</option>
+          <option value="Ilustration">Others</option>
+          <option value="Portraits">Portraits</option>
+          <option value="Abstract">Abstract</option>
+          <option value="Characters">Characters</option>
         </select>
       </div>
       </form>
