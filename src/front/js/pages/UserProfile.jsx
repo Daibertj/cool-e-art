@@ -32,7 +32,7 @@ function UserProfile() {
             src={ilustratorVisited.image}
             className="rounded-circle "
             alt="..."
-            style={{ width: "150px" }}
+            style={{ width: "150px" }} 
           />
           <div className="col-lg-6 col-md-8 h-25 ps-3 pt-4 ">
             <h1 className="fw-light text-black">{ilustratorVisited.alias}</h1>
@@ -61,11 +61,11 @@ function UserProfile() {
         {ilustrationsUser.length > 0 ? (
           <div className="album py-5 bg-body-tertiary">
             <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                 {ilustrationsUser.map((ilustration) => (
 
-                  <div className="row" key={ilustration.id}>
+                  <div className="d-flex gap-2 pb-2" key={ilustration.id}>
                     <Card2
                       image={ilustration.image}
                       title={ilustration.title}
