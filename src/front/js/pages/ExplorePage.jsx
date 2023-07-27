@@ -63,6 +63,7 @@ const ExplorePage = () => {
             <>
               <h2 className=" my-3 lh-1 text-white  p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
               <span className="d-grid gap-2 col-3 mx-auto " id="inputGroup-sizing-default">
+
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
                   <option value="">Select a category</option>
