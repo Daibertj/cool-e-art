@@ -105,7 +105,7 @@ const ExplorePage = () => {
         {creatorsToShow.map((creator) => (
           <div key={creator}>
 
-            <h2 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest photos</h2>
+            <h2 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h2>
 
             <div className="row ">
               {ilustrationData
