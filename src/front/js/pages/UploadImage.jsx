@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 const initialState = {
     image: "",
@@ -22,12 +24,8 @@ const UploadImage = () => {
       !imgUpload.category
     
     ) {
-      Swal.fire({
-        title: "Error!",
-        text: "Por favor completa todos los campos",
-        icon: "error",
-        confirmButtonText: "OK",
-      })
+      toast.error('Cound not fetch nationalities, please try again later', {
+        position: toast.POSITION.TOP_RIGHT})
       console.log("missing parameter");
       return;
     }
