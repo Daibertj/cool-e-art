@@ -56,12 +56,12 @@ const ExplorePage = () => {
 
   return (
     <>
-      <div className=" ">
+      <div>
         
-        <div className="">
+        <div>
           {currentPage === 1 && (
             <div>
-              <h2 className="m-3 lh-1 text-white p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
+              <h3 className="m-3 lh-1 text-white p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h3>
               <span className="d-grid gap-2 col-5 mx-auto p-3" id="inputGroup-sizing-default">
 
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
@@ -108,7 +108,7 @@ const ExplorePage = () => {
         {creatorsToShow.map((creator) => (
           <div key={creator}>
 
-            <h2 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h2>
+            <h3 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h3>
             <div className="container">
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
               {ilustrationData

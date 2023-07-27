@@ -34,9 +34,9 @@ function EditPage() {
                     </div>
                     
                 </div>
-                <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white barra">
+                <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
                     <div className="lh-1">
-                        <h2 className="mb-0 lh-1">Editar</h2>
+                        <h3 className="m-3 lh-1 text-white p-2"> <i className="fas fa-pencil-alt"></i>&nbsp;Edit</h3>
                     </div>
                 </div>
                 {ilustrationsUser.length > 0 ? (
@@ -54,9 +54,6 @@ function EditPage() {
                                             user={ilustration.user}
                                             id={ilustration.id}
                                         />
-                                        <div className="btn-group">
-
-                                        </div>
                                     </div>
                                 ))}
                             </div>
