@@ -6,6 +6,7 @@ import { Favorite } from "../component/Favorite.jsx";
 import UserSVG from "../component/UserSVG.jsx";
 import { SocialIcon } from 'react-social-icons'
 import Card2 from "../component/Card2.jsx"
+import EditUser from "../component/EditUser.jsx";
 
 
 function UserPage() {
@@ -34,6 +35,7 @@ function UserPage() {
             <p className="fst-italic">
               {userData.name} {userData.lastname}
             </p>
+            <EditUser />
           </div>
           <div className="row flex-column  text-black">
             <div>

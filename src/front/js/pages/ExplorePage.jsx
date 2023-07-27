@@ -62,7 +62,7 @@ const ExplorePage = () => {
           {currentPage === 1 && (
             <div>
               <h2 className="m-3 lh-1 text-white p-2"><i className="fa-solid fa-fire" style={{ color: "red" }}></i>&nbsp;Trending </h2>
-              <span className="d-grid gap-2 col-3 mx-auto " id="inputGroup-sizing-default">
+              <span className="d-grid gap-2 col-5 mx-auto p-3" id="inputGroup-sizing-default">
 
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
