@@ -52,7 +52,7 @@ function UserPage() {
         </div>
         <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
           <div className="lh-1">
-            <h3 className="mb-0 lh-1"><i class="fa-solid fa-palette"></i>&nbsp;My Art</h3>
+            <h3 className="mb-0 lh-1"><i className="fa-solid fa-palette"></i>&nbsp;My Art</h3>
           </div>
           <div>
             <Link to={`/edit`}>
@@ -94,7 +94,7 @@ function UserPage() {
           <>
             <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
               <div className="lh-1">
-                <h3 className="mb-0 lh-1"><i class="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h3>
+                <h3 className="mb-0 lh-1"><i className="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h3>
               </div>
             </div>
 
@@ -112,8 +112,9 @@ function UserPage() {
                           description={ilustration.description}
                           user={ilustration.user}
                           id={ilustration.id}
-                          ilustration_id={ilustration.ilustration_id}
-                        // ilustration_id={favorite.ilustration_id}
+                          alias={userData.alias}
+                          category={ilustration.category}
+                          ilustration_id={ilustration.ilustration_id} 
                         />)}
                       <div className="btn-group">
                       </div>

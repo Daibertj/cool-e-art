@@ -1,79 +1,73 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
-import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
-    image: "",
-    description: "",
-    title: "",
-    category: "",
-  };
+  image: "",
+  description: "",
+  title: "",
+  category: "",
+};
 
 const UploadImage = () => {
   const [imgUpload, setImgUpload] = useState(initialState);
   const { actions, store } = useContext(Context);
+  const { categories } = store;
 
-  
   const handleUpload = async () => {
+    try {
+      const formData = new FormData()
+
+      formData.append("image", imgUpload.image)
+      formData.append("title", imgUpload.title)
+      formData.append("description", imgUpload.description)
+      formData.append("category", imgUpload.category)
+
+      const response = await actions.uploadIlustration(formData)
+
+      if (response.status === 201 || response.status === 200) {
+        console.log("Image Uploaded:", {
+          imgUpload,
+        });
+        return true
+      } else {
+        console.log("Error en Upload");
+        return false 
+      }
+    } catch (error) {
+      console.log("Error en la solicitud de Upload:", error)
+      return false; 
+    }
+  };
+
+  const handleChange = ({ target }) => {
+    setImgUpload({ ...imgUpload, [target.name]: target.value })
+  };
+
+  const handleUploadNotification = async () => {
     if (
       !imgUpload.image ||
       !imgUpload.description ||
       !imgUpload.title ||
       !imgUpload.category
-    
     ) {
-      Swal.fire({
-        title: "Error!",
-        text: "Por favor completa todos los campos",
-        icon: "error",
-        confirmButtonText: "OK",
-      })
-      console.log("missing cat");
+      toast.error("Please fill all fields")
+      console.log("missing parameter");
       return;
     }
-
-    try {
-      const formData = new FormData();
-
-      formData.append("image", imgUpload.image);
-      formData.append("title", imgUpload.title);
-      formData.append("description", imgUpload.description);
-      formData.append("category", imgUpload.category);
+//toma handelupload como retorno de promesa 
+    toast.promise(handleUpload(), {
+      pending: "Uploading...",
+      success: "Uploaded",
+      error: "Upload failed",
       
-      const response = await actions.uploadIlustration(formData);
-     
-      if (response.status === 201 ||response.status === 200) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Uploaded",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-        console.log("Image Uploaded:", {
-          image,
-          description,
-          title,
-          category,
-        });
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: "No Uploaded",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
-        console.log("Error en el Upload");
-      }
-    } catch (error) {
-      console.log("Error en la solicitud de Upload:", error);
-    }
-  };
-  const handleChange = ({ target }) => {
-    setImgUpload({ ...imgUpload, [target.name]: target.value });
+    });
   };
 
   return (
+    <>
+    <ToastContainer theme="dark" position= "top-center" pauseOnFocusLoss={false} autoClose={3000}/>
     <div className="container-fluid text-white my-5 pt-5 w-25 vh-100">
       <h1>Upload</h1>
       <form>
@@ -116,20 +110,20 @@ const UploadImage = () => {
         <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
-          <option value="nature">2D</option>
-          <option value="food">3D</option>
-          <option value="sports">Concept art</option>
-          <option value="art">Environment design</option>
-          <option value="others">Character design</option>
-          <option value="others">Illustration</option>
-          <option value="others">Portraits</option>
-          <option value="others">Abstract</option>
-          <option value="others">Characters</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
       </form>
-      <button className="btn btn-secondary w-100 mt-3" onClick={handleUpload}>Upload</button>
+      <button
+  className="btn btn-secondary w-100 mt-3"
+  onClick={handleUploadNotification}
+>Upload</button>
     </div>
+</>
   );
 };
 

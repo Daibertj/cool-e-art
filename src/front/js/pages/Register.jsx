@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initialState = {
   name: "",
@@ -9,27 +10,22 @@ const initialState = {
   email: "",
   password: "",
   image: "",
-  alias:""
+  alias: ""
 };
 
 const Register = () => {
   const [user, setUser] = useState(initialState);
   const { actions } = useContext(Context);
   const navigate = useNavigate();
-  const Swal = require("sweetalert2");
   
+
   const handleSignup = async () => {
     if (!user.name || !user.email || !user.password || !user.alias) {
       console.log("Por favor completa todos los campos");
-      Swal.fire({
-        title: "Error!",
-        text: "Por favor completa todos los campos",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
+      toast.error("Please fill all fields")
       return;
     }
-    
+
     try {
       const formData = new FormData();
 
@@ -43,22 +39,15 @@ const Register = () => {
       const response = await actions.registerUser(formData);
 
       if (response === 201 || 200) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Registro Exitoso',
-          showConfirmButton: false,
-          timer: 1000
-        })
+        toast.success("Successfully Registered")
         console.log("Registro exitoso")
-        navigate("/");
+        //retrasa el cambio a home por 2 segundos
+        setTimeout(() => {
+          navigate("/")
+        }, 2000)
+
       } else {
-        Swal.fire({
-          title: "Error!",
-          text: "Error en el registro",
-          icon: "error",
-          confirmButtonText: "OK",
-        });
+        toast.error("Error registering")
 
         console.log("Error en el registro")
       }
@@ -72,91 +61,94 @@ const Register = () => {
   };
 
   return (
-    <div className="container-fluid text-white w-25 my-4 ">
-      <h1>Register</h1>
-      <form>
-        <div className="form-group  ">
-          <label htmlFor="name">Name:</label>
-          <input
-            className="form-control "
-            type="text"
-            value={user.name}
-            id="name"
-            name="name"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group ">
-          <label>Last Name:</label>
-          <input
-            className="form-control"
-            type="text"
-            value={user.lastname}
-            id="lastname"
-            name="lastname"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group "> 
-          <label>Alias:</label>
-          <input 
-          className="form-control"
-          type="text"
-          value={user.alias}
-          id="alias"
-          name="alias"
-          onChange={handleChange}
-          />
-        </div>           
+    <>
+      <ToastContainer theme="dark" position="top-center" pauseOnFocusLoss={false} autoClose={3000} hideProgressBar />
+      <div className="container-fluid text-white w-25 my-4 ">
+        <h1>Register</h1>
+        <form>
+          <div className="form-group  ">
+            <label htmlFor="name">Name:</label>
+            <input
+              className="form-control "
+              type="text"
+              value={user.name}
+              id="name"
+              name="name"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label>Last Name:</label>
+            <input
+              className="form-control"
+              type="text"
+              value={user.lastname}
+              id="lastname"
+              name="lastname"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label>Alias:</label>
+            <input
+              className="form-control"
+              type="text"
+              value={user.alias}
+              id="alias"
+              name="alias"
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="form-group ">
-          <label>Email:</label>
-          <input
-            className="form-control"
-            type="email"
-            value={user.email}
-            id="email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group ">
-          <label>Password:</label>
-          <input
-            className="form-control"
-            type="password"
-            value={user.password}
-            id="password"
-            name="password"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Ingresa Imagen de Profile </label>
-          <input
-            type="file"
-            className="form-control"
-            id="image"
-            name="image"
-            onChange={({ target }) =>
-              setUser({ ...user, image: target.files[0] })
-            }
-            
-          />
-        </div>
+          <div className="form-group ">
+            <label>Email:</label>
+            <input
+              className="form-control"
+              type="email"
+              value={user.email}
+              id="email"
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label>Password:</label>
+            <input
+              className="form-control"
+              type="password"
+              value={user.password}
+              id="password"
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Ingresa Imagen de Profile </label>
+            <input
+              type="file"
+              className="form-control"
+              id="image"
+              name="image"
+              onChange={({ target }) =>
+                setUser({ ...user, image: target.files[0] })
+              }
 
-        <button
-          className="btn btn-secondary mt-3"
-          type="button"
-          onClick={handleSignup}
-        >
-          Register
-        </button>
-      </form>
-      {/* <p>
+            />
+          </div>
+
+          <button
+            className="btn btn-secondary mt-3"
+            type="button"
+            onClick={handleSignup}
+          >
+            Register
+          </button>
+        </form>
+        {/* <p>
         Ya tienes una cuenta? <Link to="/">Inicia sesión aquí</Link>
       </p> */}
-    </div>
+      </div>
+    </>
   );
 };
 

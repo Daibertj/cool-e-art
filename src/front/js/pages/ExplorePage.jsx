@@ -50,9 +50,7 @@ const ExplorePage = () => {
   useEffect(() => {
     actions.getIlustrationsByCategory(searchCategory);
   }, [searchCategory]);
-  console.log(sortedIlustrationCount)
-  console.log(countFavorites)
-
+  
 
   return (
     <>
