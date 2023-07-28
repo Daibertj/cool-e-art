@@ -106,14 +106,13 @@ function UserPage() {
                     <div className="col" key={ilustration.id}>
                       {ilustration && (
                         <Favorite
-
                           image={ilustration.image}
                           title={ilustration.title}
                           description={ilustration.description}
                           user={ilustration.user}
                           id={ilustration.id}
-                          ilustration_id={ilustration.ilustration_id}
-                        // ilustration_id={favorite.ilustration_id}
+                          alias={userData.alias}
+                          category={ilustration.category}
                         />)}
                       <div className="btn-group">
                       </div>
