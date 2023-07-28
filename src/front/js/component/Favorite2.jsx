@@ -31,9 +31,9 @@ export const Favorite2 = ({ id, title, description, image, user, ilustration_id,
 
             </div> */}
 
-            <div class="courses-container">
-                <div class="course">
-                    <div class="course-preview">
+            <div className="courses-container">
+                <div className="course">
+                    <div className="course-preview">
 
 
                         <img
@@ -44,7 +44,7 @@ export const Favorite2 = ({ id, title, description, image, user, ilustration_id,
                         />
 
                     </div>
-                    <div class="course-info">
+                    <div className="course-info">
 
                         <h6><h5 className="text-white">{title}</h5></h6>
                         <h6><span className="badge rounded-pill bg-light text-dark  ">{category}</span></h6>

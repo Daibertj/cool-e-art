@@ -20,26 +20,26 @@ function ContactModal({ alias }) {
                         {ilustratorVisited && (
                             <>
                                 {ilustratorVisited.facebook && (
-                                    <h5>
-                                        Facebook
+                                    <h5 >
+                                        <a href= {`https://www.facebook.com/${ilustratorVisited.facebook}`}>Facebook </a>
                                         <span className="badge">
-                                            <SocialIcon network="facebook" url={ilustratorVisited.facebook} />
+                                            <SocialIcon network="facebook" url= {`https://www.facebook.com/${ilustratorVisited.facebook}`} />
                                         </span>
                                     </h5>
                                 )}
                                 {ilustratorVisited.instagram && (
-                                    <h5>
-                                        Instagram
+                                    <h5 >
+                                        <a href={`https://www.instagram.com/${ilustratorVisited.instagram}`} > Instagram</a>
                                         <span className="badge">
-                                            <SocialIcon network="instagram" url={ilustratorVisited.instagram} />
+                                            <SocialIcon network="instagram" url={`https://www.instagram.com/${ilustratorVisited.instagram}`} />
                                         </span>
                                     </h5>
                                 )}
                                 {ilustratorVisited.twitter && (
                                     <h5>
-                                        Twitter
+                                        <a href={`https://www.twitter.com/${ilustratorVisited.twitter}`} >Twitter</a>
                                         <span className="badge">
-                                            <SocialIcon network="twitter" url={ilustratorVisited.twitter} />
+                                            <SocialIcon network="twitter" url={`https://www.twitter.com/${ilustratorVisited.twitter}`} />
                                         </span>
                                     </h5>
                                 )}
