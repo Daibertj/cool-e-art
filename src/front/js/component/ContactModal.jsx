@@ -23,7 +23,7 @@ function ContactModal({ alias }) {
                                     <h5>
                                         Facebook
                                         <span className="badge">
-                                            <SocialIcon network="facebook" url={ilustratorVisited.facebook} />
+                                            <SocialIcon network="facebook" url= {`https://www.facebook.com/${ilustratorVisited.facebook}`} />
                                         </span>
                                     </h5>
                                 )}
@@ -31,7 +31,7 @@ function ContactModal({ alias }) {
                                     <h5>
                                         Instagram
                                         <span className="badge">
-                                            <SocialIcon network="instagram" url={ilustratorVisited.instagram} />
+                                            <SocialIcon network="instagram" url={`https://www.instagram.com/${ilustratorVisited.instagram}`} />
                                         </span>
                                     </h5>
                                 )}
@@ -39,7 +39,7 @@ function ContactModal({ alias }) {
                                     <h5>
                                         Twitter
                                         <span className="badge">
-                                            <SocialIcon network="twitter" url={ilustratorVisited.twitter} />
+                                            <SocialIcon network="twitter" url={`https://www.twitter.com/${ilustratorVisited.twitter}`} />
                                         </span>
                                     </h5>
                                 )}
