@@ -168,8 +168,9 @@ def upload_new_image():
 @api.route('/ilustration', methods=['GET'])
 def get_ilustations():
     query_category = request.args.get('category')
-    if query_category: 
-        ilustrations = Ilustration.query.filter_by(category = query_category).limit(6).all()
+    if query_category:
+        ilustrations = Ilustration.query.filter_by(
+            category=query_category).limit(6).all()
     else:
         ilustrations = Ilustration.query.limit(6).all()
     ilustratrations_data = list(
@@ -221,7 +222,8 @@ def delete_fav(ilustration_id):
             return jsonify({"msg": "se elimino el favorito"}), 200
         except Exception as error:
             return jsonify({"msg": error.args}), 500
-        
+
+
 @api.route('/ilustration/<int:ilustration_id>', methods=['DELETE'])
 @jwt_required()
 def delete_ilustration(ilustration_id):
@@ -229,24 +231,23 @@ def delete_ilustration(ilustration_id):
     user_id = get_jwt_identity()
     ilustration = Ilustration.query.filter_by(
         user_id=user_id, id=ilustration_id).first()
-    
-     
+
     if ilustration is None:
         return jsonify({"msg": "esta ilustracion no existe"}), 404
     favorites = Favorite.query.filter_by(
-        ilustration_id = ilustration_id).all() 
+        ilustration_id=ilustration_id).all()
     print(favorites, "hola")
     if favorites is not None:
         for favorite in favorites:
-            db.session.delete(favorite) 
-        db.session.commit() 
+            db.session.delete(favorite)
+        db.session.commit()
     db.session.delete(ilustration)
     try:
         db.session.commit()
         return jsonify({"msg": "se elimino la ilustracion"}), 200
     except Exception as error:
         return jsonify({"msg": error.args}), 500
-        
+
 
 @api.route('/ilustration/user/<alias>', methods=['GET'])
 def get_ilustrations_by_user(alias):
@@ -261,6 +262,7 @@ def get_ilustrations_by_user(alias):
 
     return jsonify(ilustrations_data), 200
 
+
 @api.route('/user', methods=['GET'])
 def get_all_users():
     users = User.query.all()
@@ -271,10 +273,10 @@ def get_all_users():
 @api.route('/user', methods=['PUT'])
 @jwt_required()
 def update_social_media():
-    user=User.query.get(get_jwt_identity())
-    if not user :
+    user = User.query.get(get_jwt_identity())
+    if not user:
         return jsonify({'message': 'User not exist'})
-    
+
     data_files = request.files
     data_form = request.form
 
@@ -288,36 +290,37 @@ def update_social_media():
         "facebook": data_form.get('facebook'),
         "instagram": data_form.get('instagram'),
         "image": data_files.get("image")
-        }    
+    }
     print(data_form)
     if data.get('name') is not None and data.get('name') != "":
-        user.name= data.get('name')
+        user.name = data.get('name')
     if data.get('lastname') is not None and data.get('lastname') != "":
-        user.lastname= data.get("lastname")
+        user.lastname = data.get("lastname")
     if data.get('email') is not None and data.get('email') != "":
-        user.email= data.get("email")
+        user.email = data.get("email")
     if data.get('alias') is not None and data.get('alias') != "":
-        user.alias= data.get("alias")
+        user.alias = data.get("alias")
     if data.get('twitter') is not None and data.get('twitter') != "":
-        user.twitter= data.get('twitter')
+        user.twitter = data.get('twitter')
     if data.get('facebook') is not None and data.get('facebook') != "":
-        user.facebook= data.get('facebook')
+        user.facebook = data.get('facebook')
     if data.get('instagram') is not None and data.get('instagram') != "":
-        user.instagram= data.get('instagram')
+        user.instagram = data.get('instagram')
     if data.get('password') is not None and data.get('password') != "":
         user.salt = b64encode(os.urandom(32)).decode('utf-8')
         password_hash = set_password(data.get("password"), user.salt)
-        user.password= password_hash
+        user.password = password_hash
     if data.get("image") is not None and data.get('image') != "":
         response_image = uploader.upload(data.get("image"))
         data.update({"image": response_image.get("url")})
-        user.image= data.get('image')
-    
+        user.image = data.get('image')
+
     try:
-        db.session.commit()    
+        db.session.commit()
         return jsonify({'message': 'Social Media updated'}), 200
     except Exception as error:
         return jsonify({'message': f'{error.args[0]}'}), 500
+
 
 @api.route('/favorites/all', methods=['GET'])
 @jwt_required()
@@ -325,6 +328,3 @@ def get_all_favorites():
     all_favorites = Favorite.query.all()
     all_favorites_data = [favorite.serialize() for favorite in all_favorites]
     return jsonify(all_favorites_data), 200
-    
-    
-    

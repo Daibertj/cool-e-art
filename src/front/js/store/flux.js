@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			allUsersData: [],
 			countFavorites: '',
 			ilustrationsByCategory: [],
-			categories:["2D","3D", "Concept Art", "Enviroment Desing", "Character Desing","Ilustration","Portraits","Abstract","Characters"]
+			categories: ["2D", "3D", "Concept-Art", "Environment-Desing", "Character-Desing", "Ilustration", "Portraits", "Abstract", "Characters"]
 		},
 		actions: {
 			registerUser: async (user) => {
@@ -88,7 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getIlustrationsByCategory: async (category)=> {
+			getIlustrationsByCategory: async (category) => {
 				const store = getStore();
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/ilustration?category=${category}`)
@@ -103,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error fetching ilustrations:", error);
 				}
-				
+
 			},
 
 			getUserData: async () => {
@@ -347,13 +347,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
 							console.log(favorite.category)
 							console.log(category)
-							if (category == ""){
+							if (category == "") {
 								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
 							}
-							if (favorite.category == category){
+							if (favorite.category == category) {
 								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
 							}
-							
+
 						})
 						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos que son los keys
 						const sortedIlustration = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a])
