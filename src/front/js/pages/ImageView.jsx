@@ -9,13 +9,16 @@ const {ilustrationData} = store
 const ilustration = ilustrationData.find((ilustration)=>ilustration.id === parseInt(id))
 
 return (
-    <div className="text-center">
+    <div className="container">
+      <div className="text-center p-5"> 
         <img 
         src={ilustration.image} 
         alt={ilustration.title}
         />
         <h1>{ilustration.title}</h1>
         <p>{ilustration.description}</p>
+
+    </div>
 
     </div>
   )

@@ -114,7 +114,7 @@ function UserPage() {
                           id={ilustration.id}
                           alias={userData.alias}
                           category={ilustration.category}
-                          ilustration_id={ilustration.ilustration_id}
+                          ilustration_id={ilustration.ilustration_id} 
                         />)}
                       <div className="btn-group">
                       </div>
