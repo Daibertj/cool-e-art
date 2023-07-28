@@ -172,7 +172,7 @@ def get_ilustations():
         ilustrations = Ilustration.query.filter_by(
             category=query_category).limit(6).all()
     else:
-        ilustrations = Ilustration.query.limit(6).all()
+        ilustrations = Ilustration.query.all()
     ilustratrations_data = list(
         map(lambda ilustration: ilustration.serialize(), ilustrations))
     return jsonify(ilustratrations_data), 200

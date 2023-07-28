@@ -345,8 +345,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						allFavotites.forEach((favorite) => {
 							const ilustrationId = favorite.ilustration_id
 							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
-							console.log(favorite.category)
-							console.log(category)
+							
 							if (category == "") {
 								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
 							}
