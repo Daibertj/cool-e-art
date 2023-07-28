@@ -35,16 +35,20 @@ export const Favorite2 = ({ id, title, description, image, user, ilustration_id,
                 <div class="course">
                     <div class="course-preview">
 
-                        <img src="https://source.unsplash.com/random/75x75?summer" alt=""/>
+
+                        <img
+                            src={image}
+                            className="card-img-top"
+                            alt={title}
+                            style={{ width: "100%", height: "100%" }}
+                        />
+
                     </div>
                     <div class="course-info">
-                        <div class="progress-container">
-                            <div class="progress"></div>
 
-                        </div>
-                        <h6>Chapter 4</h6>
-                        <h6>Callbacks & Closures</h6>
-                        <button class="btn">C</button>
+                        <h6><h5 className="text-white">{title}</h5></h6>
+                        <h6><span className="badge rounded-pill bg-light text-dark  ">{category}</span></h6>
+                        <button className="btnfav btn btn-dark bg-black fa-solid fa-trash" onClick={() => actions.deleteFavorite(ilustration_id)}></button>
                     </div>
                 </div>
             </div>

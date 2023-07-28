@@ -161,26 +161,25 @@ export const Navbar = () => {
                   <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     My favorites
                   </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">
-                      {favoriteData.map((ilustration) => (
-                        <div className="col" key={ilustration.id}>
-                          {ilustration && (
-                            <Favorite2
-                              image={ilustration.image}
-                              title={ilustration.title}
-                              description={ilustration.description}
-                              user={ilustration.user}
-                              id={ilustration.id}
-                              alias={userData.alias}
-                              category={ilustration.category}
-                              ilustration_id={ilustration.ilustration_id}
-                            />)}
-                          <div className="btn-group">
-                          </div>
+                  <ul class="dropdown-menu ul">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    {favoriteData.map((ilustration) => (
+                      <div className="col" key={ilustration.id}>
+                        {ilustration && (
+                          <Favorite2
+                            image={ilustration.image}
+                            title={ilustration.title}
+                            description={ilustration.description}
+                            user={ilustration.user}
+                            id={ilustration.id}
+                            alias={userData.alias}
+                            category={ilustration.category}
+                            ilustration_id={ilustration.ilustration_id}
+                          />)}
+                        <div className="btn-group">
                         </div>
-                      ))}
-                    </a></li>
+                      </div>
+                    ))}
                   </ul>
                 </div>
                 <span className="m-2">Hey, {userData.name}!</span>

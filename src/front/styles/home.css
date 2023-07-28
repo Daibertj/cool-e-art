@@ -96,69 +96,45 @@ p {
 }
 
 
-
+.ul{
+	background-color: rgb(56, 56, 56);
+}
 
 
 .course {
-	background-color: #fff;
+	background-color: #202020;
 	border-radius: 10px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	display: flex;
-	margin: 20px;
+	margin: 2px;
 	overflow: hidden;
-	width: 300px;
-	height: 75px;
-}
-
-.course h6 {
-	opacity: 0.6;
-	margin: 0;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-}
-
-.course h2 {
-	letter-spacing: 1px;
-	margin: 10px 0;
+	width: 340px;
+	height: 60px;
 }
 
 
 
-.course-preview a {
-	color: #fff;
-	display: inline-block;
-	font-size: 12px;
-	opacity: 0.6;
-	margin-top: 3px;
-	text-decoration: none;
-}
+
+
 
 .course-info {
-	padding: 30px;
+	padding: 5px;
 	position: relative;
 	width: 100%;
 }
 
-.progress-container {
+
+.btnfav {
+	background-color: #2A265F;
+	border: 0;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
 	position: absolute;
-	top: 30px;
-	right: 30px;
-	text-align: right;
-	width: 150px;
-}
-
-.progress {
-	background-color: #ddd;
-	border-radius: 3px;
-	height: 5px;
-	width: 100%;
-}
-
-.progress-text {
-	font-size: 10px;
-	opacity: 0.6;
+	bottom: 6px;
+	right: 3px;
 	letter-spacing: 1px;
 }
-
-
 
