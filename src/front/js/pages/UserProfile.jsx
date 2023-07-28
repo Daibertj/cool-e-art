@@ -20,7 +20,7 @@ function UserProfile() {
 
   if (!ilustratorVisited) {
     return (
-      <h1>No existe este ilustrador</h1>
+      <h1 className="text-white m-5 p-5">No existe este ilustrador</h1>
     )
   }
 
