@@ -9,12 +9,18 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-import Register from "./component/Register.jsx";
-import UserPage from "./component/UserPage.jsx";
+import Register from "./pages/Register.jsx";
+import UserPage from "./pages/UserPage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
-import UploadImage from "./component/UploadImage.jsx";
-import Imageview from "./component/ImageView.jsx"
-import UserProfile from "./component/UserProfile.jsx";
+import UploadImage from "./pages/UploadImage.jsx";
+import Imageview from "./pages/ImageView.jsx"
+import UserProfile from "./pages/UserProfile.jsx";
+
+import { NotFound } from "./component/NotFound.jsx";
+import EditPage from "./pages/EditPage.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+
+import Prueba from "./pages/Prueba.jsx";
 
 //create your first component
 const Layout = () => {
@@ -33,11 +39,14 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Register />} path="/register" />
                         <Route element={<UploadImage />} path="/upload" />
-                        <Route element={<UserPage/>} path="/myprofile/:alias" />
-                        <Route element= {<UserProfile/>} path="/profile/:alias"/>
+                        <Route element={<UserPage />} path="/myprofile/:alias" />
+                        <Route element={<UserProfile />} path="/profile/:alias" />
                         <Route element={<ExplorePage />} path="/explorepage" />
                         <Route element={<Imageview/>} path="/imageview/:id" />
-                        <Route element={<h1>Not found!</h1>} path="*" />
+                        <Route element={<EditPage />} path="/edit" />
+                        <Route element={<NotFound />} path="*" />
+                        <Route element={<AboutUs/>} path ="/aboutus" />
+                        <Route element={<Prueba/>} path='/prueba'/>
                     </Routes>
                     <Footer />
                 </ScrollToTop>

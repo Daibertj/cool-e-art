@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
@@ -15,9 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			image: "",
 			photos: [],
 			alias: "",
-			allUsersData:[]
-
-
+			allUsersData: [],
+			countFavorites: '',
+			ilustrationsByCategory: [],
+			categories: ["2D", "3D", "Concept-Art", "Environment-Desing", "Character-Desing", "Ilustration", "Portraits", "Abstract", "Characters"]
 		},
 		actions: {
 			registerUser: async (user) => {
@@ -51,18 +50,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					let data = await response.json();
-					setStore({
-						token: data.token,
-						name: data.name,
-						alias:data.alias
-					});
-					
+
+
 					if (response.ok) {
-						getActions().getUserData(data.alias)
+						setStore({
+							token: data.token,
+							name: data.name,
+							alias: data.alias
+						});
+						localStorage.setItem("token", data.token)
+						localStorage.setItem("alias", data.alias)
+						getActions().getUserData()
 					}
-				
-					localStorage.setItem("token", data.token)
-					localStorage.setItem("alias", data.alias)
+
+
 					return response.status
 				} catch (error) {
 					console.log("Error logging in:", error);
@@ -70,19 +71,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
-
 			getAllIlustrations: async () => {
-
 				const store = getStore();
-
 				try {
 					const response = await fetch(`${process.env.BACKEND_URL}/ilustration`)
 					if (response.ok) {
 						const responseData = await response.json();
 						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
-						console.log("ilustration data:", responseData)
 						setStore({ ilustrationData: responseData })
+						return responseData
 					} else {
 						console.log("Error fetching ilustrations:", response.status);
 					}
@@ -91,17 +88,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getUserData: async (alias) => {
+			getIlustrationsByCategory: async (category) => {
 				const store = getStore();
 				try {
-					const response = await fetch(`${process.env.BACKEND_URL}/user/${alias}`);
+					const response = await fetch(`${process.env.BACKEND_URL}/ilustration?category=${category}`)
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
+						setStore({ ilustrationsByCategory: responseData })
+						return responseData
+					} else {
+						console.log("Error fetching ilustrations:", response.status);
+					}
+				} catch (error) {
+					console.log("Error fetching ilustrations:", error);
+				}
+
+			},
+
+			getUserData: async () => {
+				const store = getStore();
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/user/by-alias`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "aplication/json",
+							"Authorization": `Bearer ${store.token}`
+						}
+					});
 					if (response.ok) {
 						const responseData = await response.json();
 						console.log("User data:", responseData);
 						setStore({ userData: responseData });
 						localStorage.setItem("userData", JSON.stringify(responseData));
-
-
 					} else {
 						console.log("Error fetching user data:", response.status);
 					}
@@ -117,7 +136,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration`, {
 						method: "POST",
 						headers: {
-
 							Authorization: `Bearer ${store.token}`,
 						},
 						body: ilustration,
@@ -133,7 +151,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return 500
 				}
 			},
-
 
 			getIlustrationsByUser: async (alias) => {
 				const store = getStore()
@@ -152,8 +169,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
-
 			logout: () => {
 				localStorage.removeItem("token")
 				localStorage.removeItem("userData")
@@ -161,9 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("favoriteData")
 				localStorage.removeItem("ilustrationData")
 				setStore({ token: null, name: "", image: "" })
-				
 			},
-
 
 			addFavorite: async (id) => {
 				const store = getStore();
@@ -171,7 +184,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${id}`, {
 						method: "POST",
 						headers: {
-
 							Authorization: `Bearer ${store.token}`,
 						},
 						body: [],
@@ -186,7 +198,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error", error);
 					return 500;
 				}
-
 			},
 
 			getApiImage: async () => {
@@ -194,7 +205,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(`https://api.pexels.com/v1/curated?page=2&per_page=12`, {
 						method: "GET",
 						headers: {
-
 							Authorization: `${process.env.API_KEY_PEXEL}`,
 						},
 					})
@@ -202,7 +212,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await response.json();
 						setStore({ photos: data.photos })
 					}
-
 				} catch (error) {
 					console.log(error)
 				}
@@ -212,32 +221,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const token = store.token;
 				const userData = store.userData;
-				
 				if (!token || !userData) {
-				  
-				  return;
+					return;
 				}
-				
 				const user_id = userData.id;
-				
 				try {
-				  const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
-					headers: {
-					  Authorization: `Bearer ${token}`,
-					},
-				  });
-			  
-				  if (response.ok) {
-					const responseData = await response.json();
-					localStorage.setItem("favoriteData", JSON.stringify(responseData));
-					setStore({ favoriteData: responseData });
-				  } else {
-					console.log("Error fetching favorites:", response.status);
-				  }
+					const response = await fetch(`${process.env.BACKEND_URL}/favorite`, {
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
+					});
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("favoriteData", JSON.stringify(responseData));
+						setStore({ favoriteData: responseData });
+						console.log("favorite added", store.favoriteData)
+					} else {
+						console.log("Error fetching favorites:", response.status);
+					}
 				} catch (error) {
-				  console.log("Error fetching favorites:", error);
+					console.log("Error fetching favorites:", error);
 				}
-			  },
+			},
 
 			deleteFavorite: async (ilustration_id) => {
 				const store = getStore()
@@ -245,44 +250,123 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let response = await fetch(`${process.env.BACKEND_URL}/favorite/${ilustration_id}`, {
 						method: "DELETE",
 						headers: {
-
 							Authorization: `Bearer ${store.token}`,
 						}
 					})
-
-					console.log(response)
-
+					console.log("delete favorite", response)
 					if (response.ok) {
 						getActions().getFavorite()
 					} else {
-						console.log("errorrrrr")
+						console.log("favorite not deleted")
 					}
-
-
-
 				} catch (err) {
-					console.log(err)
+					console.log("error deleting favorite", err)
 				}
-
 			},
 
-			getAllUsers: async ()=>{
-				const store= getStore()
+			getAllUsers: async () => {
+				const store = getStore()
 				try {
-					let response = await fetch(`${process.env.BACKEND_URL}/user`)
-					if (response.ok){
+					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+						method: 'GET',
+						headers: { 'Content-Type': 'application/json' }
+					});
+					if (response.ok) {
 						const responseData = await response.json()
-						setStore({allUsersData: responseData})
-					}else{
-						console.log("Error Fetching all users",response.status)
+						setStore({ allUsersData: responseData })
+					} else {
+						console.log("Error Fetching all users:", response.status)
 					}
-
 				} catch (error) {
-					console.log("Error Fetching all users",error)
+					console.log("Error Fetching all users:", error)
+				}
+			},
+
+			deleteIlustration: async (ilustration_id, alias) => {
+				const store = getStore()
+				console.log(alias)
+				try {
+					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${ilustration_id}`, {
+						method: "DELETE",
+						headers: {
+							Authorization: `Bearer ${store.token}`,
+						}
+					})
+					console.log("deleteIlustration", response)
+					if (response.ok) {
+						getActions().getFavorite()
+						getActions().getIlustrationsByUser(alias)
+					} else {
+						console.log("erorr deleting Ilustration")
+					}
+				} catch (err) {
+					console.log("Error deleting ilustration:", err)
+				}
+			},
+
+			updateUser: async (user) => {
+				const store = getStore()
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/user`, {
+						method: 'PUT',
+						headers: {
+							Authorization: `Bearer ${store.token}`
+						},
+						body: user
+					})
+					if (response.ok) {
+						console.log("se actualizo usuario")
+						getActions().getUserData()
+						return response.status
+					} else {
+						console.log("Error updating social media")
+						return response.status
+					}
+				} catch (error) {
+					console.log("Error updating user: ", error)
+				}
+			},
+
+			getCountAllFavorites: async (category) => {
+				const store = getStore()
+				//actualiza las ilustraciones antes de contar los favoritos
+				const response = await fetch(`${process.env.BACKEND_URL}/favorites/all`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${store.token}`,
+					}
+				})
+				try {
+					if (response.ok) {
+						const allFavotites = await response.json()
+						console.log(allFavotites)
+						const ilustrationCount = {}
+						allFavotites.forEach((favorite) => {
+							const ilustrationId = favorite.ilustration_id
+							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
+							
+							if (category == "") {
+								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+							}
+							if (favorite.category == category) {
+								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+							}
+
+						})
+						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos que son los keys
+						const sortedIlustration = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a])
+						// Toma solo los primeros 6 elementos del objeto, con map se crea un nuevo array donde cada elemento es otro array de dos elementos
+						const top6Favorites = sortedIlustration.slice(0, 6).map((ilustrationId) => [ilustrationId, ilustrationCount[ilustrationId]])
+						setStore({ countFavorites: top6Favorites })
+						console.log(ilustrationCount)
+					} else {
+						console.log('error getting all favorites')
+					}
+				} catch (error) {
+					console.log('Error fetching all favorites:', error)
 				}
 			}
-
-
 		},
 	};
 };

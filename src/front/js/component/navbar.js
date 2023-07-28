@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import coolLogo2 from "../../img/Cool-e-Art-04.png";
+import { Favorite2 } from "./Favorite2.jsx";
 
 const initialState = {
   email: "",
@@ -10,7 +12,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData } = store;
+  const { userData, favoriteData } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -20,10 +22,11 @@ export const Navbar = () => {
       Swal.fire({
         title: "Usuario logueado con éxito",
         icon: "success",
-        confirmButtonText: "Aceptar",
+        showConfirmButton: false,
+        timer: 1000
       });
       await actions.getUserData;
-      navigate(`/`);
+      navigate(`/myprofile/${userData.alias}`);
     }
     if (response == 400) {
       Swal.fire({
@@ -49,7 +52,7 @@ export const Navbar = () => {
 
     <nav className="navbar navbar-expand-lg navbar-dark  ">
       <div className="container text-white">
-        <Link className="navbar-brand text-white bold-text text-capitalize fs-3 fw-bold fst-italic" to="/">Cool-e-Art</Link>
+        <Link className="navbar-brand text-white bold-text text-capitalize fs-3 fw-bold fst-italic" to="/"><img className="logonav " src={coolLogo2} /></Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -61,16 +64,18 @@ export const Navbar = () => {
             {store.token && (
               <>
                 <li className="nav-item">
-                  <Link to="/explorepage" className="nav-link text-white">Creators</Link>
+                  <Link to="/explorepage" className="nav-link text-white">Explore&nbsp;&nbsp;&nbsp;|</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile</Link>
+                  <Link to={`/myprofile/${userData.alias}`} className="nav-link text-white">My Profile&nbsp;&nbsp; |</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/upload" className="nav-link text-white">Upload Creation</Link>
+                  <Link to="/upload" className="nav-link text-white">Upload Creation &nbsp;&nbsp; |</Link>
                 </li>
               </>
             )}
+            <li className="nav-item"><Link to={`/aboutus`} className="nav-link text-white">About Us</Link></li>
+
           </ul>
 
           <div className="ms-auto d-flex">
@@ -152,8 +157,33 @@ export const Navbar = () => {
 
             {store.token && (
               <>
+                <div class="dropdown">
+                  <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    My favorites
+                    <span className="badge bg-secondary">{favoriteData.length}</span>
+                  </button>
+                  <ul class="dropdown-menu ul">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    {favoriteData.map((ilustration) => (
+                      <div className="col" key={ilustration.id}>
+                        {ilustration && (
+                          <Favorite2
+                            image={ilustration.image}
+                            title={ilustration.title}
+                            description={ilustration.description}
+                            user={ilustration.user}
+                            id={ilustration.id}
+                            alias={userData.alias}
+                            category={ilustration.category}
+                            ilustration_id={ilustration.ilustration_id}
+                          />)}
+                        <div className="btn-group">
+                        </div>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
                 <span className="m-2">Hey, {userData.name}!</span>
-
 
 
                 <button

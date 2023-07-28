@@ -3,18 +3,18 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 
-export const Favorite = ({ id, title, description, image, user, ilustration_id, category, alias }) => {
+export const Favorite2 = ({ id, title, description, image, user, ilustration_id, category, alias }) => {
     const { store, actions } = useContext(Context)
     return (
 
         <>
-            <div className="card negro">
+            {/* <div className="card negro" style={{ width: "100%", height: "100%" }}>
                 <Link to={`/imageview/${ilustration_id}`}>
                     <img
                         src={image}
                         className="card-img-top"
                         alt={title}
-                        style={{ width: "100%", height: "300px" }}
+                        style={{ width: "100%", height: "100%" }}
                     />
                 </Link>
                 <div className="card-body">
@@ -29,7 +29,30 @@ export const Favorite = ({ id, title, description, image, user, ilustration_id, 
                 ></button>
 
 
+            </div> */}
+
+            <div class="courses-container">
+                <div class="course">
+                    <div class="course-preview">
+
+
+                        <img
+                            src={image}
+                            className="card-img-top"
+                            alt={title}
+                            style={{ width: "100%", height: "100%" }}
+                        />
+
+                    </div>
+                    <div class="course-info">
+
+                        <h6><h5 className="text-white">{title}</h5></h6>
+                        <h6><span className="badge rounded-pill bg-light text-dark  ">{category}</span></h6>
+                        <button className="btnfav btn btn-dark bg-black fa-solid fa-trash" onClick={() => actions.deleteFavorite(ilustration_id)}></button>
+                    </div>
+                </div>
             </div>
+
 
         </>
 

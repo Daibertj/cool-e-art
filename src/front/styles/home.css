@@ -1,36 +1,140 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
-body{
-    background-color: #D0CCD0;
+body {
+  background-color: #1a1d1a;
 }
 
-.barra{
-    background-color:rgb(3, 1, 44)
+.barra {
+  background-color: #50514f;
 }
 
-.profile{
-    background-color:rgb(220, 237, 255);
-    color:white 
+.profile {
+  background: linear-gradient(-45deg, #baca0b, #67b309, #0e991c, #11b984);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	color: white;
 }
 
-.navbar{
-
-    background-color:#1C6E8C
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
-.logo1{
-    width: auto;
-    height: 200px;
+.navbar {
+  height: 60px;
+  background-color: #00100b;
 }
-.formulario{
-    width: 300px !important;
+.logonav {
+  width: 250px;
+  height: 90px;
+  margin-left: -70px;
 }
-.btn{
-    border-radius: 0px 0px 5px 5px;
-    
+
+.logo1 {
+  width: auto;
+  height: 250px;
 }
+.formulario {
+  width: 300px !important;
+}
+.btn {
+  border-radius: 5px 5px 5px 5px;
+  height: 40px;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#banner {
+  background-attachment: scroll, fixed;
+  background: rgb(250, 79, 154);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(250, 79, 154, 1) 1%,
+    rgba(11, 11, 13, 0.9500000683867297) 89%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(250, 79, 154, 1) 1%,
+    rgba(11, 11, 13, 0.9500000683867297) 89%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(250, 79, 154, 1) 1%,
+    rgba(11, 11, 13, 0.9500000683867297) 89%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fa4f9a",endColorstr="#0b0b0d",GradientType=1);
+  background-position: top left, center center;
+  background-repeat: repeat, no-repeat;
+  background-size: auto, cover;
+  color: #fff;
+  padding: 12em 0 10em 0;
+  text-align: center;
+
+  color: rgb(252, 246, 246);
+}
+.perfiles {
+  width: auto;
+  height: 250px;
+  border-radius: 50px;
+}
+
+p {
+  color: white;
+}
+
+.negro {
+  background-color: #50514f;
+}
+
+
+.ul{
+	background-color: rgb(56, 56, 56);
+}
+
+
+.course {
+	background-color: #202020;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	display: flex;
+	margin: 2px;
+	overflow: hidden;
+	width: 340px;
+	height: 60px;
+}
+
+
+
+
+
+
+.course-info {
+	padding: 5px;
+	position: relative;
+	width: 100%;
+}
+
+
+.btnfav {
+	background-color: #2A265F;
+	border: 0;
+	border-radius: 5px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	position: absolute;
+	bottom: 6px;
+	right: 3px;
+	letter-spacing: 1px;
+}
+
