@@ -157,13 +157,13 @@ export const Navbar = () => {
 
             {store.token && (
               <>
-                <div class="dropdown">
-                  <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="dropdown">
+                  <button className="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     My favorites
                     <span className="badge bg-secondary">{favoriteData.length}</span>
                   </button>
-                  <ul class="dropdown-menu ul">
-                    <li><a class="dropdown-item" href="#"></a></li>
+                  <ul className="dropdown-menu ul">
+                    <li><a className="dropdown-item" href="#"></a></li>
                     {favoriteData.map((ilustration) => (
                       <div className="col" key={ilustration.id}>
                         {ilustration && (
