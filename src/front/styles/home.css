@@ -123,3 +123,6 @@ p {
 body.landing #main {
   margin-top: -14em;
 }
+
+.modal-content {background-color: #0d0e0d;
+  text-decoration:none;}
