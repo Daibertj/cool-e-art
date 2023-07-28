@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import coolLogo2 from "../../img/Cool-e-Art-04.png";
-import { Favorite } from "./Favorite.jsx";
+import { Favorite2 } from "./Favorite2.jsx";
 
 const initialState = {
   email: "",
@@ -166,8 +166,7 @@ export const Navbar = () => {
                       {favoriteData.map((ilustration) => (
                         <div className="col" key={ilustration.id}>
                           {ilustration && (
-                            <Favorite
-
+                            <Favorite2
                               image={ilustration.image}
                               title={ilustration.title}
                               description={ilustration.description}
