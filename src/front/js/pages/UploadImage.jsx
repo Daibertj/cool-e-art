@@ -17,32 +17,32 @@ const UploadImage = () => {
 
   const handleUpload = async () => {
     try {
-      const formData = new FormData();
+      const formData = new FormData()
 
-      formData.append("image", imgUpload.image);
-      formData.append("title", imgUpload.title);
-      formData.append("description", imgUpload.description);
-      formData.append("category", imgUpload.category);
+      formData.append("image", imgUpload.image)
+      formData.append("title", imgUpload.title)
+      formData.append("description", imgUpload.description)
+      formData.append("category", imgUpload.category)
 
-      const response = await actions.uploadIlustration(formData);
+      const response = await actions.uploadIlustration(formData)
 
       if (response.status === 201 || response.status === 200) {
         console.log("Image Uploaded:", {
           imgUpload,
         });
-        return true;
+        return true
       } else {
         console.log("Error en Upload");
-        return false; 
+        return false 
       }
     } catch (error) {
-      console.log("Error en la solicitud de Upload:", error);
+      console.log("Error en la solicitud de Upload:", error)
       return false; 
     }
   };
 
   const handleChange = ({ target }) => {
-    setImgUpload({ ...imgUpload, [target.name]: target.value });
+    setImgUpload({ ...imgUpload, [target.name]: target.value })
   };
 
   const handleUploadNotification = async () => {
