@@ -20,8 +20,8 @@ const ExplorePage = () => {
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
     getAllIlustrations();
-    getCountAllFavorites();
-  }, [getAllIlustrations, getCountAllFavorites]);
+    getCountAllFavorites(searchCategory);
+  }, [searchCategory]);
 
 
   // Filtrar y ordenar la lista de creadores según el conteo de favoritos
@@ -67,11 +67,15 @@ const ExplorePage = () => {
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
                   <option value="">Select a category</option>
-                  <option value="nature">Nature</option>
-                  <option value="food">Food</option>
-                  <option value="sports">Sports</option>
-                  <option value="art">Art</option>
-                  <option value="others">Others</option>
+                  <option value="nature">2D</option>
+                  <option value="food">3D</option>
+                  <option value="sports">Concept art</option>
+                  <option value="art">Environment design</option>
+                  <option value="others">Character design</option>
+                  <option value="others">Illustration</option>
+                  <option value="others">Portraits</option>
+                  <option value="others">Abstract</option>
+                  <option value="others">Characters</option>
                 </select>
               </span>
               <div className="container">

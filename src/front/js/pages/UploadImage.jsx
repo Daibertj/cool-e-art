@@ -116,11 +116,15 @@ const UploadImage = () => {
         <select className="form-control" id="category" value={imgUpload.category} 
         name="category" onChange={handleChange}>
           <option value="">Select a category</option>
-          <option value="nature">Nature</option>
-          <option value="food">Food</option>
-          <option value="sports">Sports</option>
-          <option value="art">Art</option>
-          <option value="others">Others</option>
+          <option value="nature">2D</option>
+          <option value="food">3D</option>
+          <option value="sports">Concept art</option>
+          <option value="art">Environment design</option>
+          <option value="others">Character design</option>
+          <option value="others">Illustration</option>
+          <option value="others">Portraits</option>
+          <option value="others">Abstract</option>
+          <option value="others">Characters</option>
         </select>
       </div>
       </form>

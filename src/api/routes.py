@@ -167,7 +167,11 @@ def upload_new_image():
 
 @api.route('/ilustration', methods=['GET'])
 def get_ilustations():
-    ilustrations = Ilustration.query.all()
+    query_category = request.args.get('category')
+    if query_category: 
+        ilustrations = Ilustration.query.filter_by(category = query_category).limit(6).all()
+    else:
+        ilustrations = Ilustration.query.limit(6).all()
     ilustratrations_data = list(
         map(lambda ilustration: ilustration.serialize(), ilustrations))
     return jsonify(ilustratrations_data), 200
@@ -225,15 +229,24 @@ def delete_ilustration(ilustration_id):
     user_id = get_jwt_identity()
     ilustration = Ilustration.query.filter_by(
         user_id=user_id, id=ilustration_id).first()
+    
+     
     if ilustration is None:
         return jsonify({"msg": "esta ilustracion no existe"}), 404
-    else:
-        db.session.delete(ilustration)
-        try:
-            db.session.commit()
-            return jsonify({"msg": "se elimino la ilustracion"}), 200
-        except Exception as error:
-            return jsonify({"msg": error.args}), 500
+    favorites = Favorite.query.filter_by(
+        ilustration_id = ilustration_id).all() 
+    print(favorites, "hola")
+    if favorites is not None:
+        for favorite in favorites:
+            db.session.delete(favorite) 
+        db.session.commit() 
+    db.session.delete(ilustration)
+    try:
+        db.session.commit()
+        return jsonify({"msg": "se elimino la ilustracion"}), 200
+    except Exception as error:
+        return jsonify({"msg": error.args}), 500
+        
 
 @api.route('/ilustration/user/<alias>', methods=['GET'])
 def get_ilustrations_by_user(alias):
