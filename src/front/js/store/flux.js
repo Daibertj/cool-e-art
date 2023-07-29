@@ -16,7 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			allUsersData: [],
 			countFavorites: '',
 			ilustrationsByCategory: [],
-			categories:["2D","3D", "Concept Art", "Enviroment Desing", "Character Desing","Ilustration","Portraits","Abstract","Characters"]
+			categories: ["2D", "3D", "Concept-Art", "Environment-Desing", "Character-Desing", "Ilustration", "Portraits", "Abstract", "Characters"]
 		},
 		actions: {
 			registerUser: async (user) => {
@@ -88,15 +88,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getIlustrationsByCategory: (category)=> {
+			getIlustrationsByCategory: async (category) => {
 				const store = getStore();
-				if (category != ""){
-					let ilustrations= store.ilustrationData.filter(ilustration=> ilustration.category == category)
-					setStore({ilustrationsByCategory: ilustrations})
-				}else{
-					setStore({ilustrationsByCategory: store.ilustrationData})
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/ilustration?category=${category}`)
+					if (response.ok) {
+						const responseData = await response.json();
+						localStorage.setItem("ilustrationData", JSON.stringify(responseData));
+						setStore({ ilustrationsByCategory: responseData })
+						return responseData
+					} else {
+						console.log("Error fetching ilustrations:", response.status);
+					}
+				} catch (error) {
+					console.log("Error fetching ilustrations:", error);
 				}
-				
+
 			},
 
 			getUserData: async () => {
@@ -228,7 +235,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const responseData = await response.json();
 						localStorage.setItem("favoriteData", JSON.stringify(responseData));
 						setStore({ favoriteData: responseData });
-						console.log("favorite added", favoriteData)
+						console.log("favorite added", store.favoriteData)
 					} else {
 						console.log("Error fetching favorites:", response.status);
 					}
@@ -320,7 +327,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getCountAllFavorites: async () => {
+			getCountAllFavorites: async (category) => {
 				const store = getStore()
 				//actualiza las ilustraciones antes de contar los favoritos
 				const response = await fetch(`${process.env.BACKEND_URL}/favorites/all`, {
@@ -333,17 +340,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					if (response.ok) {
 						const allFavotites = await response.json()
+						console.log(allFavotites)
 						const ilustrationCount = {}
 						allFavotites.forEach((favorite) => {
 							const ilustrationId = favorite.ilustration_id
 							// revisa si ya esta el objeto contiene tiene algo y le suma 1, sino lo coloca en 0 y le suma 1
-							ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+							
+							if (category == "") {
+								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+							}
+							if (favorite.category == category) {
+								ilustrationCount[ilustrationId] = (ilustrationCount[ilustrationId] || 0) + 1
+							}
+
 						})
 						// Ordena el objeto ilustrationCount en orden descendente según la cantidad de favoritos que son los keys
 						const sortedIlustration = Object.keys(ilustrationCount).sort((a, b) => ilustrationCount[b] - ilustrationCount[a])
 						// Toma solo los primeros 6 elementos del objeto, con map se crea un nuevo array donde cada elemento es otro array de dos elementos
 						const top6Favorites = sortedIlustration.slice(0, 6).map((ilustrationId) => [ilustrationId, ilustrationCount[ilustrationId]])
 						setStore({ countFavorites: top6Favorites })
+						console.log(ilustrationCount)
 					} else {
 						console.log('error getting all favorites')
 					}

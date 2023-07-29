@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import coolLogo2 from "../../img/Cool-e-Art-04.png";
+import { Favorite2 } from "./Favorite2.jsx";
 
 const initialState = {
   email: "",
@@ -11,7 +12,7 @@ const initialState = {
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context);
-  const { userData } = store;
+  const { userData, favoriteData } = store;
   const [user, setUser] = useState(initialState);
   const navigate = useNavigate();
 
@@ -73,7 +74,7 @@ export const Navbar = () => {
                 </li>
               </>
             )}
-             <li className="nav-item"><Link to={`/aboutus`} className="nav-link text-white">About Us</Link></li>
+            <li className="nav-item"><Link to={`/aboutus`} className="nav-link text-white">About Us</Link></li>
 
           </ul>
 
@@ -156,8 +157,33 @@ export const Navbar = () => {
 
             {store.token && (
               <>
+                <div className="dropdown">
+                  <button className="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    My favorites
+                    <span className="badge bg-secondary">{favoriteData.length}</span>
+                  </button>
+                  <ul className="dropdown-menu ul">
+                    <li><a className="dropdown-item" href="#"></a></li>
+                    {favoriteData.map((ilustration) => (
+                      <div className="col" key={ilustration.id}>
+                        {ilustration && (
+                          <Favorite2
+                            image={ilustration.image}
+                            title={ilustration.title}
+                            description={ilustration.description}
+                            user={ilustration.user}
+                            id={ilustration.id}
+                            alias={userData.alias}
+                            category={ilustration.category}
+                            ilustration_id={ilustration.ilustration_id}
+                          />)}
+                        <div className="btn-group">
+                        </div>
+                      </div>
+                    ))}
+                  </ul>
+                </div>
                 <span className="m-2">Hey, {userData.name}!</span>
-
 
 
                 <button

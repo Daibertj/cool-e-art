@@ -20,8 +20,8 @@ const ExplorePage = () => {
   useEffect(() => {
     // Llamamos a las funciones para obtener los datos de ilustraciones y contar los favoritos
     getAllIlustrations();
-    getCountAllFavorites();
-  }, [getAllIlustrations, getCountAllFavorites]);
+    getCountAllFavorites(searchCategory);
+  }, [searchCategory]);
 
 
   // Filtrar y ordenar la lista de creadores según el conteo de favoritos
@@ -50,12 +50,12 @@ const ExplorePage = () => {
   useEffect(() => {
     actions.getIlustrationsByCategory(searchCategory);
   }, [searchCategory]);
-  
+
 
   return (
     <>
       <div>
-        
+
         <div>
           {currentPage === 1 && (
             <div>
@@ -65,39 +65,43 @@ const ExplorePage = () => {
                 <select className="form-control btn btn-dark bg-black " id="category" value={searchCategory}
                   name="category" onChange={(event) => setSearchCategory(event.target.value)}>
                   <option value="">Select a category</option>
-                  <option value="nature">Nature</option>
-                  <option value="food">Food</option>
-                  <option value="sports">Sports</option>
-                  <option value="art">Art</option>
-                  <option value="others">Others</option>
+                  <option value="2D">2D</option>
+                  <option value="3D">3D</option>
+                  <option value="Concept-Art">Concept Art</option>
+                  <option value="Environment-Desing">Environment Desing</option>
+                  <option value="Character-Desing">Character Desing</option>
+                  <option value="Illustration">Illustration</option>
+                  <option value="Portraits">Portraits</option>
+                  <option value="Abstract">Abstract</option>
+                  <option value="Characters">Characters</option>
                 </select>
               </span>
               <div className="container">
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {sortedIlustrationCount.length > 0 &&
-                  sortedIlustrationCount.map((ilustrationInfo) => {
-                    // Obtener el ID y la cantidad de favoritos del elemento
-                    const [ilustrationId, favoritesCount] = ilustrationInfo;
-                    // Buscar la ilustración correspondiente usando el ID
-                    const ilustration = ilustrationsByCategory.find((ilustration) => ilustration.id === parseInt(ilustrationId));
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                  {sortedIlustrationCount.length > 0 &&
+                    sortedIlustrationCount.map((ilustrationInfo) => {
+                      // Obtener el ID y la cantidad de favoritos del elemento
+                      const [ilustrationId, favoritesCount] = ilustrationInfo;
+                      // Buscar la ilustración correspondiente usando el ID
+                      const ilustration = ilustrationsByCategory.find((ilustration) => ilustration.id === parseInt(ilustrationId));
 
-                    if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
+                      if (!ilustration) return null; // Si no se encuentra la ilustración, no la mostramos
 
-                    return (
-                      <div className="d-flex gap-2 pb-2" key={ilustration.id}>
-                        <Card2
-                          title={ilustration.title}
-                          description={ilustration.description}
-                          image={ilustration.image}
-                          user={ilustration.user.name}
-                          id={ilustration.id}
-                          alias={ilustration.user.alias}
-                          category={ilustration.category}
-                        />
-                      </div>
-                    );
-                  })}
-              </div>
+                      return (
+                        <div className="d-flex gap-2 pb-2" key={ilustration.id}>
+                          <Card2
+                            title={ilustration.title}
+                            description={ilustration.description}
+                            image={ilustration.image}
+                            user={ilustration.user.name}
+                            id={ilustration.id}
+                            alias={ilustration.user.alias}
+                            category={ilustration.category}
+                          />
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             </div>
           )}
@@ -108,25 +112,25 @@ const ExplorePage = () => {
 
             <h3 className=" m-3 lh-1 text-white p-2"><i className="fa-solid fa-newspaper"></i>&nbsp;{creator}'s latest Arts</h3>
             <div className="container">
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
-              {ilustrationData
-                .filter((ilustration) => ilustration.user.alias === creator).slice(0, 6)
-                .map((ilustration) => (
-                  <div className="d-flex gap-2 pb-2" key={ilustration.id}>
-                    <Card2
-                      title={ilustration.title}
-                      description={ilustration.description}
-                      image={ilustration.image}
-                      user={ilustration.user.name}
-                      id={ilustration.id}
-                      alias={ilustration.user.alias}
-                      category={ilustration.category}
-                    />
-                  </div>
-                ))}
+              <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+                {ilustrationData
+                  .filter((ilustration) => ilustration.user.alias === creator).slice(0, 6)
+                  .map((ilustration) => (
+                    <div className="d-flex gap-2 pb-2" key={ilustration.id}>
+                      <Card2
+                        title={ilustration.title}
+                        description={ilustration.description}
+                        image={ilustration.image}
+                        user={ilustration.user.name}
+                        id={ilustration.id}
+                        alias={ilustration.user.alias}
+                        category={ilustration.category}
+                      />
+                    </div>
+                  ))}
+              </div>
             </div>
-            </div>
-            
+
             <button
               className="btn btn-dark bg-black mt-3"
               onClick={() => redirectProfile(creator)}> Ver mas de {creator}

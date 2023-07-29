@@ -13,7 +13,6 @@ function Card2({ id, title, description, image, alias, category }) {
             className="card-img-top"
             alt={title}
             style={{ width: "100%", height: "300px" }}
-
           />
         </Link>
         <div className="card-body">

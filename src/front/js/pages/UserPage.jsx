@@ -30,7 +30,7 @@ function UserPage() {
             style={{ width: "150px" }}
           />}
 
-          <div className="col-lg-5 col-md-8 h-25 text-black ps-3 pt-4 ">
+          <div className="col-lg-5 col-md-8 h-25 text-black ps-3 pt-2 ">
             <h1 className="fw-light">{userData.alias}</h1>
             <p className="fst-italic">
               {userData.name} {userData.lastname}
@@ -41,7 +41,7 @@ function UserPage() {
             <div>
               <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a>
             </div>
-            <div>
+            <div className="py-2">
               <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
             </div>
             <div>
@@ -112,8 +112,9 @@ function UserPage() {
                           description={ilustration.description}
                           user={ilustration.user}
                           id={ilustration.id}
-                          ilustration_id={ilustration.ilustration_id}
-                        // ilustration_id={favorite.ilustration_id}
+                          alias={userData.alias}
+                          category={ilustration.category}
+                          ilustration_id={ilustration.ilustration_id} 
                         />)}
                       <div className="btn-group">
                       </div>
