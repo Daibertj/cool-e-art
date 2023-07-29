@@ -20,7 +20,7 @@ function UserProfile() {
 
   if (!ilustratorVisited) {
     return (
-      <h1>No existe este ilustrador</h1>
+      <h1 className="text-white m-5 p-5">No existe este ilustrador</h1>
     )
   }
 
@@ -45,7 +45,12 @@ function UserProfile() {
               <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Contactame
               </button>
+
               <ContactModal alias={alias} />
+
+
+
+              
             </>
           )}
 
