@@ -45,7 +45,12 @@ function UserProfile() {
               <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Contactame
               </button>
+
               <ContactModal alias={alias} />
+
+
+
+              
             </>
           )}
 

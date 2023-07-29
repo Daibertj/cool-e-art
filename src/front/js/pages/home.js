@@ -47,69 +47,79 @@ export const Home = () => {
 
         <section className="box special">
           <header className="major">
-            <h2>Introducing the ultimate mobile app
-              <br />
-              for doing stuff with your phone</h2>
-            <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-              adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+            <h2>¿Pensabas que el arte había muerto?
+              <br />Aca esta Cool E Art
+            </h2>
+            <p>El lugar de ilustradores para ilustradores</p>
           </header>
           <span className="image featured"><img src="images/pic01.jpg" alt="" /></span>
         </section>
 
-        <section className="box special features">
-          <div className="features-row">
-            <section>
-              <span className="icon solid major fa-bolt accent2"></span>
-              <h3>Magna etiam</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-            <section>
-              <span className="icon solid major fa-chart-area accent3"></span>
-              <h3>Ipsum dolor</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-          </div>
-          <div className="features-row">
-            <section>
-              <span className="icon solid major fa-cloud accent4"></span>
-              <h3>Sed feugiat</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-            <section>
-              <span className="icon solid major fa-lock accent5"></span>
-              <h3>Enim phasellus</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-            </section>
-          </div>
-        </section>
-
-        <div className="row">
-          <div className="col-6 col-12-narrower">
-
-            <section className="box special">
-              <span className="image featured"><img src="images/pic02.jpg" alt="" /></span>
-              <h3>Sed lorem adipiscing</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-              <ul className="actions special">
-                <li><a href="#" className="button alt">Learn More</a></li>
-              </ul>
-            </section>
-
-          </div>
-          <div className="col-6 col-12-narrower">
-
-            <section className="box special">
-              <span className="image featured"><img src="images/pic03.jpg" alt="" /></span>
-              <h3>Accumsan integer</h3>
-              <p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-              <ul className="actions special">
-                <li><a href="#" className="button alt">Learn More</a></li>
-              </ul>
-            </section>
-
+       <div className="row m-3">
+        
+       <div className=" col card-container p-3">
+          <div className="card-home">
+            <div className="front-content">
+              <p>El arte como forma de catarsis</p>
+            </div>
+            <div className="content">
+              
+              <p>
+              A lo largo de la historia, el arte ha sido un medio de catarsis y desahogo para la humanidad, trascendiendo desgracias humanas como guerras y pandemias. Ha sido una manera de expresar emociones y superar situaciones difíciles.
+              </p>
+            </div>
           </div>
         </div>
 
+        
+        <div className="col card-container">
+          <div className="card-home">
+            <div className="front-content">
+              <p>Una comunidad para artistas y aficionados</p>
+            </div>
+            <div className="content">
+              
+              <p>
+              Cool-E-Art es una comunidad acogedora que da la bienvenida a artistas, expertos y aficionados del arte. Todos pueden compartir y apreciar obras increíbles de diversas disciplinas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+       </div>
+
+        <div className="row m-3">
+<div className="card-container col">
+          <div className="card-home">
+            <div className="front-content">
+              <p>Cool-E-Art</p>
+            </div>
+            <div className="content">
+              
+              <p>
+              En la era tecnológica actual, Cool-E-Art ofrece una alternativa para artistas gráficos como pintores, dibujantes, diseñadores y fotógrafos. Es una página web diseñada exclusivamente para llevar sus obras al mundo y trascender en el tiempo.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="card-container col">
+          <div className="card-home">
+            <div className="front-content">
+              <p>Descubre el arte más cool en internet</p>
+            </div>
+            <div className="content">
+              
+              <p>
+              En Cool-E-Art, puedes encontrar el arte más cool de internet. Explora una variedad de obras únicas y creativas que antes podrían haber estado guardadas y ahora pueden llegar a todos los rincones del mundo. No esperes más, ¡únete a esta comunidad artística!
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+
+        
       </section>
 
     </>
