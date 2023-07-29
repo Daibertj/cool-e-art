@@ -149,7 +149,7 @@ export const Home = () => {
                 </div>
 
                 <div className='container p-3 text-white'>
-                    <h4>Entrenados por</h4>
+                    <h4>La magia</h4>
                     <img className="perfiles-geeks rounded-circle p-2 " src={geeks} />
                     <h5><Link to="https://4geeksacademy.com" className='text-center '>4GeeksAcademy</Link></h5>
 
