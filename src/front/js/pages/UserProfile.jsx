@@ -57,7 +57,7 @@ function UserProfile() {
 
         </div>
 
-        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
+        <div className="d-flex align-items-center p-3 my-3 rounded text-white">
           <div className="lh-1">
             <h3 className="mb-0 lh-1"> <i className="fa-solid fa-palette"></i>&nbsp;{ilustratorVisited.alias}'s Arts</h3>
           </div>

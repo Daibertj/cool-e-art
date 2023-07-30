@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import EditUser from "./EditUser.jsx";
 
-export const Edit = ({ id, title, description, image, user, ilustration_id }) => {
+export const Edit = ({ id, title, description, image, user, ilustration_id, category, alias }) => {
     const { store, actions } = useContext(Context)
     return (
         <>
@@ -21,11 +21,12 @@ export const Edit = ({ id, title, description, image, user, ilustration_id }) =>
                         </div>
                         <div className="col-md-8" style={{ width: "100px" }}>
                             <div className="card-body">
-                                <p className="card-title">{title}</p>
+                                <h5 className="card-title text-black">{title}</h5>
                                 <p className="card-text">{description ? description : "Sin descripcion"}</p>
-                                <Link to={`/profile/${user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{user.name}</p> </Link>
+                                <Link to={`/profile/${alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{alias}</p> </Link>
+                                <span className="badge rounded-pill bg-light text-dark  ">{category}</span>
                             </div>
-                            
+
                             <button
                                 className="button-trash"
                                 onClick={() => actions.deleteFavorite(id) && actions.deleteIlustration(id, user.alias)}

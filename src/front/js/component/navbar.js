@@ -159,8 +159,12 @@ export const Navbar = () => {
               <>
                 <div className="dropdown">
                   <button className="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    My favorites
-                    <span className="badge bg-secondary">{favoriteData.length}</span>
+                  <i class="fa-solid fa-star"></i>
+                    {/* <span className="badge bg-secondary">{favoriteData.length}</span> */}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {favoriteData.length}
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
                   </button>
                   <ul className="dropdown-menu ul">
                     <li><a className="dropdown-item" href="#"></a></li>
