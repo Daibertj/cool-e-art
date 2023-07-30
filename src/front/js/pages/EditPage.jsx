@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, Routes, Route, useNavigate} from 'react-router-dom'; 
 import { Context } from "../store/appContext";
 import { Edit } from "../component/Edit.jsx";
 import UserSVG from "../component/UserSVG.jsx";
@@ -9,7 +9,7 @@ function EditPage() {
     const { store, actions } = useContext(Context);
     const { getIlustrationsByUser } = actions
     const { ilustrationsUser, userData } = store;
-    ;
+    const navigate = useNavigate();
 
     useEffect(() => { getIlustrationsByUser(userData.alias) },
         [userData.alias])
@@ -17,28 +17,13 @@ function EditPage() {
     return (
         <>
             <div>
-                <div className="container-fluid profile d-inline-flex justify-content-center py-3">
-                    {!userData.image ? <UserSVG /> : <img
-                        src={userData.image}
-                        className="rounded-circle "
-                        alt="..."
-                        style={{ width: "150px" }}  
-                    />}
-
-                    <div className="col-lg-6 col-md-8 h-25 ps-3 ">
-                        <h1 className="fw-light text-black pt-1">{userData.alias}</h1>
-                        <p className="fst-italic">
-                            {userData.name} {userData.lastname}
-                        </p>
-                        
-                    </div>
-                    
-                </div>
-                <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
+                
+                <div className=" d-flex justify-content-between p-3 my-3 rounded text-white">
                     <div className="lh-1">
-                        <h3 className="m-3 lh-1 text-white p-2"> <i className="fas fa-pencil-alt"></i>&nbsp;Edit</h3>
+                        <h3 className="m-3 lh-1 text-white p-2"><i onClick={() => navigate(-1)} class="fa-solid fa-arrow-left fa-lg" style={{ cursor: "pointer" }}></i></h3>
                     </div>
                 </div>
+                <h3 className="text-center text-white">Danger Zone</h3>
                 {ilustrationsUser.length > 0 ? (
                     <div className="album py-5 bg-body-tertiary">
                         <div className="container">

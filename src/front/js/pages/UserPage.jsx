@@ -68,7 +68,7 @@ function UserPage() {
           </div>
           <div>
             <Link to={`/edit`}>
-              <button type="button" className="btn btn-secondary">Edit</button>
+              <button type="button" className="btn btn-danger"><i class="fa-solid fa-eraser"></i></button>
             </Link>
           </div>
         </div>
