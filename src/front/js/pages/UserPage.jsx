@@ -124,7 +124,8 @@ function UserPage() {
                           description={ilustration.description}
                           user={ilustration.user}
                           id={ilustration.id}
-                          alias={userData.alias}
+                          
+                          alias={ilustration.user.alias}
                           category={ilustration.category}
                           ilustration_id={ilustration.ilustration_id}
                         />)}

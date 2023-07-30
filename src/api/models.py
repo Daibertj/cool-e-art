@@ -82,5 +82,6 @@ class Favorite(db.Model):
             'description': self.ilustration.description,
             'category': self.ilustration.category,
             'image': self.ilustration.url_image,
+            'user': self.ilustration.user.serialize(),
             
         }
