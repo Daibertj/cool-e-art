@@ -20,7 +20,7 @@ import { NotFound } from "./component/NotFound.jsx";
 import EditPage from "./pages/EditPage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 
-import Prueba from "./pages/Prueba.jsx";
+
 
 //create your first component
 const Layout = () => {
@@ -46,7 +46,7 @@ const Layout = () => {
                         <Route element={<EditPage />} path="/edit" />
                         <Route element={<NotFound />} path="*" />
                         <Route element={<AboutUs/>} path ="/aboutus" />
-                        <Route element={<Prueba/>} path='/prueba'/>
+                        
                     </Routes>
                     <Footer />
                 </ScrollToTop>
