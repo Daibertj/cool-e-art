@@ -48,11 +48,11 @@ export const Home = () => {
       <section id="main" className="container aca">
 
         <section className="box special">
-          <header className="major">
+          <header className="major text-center">
             <h2>¿Pensabas que el arte había muerto?
-              <br />Aca esta Cool E Art
+              <br />Acá está Cool E Art
             </h2>
-            <p>El lugar de ilustradores para ilustradores</p>
+            
           </header>
 
         </section>
@@ -77,7 +77,7 @@ export const Home = () => {
               <div className="content">
 
                 <p>
-                  Cool-E-Art es una comunidad acogedora que da la bienvenida a artistas, expertos y aficionados del arte. Todos pueden compartir y apreciar obras increíbles de diversas disciplinas.
+                  Cool E Art es una comunidad acogedora que da la bienvenida a artistas, expertos y aficionados del arte. Todos pueden compartir y apreciar obras increíbles de diversas disciplinas.
                 </p>
               </div>
             </div>
@@ -87,11 +87,11 @@ export const Home = () => {
           <div className="card-container col">
             <div className="card-home">
               <div className="front-content">
-                <p>Cool-E-Art</p>
+                <p>Cool E Art</p>
               </div>
               <div className="content">
                 <p>
-                  En la era tecnológica actual, Cool-E-Art ofrece una alternativa para artistas gráficos como pintores, dibujantes, diseñadores y fotógrafos. Es una página web diseñada exclusivamente para llevar sus obras al mundo y trascender en el tiempo.
+                  En la era tecnológica actual, Cool E Art ofrece una alternativa para artistas gráficos como pintores, dibujantes, diseñadores y fotógrafos. Es una página web diseñada exclusivamente para llevar sus obras al mundo y trascender en el tiempo.
                 </p>
               </div>
             </div>
@@ -103,7 +103,7 @@ export const Home = () => {
               </div>
               <div className="content">
                 <p>
-                  En Cool-E-Art, puedes encontrar el arte más cool de internet. Explora una variedad de obras únicas y creativas que antes podrían haber estado guardadas y ahora pueden llegar a todos los rincones del mundo. No esperes más, ¡únete a esta comunidad artística!
+                  En Cool E Art, puedes encontrar el arte más cool de internet. Explora una variedad de obras únicas y creativas que antes podrían haber estado guardadas y ahora pueden llegar a todos los rincones del mundo. No esperes más, ¡únete a esta comunidad artística!
                 </p>
               </div>
             </div>
@@ -113,7 +113,7 @@ export const Home = () => {
 
       <div className="container-fluid text-center">
         <div id="banner">
-          <h1 className="display-4 mb-4">Sobre los creadores de Cool-E-Art</h1>
+          <h1 className="display-4 mb-4">Sobre los creadores de Cool E Art</h1>
           <p className="lead fs-5">
             Somos un grupo de nuevos desarrolladores con ganas de aportar nuestro grano de arena en este mundo del arte del dibujo. Por eso hemos ideado una página donde los artistas pueden mostrar su arte. El momento es ahora de crear e imaginar las diversas posibilidades.
           </p>
