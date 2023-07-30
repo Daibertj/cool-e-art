@@ -28,7 +28,7 @@ export const Edit = ({ id, title, description, image, user, ilustration_id, cate
                             </div>
 
                             <button
-                                className="button-trash"
+                                className="button-trash m-auto"
                                 onClick={() => actions.deleteFavorite(id) && actions.deleteIlustration(id, user.alias)}
                             >
                                 <svg viewBox="0 0 448 512" className="svgIcon">

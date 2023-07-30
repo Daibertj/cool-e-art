@@ -25,7 +25,7 @@ function EditPage() {
                 <div className="container">
                     <h3 className="text-white m-4">Danger Zone</h3>
                     {ilustrationsUser.length > 0 ? (
-                        <div className="border border-danger rounded-3 m-4">
+                        <div className=" rounded-3 m-4">
                             <div className="album py-5 bg-body-tertiary">
                                 <div className="container">
                                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 flex-column">
