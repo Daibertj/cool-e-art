@@ -26,7 +26,7 @@ body {
 }
 
 .navbar {
-  height: 60px;
+  height: 70px;
   background-color: #00100b;
 }
 .logonav {
@@ -94,8 +94,8 @@ p {
 	display: flex;
 	margin: 2px;
 	overflow: hidden;
-	width: 340px;
-	height: 60px;
+	width: 310px;
+	height: 65px;
 }
 
 
@@ -111,10 +111,8 @@ p {
 
 
 .btnfav {
-	background-color: #2A265F;
 	border: 0;
 	border-radius: 5px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	color: #fff;
 	font-size: 16px;
 	padding: 12px 25px;

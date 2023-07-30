@@ -62,7 +62,7 @@ function UserPage() {
           </div>
 
         </div>
-        <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
+        <div className=" d-flex justify-content-between p-3 my-3 rounded text-white">
           <div className="lh-1">
             <h3 className="mb-0 lh-1"><i className="fa-solid fa-palette"></i>&nbsp;My Art</h3>
           </div>
@@ -104,7 +104,7 @@ function UserPage() {
 
         {favoriteData.length > 0 ? (
           <>
-            <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
+            <div className="d-flex align-items-center p-3 my-3 rounded text-white">
               <div className="lh-1">
                 <h3 className="mb-0 lh-1"><i className="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h3>
               </div>
