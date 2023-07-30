@@ -43,7 +43,7 @@ function UserProfile() {
           {token && (
             <>
               <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Contactame
+                Contact me
               </button>
 
               <ContactModal alias={alias} />
