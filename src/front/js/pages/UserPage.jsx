@@ -38,15 +38,27 @@ function UserPage() {
             <EditUser />
           </div>
           <div className="row flex-column  text-black">
-            <div>
-              <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a>
-            </div>
-            <div className="py-2">
-              <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
-            </div>
-            <div>
-              <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
-            </div>
+
+            {userData.facebook && (
+              <div>
+                <SocialIcon network="facebook" className="p-2" />{" "}
+                <a href={`https://www.facebook.com/${userData.facebook}`}>
+                  {userData.facebook}
+                </a>
+              </div>
+            )}
+            {userData.instagram && (
+              <div className="py-2">
+                <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
+              </div>
+
+            )}
+            {userData.twitter && (
+              <div>
+                <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
+              </div>
+            )}
+
           </div>
 
         </div>
@@ -114,7 +126,7 @@ function UserPage() {
                           id={ilustration.id}
                           alias={userData.alias}
                           category={ilustration.category}
-                          ilustration_id={ilustration.ilustration_id} 
+                          ilustration_id={ilustration.ilustration_id}
                         />)}
                       <div className="btn-group">
                       </div>
