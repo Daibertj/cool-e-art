@@ -7,22 +7,28 @@ body {
 }
 
 .profile {
-  background: linear-gradient(-45deg, #ff0000, #3df119, rgb(25, 59, 211), #ee00ff);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	color: white;
+  background: linear-gradient(
+    -45deg,
+    #ff0000,
+    #3df119,
+    rgb(25, 59, 211),
+    #ee00ff
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: white;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .navbar {
@@ -54,11 +60,27 @@ img {
 }
 
 #banner {
-  background: rgb(232,20,199);
-  background: -moz-linear-gradient(45deg, rgba(232,20,199,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-  background: -webkit-linear-gradient(45deg, rgba(232,20,199,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-  background: linear-gradient(45deg, rgba(232,20,199,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e814c7",endColorstr="#fcb045",GradientType=1); background-position: top left, center center;
+  background: rgb(232, 20, 199);
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(232, 20, 199, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(232, 20, 199, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(232, 20, 199, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e814c7",endColorstr="#fcb045",GradientType=1);
+  background-position: top left, center center;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
   color: #fff;
@@ -81,202 +103,206 @@ p {
   background-color: #50514f;
 }
 
-
-.ul{
-	background-color: rgb(56, 56, 56);
+.ul {
+  background-color: rgb(56, 56, 56);
 }
-
 
 .course {
-	background-color: #202020;
-	border-radius: 10px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	display: flex;
-	margin: 2px;
-	overflow: hidden;
-	width: 240px;
-	height: 65px;
+  background-color: #202020;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  margin: 2px;
+  overflow: hidden;
+  width: 240px;
+  height: 65px;
 }
-
 
 .course-info {
-	padding: 5px;
-	position: relative;
-	width: 100%;
+  padding: 5px;
+  position: relative;
+  width: 100%;
 }
 
- .btnfav {
-	background-color: #2A265F;
-	border: 0;
-	border-radius: 5px;
-	color: #fff;
-	font-size: 16px;
-	padding: 12px 25px;
-	position: absolute;
-	bottom: 6px;
-	right: 3px;
-	letter-spacing: 1px;
-} 
+.btnfav {
+  background-color: #2a265f;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 25px;
+  position: absolute;
+  bottom: 6px;
+  right: 3px;
+  letter-spacing: 1px;
+}
 
+.modal-content {
+  background-color: #0d0e0d;
+  text-decoration: none;
+}
 
-.modal-content {background-color: #0d0e0d;
-  text-decoration:none;}
+.card-container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
 
-  .card-container {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-  }
-  
-  .card-home {
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-  }
-  
-  .card-home .front-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
-  }
-  
-  .card-home .front-content p {
-    font-size: 32px;
-    font-weight: 700;
-    opacity: 1;
-    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)
-  }
-  
-  .card-home .content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
-    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
-    color: #e8e8e8;
-    padding: 20px;
-    line-height: 1.5;
-    border-radius: 5px;
-    pointer-events: none;
-    transform: translatex(96%);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  }
-  
-  .card-home .content .heading {
-    font-size: 32px;
-    font-weight: 700;
-  }
-  
-  .card-home:hover .content {
-    transform: translateY(0);
-  }
-  
-  .card-home:hover .front-content {
-    transform: translateX(20%);
-  }
-  
-  .card-home:hover .front-content p {
-    opacity: 0;
-  }
-  
-  .major h2{font-size: 32px;
-    font-weight: 700;
-    opacity: 1;
-    background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100% );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1)}
+.card-home {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
 
-    .Btn {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 45px;
-      height: 45px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition-duration: .3s;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-      background-color: rgb(255, 65, 65);
-    }
-    
-    /* plus sign */
-    .sign {
-      width: 100%;
-      transition-duration: .3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .sign svg {
-      width: 17px;
-    }
-    
-    .sign svg path {
-      fill: white;
-    }
-    /* text */
-    .text {
-      position: absolute;
-      right: 0%;
-      width: 0%;
-      opacity: 0;
-      color: white;
-      font-size: 1.2em;
-      font-weight: 600;
-      transition-duration: .3s;
-    }
-    /* hover effect on button width */
-    .Btn:hover {
-      width: 125px;
-      border-radius: 40px;
-      transition-duration: .3s;
-    }
-    
-    .Btn:hover .sign {
-      width: 30%;
-      transition-duration: .3s;
-      padding-left: 20px;
-    }
-    /* hover effect button's text */
-    .Btn:hover .text {
-      opacity: 1;
-      width: 70%;
-      transition-duration: .3s;
-      padding-right: 10px;
-    }
-    /* button click effect*/
-    .Btn:active {
-      transform: translate(2px ,2px);
-    }
+.card-home .front-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-    .navbar-nav{background-color: #0e0d0d;}
+.card-home .front-content p {
+  font-size: 32px;
+  font-weight: 700;
+  opacity: 1;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-    .perfiles-geeks{width: 100px;}
+.card-home .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+  color: #e8e8e8;
+  padding: 20px;
+  line-height: 1.5;
+  border-radius: 5px;
+  pointer-events: none;
+  transform: translatex(96%);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
 
-    .button-trash {
+.card-home .content .heading {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.card-home:hover .content {
+  transform: translateY(0);
+}
+
+.card-home:hover .front-content {
+  transform: translateX(20%);
+}
+
+.card-home:hover .front-content p {
+  opacity: 0;
+}
+
+.major h2 {
+  font-size: 32px;
+  font-weight: 700;
+  opacity: 1;
+  background: linear-gradient(-45deg, #f89b29 0%, #ff0f7b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px, 2px);
+}
+
+.navbar-nav {
+  background-color: #0e0d0d;
+}
+
+.perfiles-geeks {
+  width: 100px;
+}
+
+.button-trash {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -288,14 +314,14 @@ p {
   justify-content: center;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
   cursor: pointer;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   overflow: hidden;
   position: relative;
 }
 
 .svgIcon {
   width: 12px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .svgIcon path {
@@ -305,14 +331,14 @@ p {
 .button-trash:hover {
   width: 140px;
   border-radius: 50px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   background-color: rgb(255, 69, 69);
   align-items: center;
 }
 
 .button-trash:hover .svgIcon {
   width: 50px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   transform: translateY(60%);
 }
 
@@ -321,7 +347,7 @@ p {
   top: -20px;
   content: "Delete";
   color: white;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
   font-size: 2px;
 }
 
@@ -329,7 +355,7 @@ p {
   font-size: 13px;
   opacity: 1;
   transform: translateY(30px);
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .edit-button {

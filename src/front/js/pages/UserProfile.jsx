@@ -32,7 +32,7 @@ function UserProfile() {
             src={ilustratorVisited.image}
             className="rounded-circle "
             alt="..."
-            style={{ width: "150px" }} 
+            style={{ width: "150px" }}
           />
           <div className="col-lg-6 col-md-8 h-25 ps-3 pt-4 ">
             <h1 className="fw-light text-black">{ilustratorVisited.alias}</h1>
@@ -45,18 +45,11 @@ function UserProfile() {
               <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Contact me
               </button>
-
               <ContactModal alias={alias} />
 
-
-
-              
             </>
           )}
-
-
         </div>
-
         <div className="d-flex align-items-center p-3 my-3 rounded text-white">
           <div className="lh-1">
             <h3 className="mb-0 lh-1"> <i className="fa-solid fa-palette"></i>&nbsp;{ilustratorVisited.alias}'s Arts</h3>
