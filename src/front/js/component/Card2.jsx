@@ -22,11 +22,10 @@ function Card2({ id, title, description, image, alias, category }) {
           <span className="badge rounded-pill bg-light text-dark  ">{category}</span>
         </div>
         <button
-        className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-dark bg-black fa-solid fa-heart" : "btn btn-outline-dark bg-black fa-solid fa-heart"}
-        onClick={() => actions.addFavorite(id)}
-      ></button>
+          className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-dark bg-black fa-solid fa-heart" : "btn btn-outline-dark bg-black fa-solid fa-heart"}
+          onClick={() => actions.addFavorite(id)}
+        ></button>
       </div>
-      
     </>
   )
 }

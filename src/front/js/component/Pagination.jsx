@@ -15,7 +15,6 @@ function Pagination({ creatorsPerPage, currentPage, setCurrentPage, totalPages }
             setCurrentPage(currentPage + 1)
         }
     };
-
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (

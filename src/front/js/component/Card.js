@@ -24,14 +24,14 @@ export const Card = ({ id, title, description, image, user, alias }) => {
                         <p className="card-text">{description ? description : "Sin descripcion"}</p>
                         <Link to={`/profile/${alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{alias}</p> </Link>
                     </div>
-                    {}
+                    { }
                     <button
-                    className={store.favoriteData.some(favorite=> favorite.ilustration_id == id) ? "btn btn-secondary fa-solid fa-heart": "btn btn-outline-secondary fa-solid fa-heart"}
-                    onClick={() => actions.addFavorite(id)}
+                        className={store.favoriteData.some(favorite => favorite.ilustration_id == id) ? "btn btn-secondary fa-solid fa-heart" : "btn btn-outline-secondary fa-solid fa-heart"}
+                        onClick={() => actions.addFavorite(id)}
                     ></button>
-                    
+
                 </div>
-                
+
             </div>
         </>
     );

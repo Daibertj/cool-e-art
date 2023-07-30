@@ -17,13 +17,10 @@ function EditPage() {
     return (
         <>
             <div>
-
                 <div className=" d-flex justify-content-between p-3 my-3 rounded text-white">
                     <div className="lh-1">
                         <h3 className="m-1 lh-1 text-white"><i onClick={() => navigate(-1)} class="fa-solid fa-arrow-left fa-lg" style={{ cursor: "pointer" }}></i></h3>
-                        
                     </div>
-
                 </div>
                 <div className="container">
                     <h3 className="text-white m-4">Danger Zone</h3>
