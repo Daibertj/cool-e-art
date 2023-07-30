@@ -22,7 +22,7 @@ function EditPage() {
                         src={userData.image}
                         className="rounded-circle "
                         alt="..."
-                        style={{ width: "150px" }}
+                        style={{ width: "150px" }}  
                     />}
 
                     <div className="col-lg-6 col-md-8 h-25 ps-3 ">
@@ -53,6 +53,8 @@ function EditPage() {
                                             description={ilustration.description}
                                             user={ilustration.user}
                                             id={ilustration.id}
+                                            alias={userData.alias}
+                                            category={ilustration.category}
                                         />
                                     </div>
                                 ))}
