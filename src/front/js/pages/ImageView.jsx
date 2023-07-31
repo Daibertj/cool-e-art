@@ -22,11 +22,10 @@ function ImageView() {
         />
         <h1 className="text-white">{ilustration.title}</h1>
         <p>{ilustration.description}</p>
+        <button className="btn btn-secondary" onClick={goBack}>Go back</button>
 
       </div>
-      <div className="p-4">
-        <button className="btn btn-secondary" onClick={goBack}>Go back</button>
-      </div>
+      
     </div>
   )
 }
