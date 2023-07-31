@@ -18,7 +18,7 @@ export const Home = () => {
 
   return (
     <>
-      <div className="hero-text white-color">
+      {/* <div className="hero-text white-color">
         <div className="container-fluid text-center" id="banner">
           <h1 className="white-color text-uppercase font-700">Cool e Art</h1>
           <h2>
@@ -28,8 +28,11 @@ export const Home = () => {
           </h2>
           <h4 className="white-color text-uppercase mt-20">+Inpiracion, <span className="font-700">+Ilustradores</span> | 1 Lugar</h4>
         </div>
-      </div>
+      </div> */}
       <div className="container p-5">
+      <header className="major text-center  pb-5">        
+      <h2>¿Pensabas que el arte había muerto?</h2>
+      </header>
         <div className="row">
           <div className="col-12">
             <div className="wrapper">
@@ -49,10 +52,8 @@ export const Home = () => {
 
         <section className="box special">
           <header className="major text-center">
-            <h2>¿Pensabas que el arte había muerto?
-              <br />Acá está Cool E Art
-            </h2>
-            
+            <h2>Te confirmamos que no es asi!</h2>
+
           </header>
 
         </section>
@@ -77,7 +78,7 @@ export const Home = () => {
               <div className="content">
 
                 <p>
-                  Cool E Art es una comunidad acogedora que da la bienvenida a artistas, expertos y aficionados del arte. Todos pueden compartir y apreciar obras increíbles de diversas disciplinas.
+                  Te damos la bienvenida a esta acogedora comunidad conformada a artistas, expertos y aficionados del arte. Todos pueden compartir y apreciar obras increíbles de diversas disciplinas.
                 </p>
               </div>
             </div>
@@ -87,11 +88,11 @@ export const Home = () => {
           <div className="card-container col">
             <div className="card-home">
               <div className="front-content">
-                <p>Cool E Art</p>
+                <p>¿Que nos distingue?</p>
               </div>
               <div className="content">
                 <p>
-                  En la era tecnológica actual, Cool E Art ofrece una alternativa para artistas gráficos como pintores, dibujantes, diseñadores y fotógrafos. Es una página web diseñada exclusivamente para llevar sus obras al mundo y trascender en el tiempo.
+                  En la era tecnológica actual, ofrecemos una alternativa para artistas gráficos como pintores, dibujantes, diseñadores y fotógrafos. Es una página web diseñada exclusivamente para llevar sus obras al mundo y trascender en el tiempo.
                 </p>
               </div>
             </div>
@@ -99,11 +100,11 @@ export const Home = () => {
           <div className="card-container col">
             <div className="card-home">
               <div className="front-content">
-                <p>Descubre el arte más cool en internet</p>
+                <p>Descubre el arte más cool de internet</p>
               </div>
               <div className="content">
                 <p>
-                  En Cool E Art, puedes encontrar el arte más cool de internet. Explora una variedad de obras únicas y creativas que antes podrían haber estado guardadas y ahora pueden llegar a todos los rincones del mundo. No esperes más, ¡únete a esta comunidad artística!
+                  Bienvenido a la web donde puedes encontrar el arte más cool de internet. Explora una variedad de obras únicas y creativas que antes podrían haber estado guardadas y ahora pueden llegar a todos los rincones del mundo. No esperes más, ¡únete a esta comunidad artística!
                 </p>
               </div>
             </div>
@@ -112,17 +113,18 @@ export const Home = () => {
       </section>
 
       <div className="container-fluid text-center">
-        <div id="banner">
+        {/* <div id="banner">
           <h1 className="display-4 mb-4">Sobre los creadores de Cool E Art</h1>
           <p className="lead fs-5">
             Somos un grupo de nuevos desarrolladores con ganas de aportar nuestro grano de arena en este mundo del arte del dibujo. Por eso hemos ideado una página donde los artistas pueden mostrar su arte. El momento es ahora de crear e imaginar las diversas posibilidades.
           </p>
-        </div>
+        </div> */}
 
 
         <div className='my-5 text-white '>
 
           <div className='row justify-content-center m-5 p-4'>
+            <h1 className="display-4 mb-4 ">Te presentamos a los creadores</h1>
 
             <h4><Link to="https://github.com/tuquepantin"><img className="perfiles rounded-circle " src={victor} /></Link>  Victor Pantin</h4>
             <h4>Daibert Ramirez <Link to="https://github.com/Daibertj"><img className="perfiles rounded-circle  " src={daibert} /></Link></h4>
