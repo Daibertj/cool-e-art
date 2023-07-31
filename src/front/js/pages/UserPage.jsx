@@ -37,25 +37,25 @@ function UserPage() {
             </p>
             <EditUser />
           </div>
-          <div className="row flex-column  text-black">
+          <div className="row flex-column  link-dark">
 
             {userData.facebook && (
               <div>
-                <SocialIcon network="facebook" className="p-2" />{" "}
-                <a href={`https://www.facebook.com/${userData.facebook}`}>
+                <SocialIcon network="facebook" className="p-2 link-dark" />{" "}
+                <a href={`https://www.facebook.com/${userData.facebook}`} className="link-dark">
                   {userData.facebook}
                 </a>
               </div>
             )}
             {userData.instagram && (
-              <div className="py-2">
-                <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
+              <div className="link-dark py-2">
+                <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`} className="link-dark">  {userData.instagram}</a>
               </div>
 
             )}
             {userData.twitter && (
               <div>
-                <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
+                <SocialIcon network="twitter" className="link-dark" /> <a href={`https://www.twitter.com/${userData.twitter}`} className="link-dark">{userData.twitter}</a>
               </div>
             )}
 
