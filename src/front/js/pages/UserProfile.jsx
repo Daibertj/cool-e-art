@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { Card } from "../component/Card";
 import ContactModal from "../component/ContactModal.jsx";
 import Card2 from "../component/Card2.jsx"
+import UserSVG from "../component/UserSVG.jsx";
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
@@ -28,12 +29,13 @@ function UserProfile() {
     <>
       {ilustratorVisited && (<>
         <div className="container-fluid profile d-inline-flex justify-content-center py-3 ">
-          <img
+          {!ilustratorVisited.image ? <UserSVG /> : <img
             src={ilustratorVisited.image}
             className="rounded-circle "
             alt="..."
             style={{ width: "150px" }}
-          />
+          />}
+
           <div className="col-lg-6 col-md-8 h-25 ps-3 pt-4 ">
             <h1 className="fw-light text-black">{ilustratorVisited.alias}</h1>
             <p className="fst-italic">
