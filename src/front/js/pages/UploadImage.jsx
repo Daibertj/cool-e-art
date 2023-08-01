@@ -67,7 +67,7 @@ const UploadImage = () => {
 
   return (
     <>
-      <ToastContainer theme="dark" position="top-center" pauseOnFocusLoss={false} autoClose={3000} />
+      <ToastContainer theme="dark" position="top-center" pauseOnFocusLoss={false} autoClose={3000} rtl={false} />
       <div className="container-fluid text-white my-5 pt-5 w-25 vh-100">
         <h1>Upload</h1>
         <form>

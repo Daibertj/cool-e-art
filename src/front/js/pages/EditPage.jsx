@@ -36,10 +36,10 @@ function EditPage() {
                                                 <Edit
                                                     image={ilustration.image}
                                                     title={ilustration.title}
-                                                    description={ilustration.description}
-                                                    user={ilustration.user}
+                                                    
+                                                    
                                                     id={ilustration.id}
-                                                    alias={userData.alias}
+                                                    
                                                     category={ilustration.category}
                                                 />
                                             </div>

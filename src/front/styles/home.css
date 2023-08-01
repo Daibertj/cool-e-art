@@ -420,3 +420,20 @@ p {
   transform: translateY(0px);
   transition-duration: 0.3s;
 }
+
+
+.borrarboton{
+  margin-left: 250px;
+  margin-top: -60px;
+}
+
+.overflow {
+  white-space: nowrap; 
+  width: 130px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.datos{
+  margin-left: -45px;
+}

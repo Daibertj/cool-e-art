@@ -9,24 +9,23 @@ export const Edit = ({ id, title, description, image, user, ilustration_id, cate
     return (
         <>
             <div>
-                <div className="card mb-3 negro " style={{ width: "400px", height: "250px" }}>
+                <div className="card mb-3 negro " style={{ width: "600px", height: "130px" }}>
                     <div className="row g-0">
-                        <div classname="col-md-4" style={{ width: "200px" }}>
+                        <div classname="col-md-4" style={{ width: "200px" }}> 
                             <img
                                 src={image}
                                 className="card-img-top"
                                 alt={title}
-                                style={{ width: "200px", height: "250px" }}
+                                style={{ width: "130px", height: "130px" }}
                             />
                         </div>
-                        <div className="col-md-8" style={{ width: "100px" }}>
-                            <div className="card-body">
-                                <h5 className="card-title text-black">{title}</h5>
-                                <p className="card-text">{description ? description : "Sin descripcion"}</p>
+                        <div className="col-md-8 " style={{ width: "100px" }}>
+                            <div className="card-body datos">
+                                <h5 className="card-title text-black overflow">{title}</h5> 
                                 <Link to={`/profile/${alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{alias}</p> </Link>
                                 <span className="badge rounded-pill bg-light text-dark  ">{category}</span>
                             </div>
-                            <div >
+                            <div className="borrarboton" >
                                 <button
                                     className="button-trash m-auto d-flex"
                                     onClick={() => actions.deleteFavorite(id) && actions.deleteIlustration(id, user.alias)}
