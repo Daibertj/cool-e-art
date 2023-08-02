@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			name: "",
 			image: "",
 			photos: [],
-			alias: "",
+			alias: localStorage.getItem("alias") || "",
 			allUsersData: [],
 			countFavorites: '',
 			ilustrationsByCategory: [],
@@ -152,7 +152,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getIlustrationsByUser: async (alias) => {
+			getIlustrationsByUser: async (alias) => { 
 				const store = getStore()
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/user/${alias}`)
@@ -282,9 +282,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			deleteIlustration: async (ilustration_id, alias) => {
-				const store = getStore()
-				console.log(alias)
+			deleteIlustration: async (ilustration_id) => {
+				const store = getStore() 
+				console.log(store.alias)
 				try {
 					let response = await fetch(`${process.env.BACKEND_URL}/ilustration/${ilustration_id}`, {
 						method: "DELETE",
@@ -295,7 +295,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("deleteIlustration", response)
 					if (response.ok) {
 						getActions().getFavorite()
-						getActions().getIlustrationsByUser(alias)
+						getActions().getIlustrationsByUser(store.alias)
 					} else {
 						console.log("erorr deleting Ilustration")
 					}

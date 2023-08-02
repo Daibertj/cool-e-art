@@ -251,7 +251,7 @@ def delete_ilustration(ilustration_id):
 
 @api.route('/ilustration/user/<alias>', methods=['GET'])
 def get_ilustrations_by_user(alias):
-    user = User.query.filter_by(alias=alias).first()
+    user = User.query.filter_by(alias=alias).first() 
 
     if user is None:
         return jsonify({'error': 'User not found'}), 404
