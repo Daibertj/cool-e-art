@@ -19,11 +19,12 @@ function ImageView() {
   return (
     <>
       <div>
-        <img className="padre" style={{ height: "640px" }} src={ilustration.image} alt="" />
-        <div class="card negro hijo " style={{ width: "25rem" }}>
+        <img className="padre " style={{ height: "700px" }} src={ilustration.image} alt="" />
+        <div class="card negro hijo  " style={{ width: "25rem" }}>
           <img
             src={ilustration.image}
             alt={ilustration.title}
+            style={{ height:"400px" }}
           />
           <div class="card-body">
             <h4 className="text-white">{ilustration.title}</h4>
