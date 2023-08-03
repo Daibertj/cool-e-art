@@ -13,20 +13,30 @@ function ImageView() {
     navigate(-1);
   };
 
+  const imageBack = {
+    backgroundImage: "url()",
+  };
   return (
-    <div className="container">
-      <div className="text-center p-5">
-        <img
-          src={ilustration.image}
-          alt={ilustration.title}
-        />
-        <h1 className="text-white">{ilustration.title}</h1>
-        <p>{ilustration.description}</p>
-        <button className="btn btn-secondary" onClick={goBack}>Go back</button>
-
+    <>
+      <div>
+        <img className="padre" style={{ height: "640px" }} src={ilustration.image} alt="" />
+        <div class="card negro hijo " style={{ width: "25rem" }}>
+          <img
+            src={ilustration.image}
+            alt={ilustration.title}
+          />
+          <div class="card-body">
+            <h4 className="text-white">{ilustration.title}</h4>
+            <p>{ilustration.description}</p>
+            <Link to={`/profile/${ilustration.user.alias}`} style={{ textDecoration: 'none', color: 'grey' }}><p>{ilustration.user.alias}</p> </Link>
+            <span className="badge rounded-pill bg-light text-dark  ">{ilustration.category}</span>
+            
+          </div>
+          <button className="btn btn-secondary" onClick={goBack}>Go back</button>
+        </div>
       </div>
-      
-    </div>
+    </>
+
   )
 }
 
