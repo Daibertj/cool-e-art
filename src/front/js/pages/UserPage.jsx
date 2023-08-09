@@ -37,26 +37,38 @@ function UserPage() {
             </p>
             <EditUser />
           </div>
-          <div className="row flex-column  text-black">
-            <div>
-              <SocialIcon network="facebook" className="p-2" /> <a href={`https://www.facebook.com/${userData.facebook}`}>{userData.facebook}</a>
-            </div>
-            <div className="py-2">
-              <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`}>  {userData.instagram}</a>
-            </div>
-            <div>
-              <SocialIcon network="twitter" className="" /> <a href={`https://www.twitter.com/${userData.twitter}`}>{userData.twitter}</a>
-            </div>
+          <div className="row flex-column  link-dark">
+
+            {userData.facebook && (
+              <div>
+                <SocialIcon network="facebook" className="p-2 link-dark" />{" "}
+                <a href={`https://www.facebook.com/${userData.facebook}`} className="link-dark">
+                  {userData.facebook}
+                </a>
+              </div>
+            )}
+            {userData.instagram && (
+              <div className="link-dark py-2">
+                <SocialIcon network="instagram" /><a href={`https://www.instagram.com/${userData.instagram}`} className="link-dark">  {userData.instagram}</a>
+              </div>
+
+            )}
+            {userData.twitter && (
+              <div>
+                <SocialIcon network="twitter" className="link-dark" /> <a href={`https://www.twitter.com/${userData.twitter}`} className="link-dark">{userData.twitter}</a>
+              </div>
+            )}
+
           </div>
 
         </div>
-        <div className=" d-flex justify-content-between p-3 my-3 rounded shadow-sm text-white">
+        <div className=" d-flex justify-content-between p-3 my-3 rounded text-white">
           <div className="lh-1">
             <h3 className="mb-0 lh-1"><i className="fa-solid fa-palette"></i>&nbsp;My Art</h3>
           </div>
           <div>
             <Link to={`/edit`}>
-              <button type="button" className="btn btn-secondary">Edit</button>
+              <button type="button" className="btn btn-danger"><i class="fa-solid fa-eraser"></i></button>
             </Link>
           </div>
         </div>
@@ -92,7 +104,7 @@ function UserPage() {
 
         {favoriteData.length > 0 ? (
           <>
-            <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
+            <div className="d-flex align-items-center p-3 my-3 rounded text-white">
               <div className="lh-1">
                 <h3 className="mb-0 lh-1"><i className="fa-solid fa-star" style={{ color: "yellow" }}></i>&nbsp;Favorites</h3>
               </div>
@@ -112,9 +124,10 @@ function UserPage() {
                           description={ilustration.description}
                           user={ilustration.user}
                           id={ilustration.id}
-                          alias={userData.alias}
+                          
+                          alias={ilustration.user.alias}
                           category={ilustration.category}
-                          ilustration_id={ilustration.ilustration_id} 
+                          ilustration_id={ilustration.ilustration_id}
                         />)}
                       <div className="btn-group">
                       </div>

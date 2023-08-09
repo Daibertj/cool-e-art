@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import { Card } from "../component/Card";
 import ContactModal from "../component/ContactModal.jsx";
 import Card2 from "../component/Card2.jsx"
+import UserSVG from "../component/UserSVG.jsx";
 
 function UserProfile() {
   const { actions, store } = useContext(Context);
@@ -20,7 +21,7 @@ function UserProfile() {
 
   if (!ilustratorVisited) {
     return (
-      <h1>No existe este ilustrador</h1>
+      <h1 className="text-white m-5 p-5">No existe este ilustrador</h1>
     )
   }
 
@@ -28,12 +29,13 @@ function UserProfile() {
     <>
       {ilustratorVisited && (<>
         <div className="container-fluid profile d-inline-flex justify-content-center py-3 ">
-          <img
+          {!ilustratorVisited.image ? <UserSVG /> : <img
             src={ilustratorVisited.image}
             className="rounded-circle "
             alt="..."
-            style={{ width: "150px" }} 
-          />
+            style={{ width: "150px" }}
+          />}
+
           <div className="col-lg-6 col-md-8 h-25 ps-3 pt-4 ">
             <h1 className="fw-light text-black">{ilustratorVisited.alias}</h1>
             <p className="fst-italic">
@@ -43,16 +45,14 @@ function UserProfile() {
           {token && (
             <>
               <button type="button" className="btn btn-dark bg-black m-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Contactame
+                Contact me
               </button>
               <ContactModal alias={alias} />
+
             </>
           )}
-
-
         </div>
-
-        <div className="d-flex align-items-center p-3 my-3 rounded shadow-sm text-white">
+        <div className="d-flex align-items-center p-3 my-3 rounded text-white">
           <div className="lh-1">
             <h3 className="mb-0 lh-1"> <i className="fa-solid fa-palette"></i>&nbsp;{ilustratorVisited.alias}'s Arts</h3>
           </div>

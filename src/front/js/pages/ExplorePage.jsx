@@ -70,7 +70,7 @@ const ExplorePage = () => {
                   <option value="Concept-Art">Concept Art</option>
                   <option value="Environment-Desing">Environment Desing</option>
                   <option value="Character-Desing">Character Desing</option>
-                  <option value="Illustration">Illustration</option>
+                  <option value="Ilustration">Ilustration</option>
                   <option value="Portraits">Portraits</option>
                   <option value="Abstract">Abstract</option>
                   <option value="Characters">Characters</option>

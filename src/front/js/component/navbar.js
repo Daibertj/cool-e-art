@@ -26,7 +26,7 @@ export const Navbar = () => {
         timer: 1000
       });
       await actions.getUserData;
-      navigate(`/myprofile/${userData.alias}`);
+      navigate(`/explorepage`);
     }
     if (response == 400) {
       Swal.fire({
@@ -60,7 +60,6 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
-
             {store.token && (
               <>
                 <li className="nav-item">
@@ -75,7 +74,6 @@ export const Navbar = () => {
               </>
             )}
             <li className="nav-item"><Link to={`/aboutus`} className="nav-link text-white">About Us</Link></li>
-
           </ul>
 
           <div className="ms-auto d-flex">
@@ -102,7 +100,6 @@ export const Navbar = () => {
                       >
                         Email address
                       </label>
-
                       <input
                         onChange={handleChange}
                         name="email"
@@ -157,13 +154,17 @@ export const Navbar = () => {
 
             {store.token && (
               <>
-                <div class="dropdown">
-                  <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    My favorites
-                    <span className="badge bg-secondary">{favoriteData.length}</span>
+                <div className="dropdown">
+                  <button className="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-star"></i>
+                    {/* <span className="badge bg-secondary">{favoriteData.length}</span> */}
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {favoriteData.length}
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
                   </button>
-                  <ul class="dropdown-menu ul">
-                    <li><a class="dropdown-item" href="#"></a></li>
+                  <ul className="dropdown-menu ul">
+                    <li><a className="dropdown-item" href="#"></a></li>
                     {favoriteData.map((ilustration) => (
                       <div className="col" key={ilustration.id}>
                         {ilustration && (
@@ -184,15 +185,11 @@ export const Navbar = () => {
                   </ul>
                 </div>
                 <span className="m-2">Hey, {userData.name}!</span>
-
-
-                <button
-                  className=" btn btn-secondary "
-                  onClick={handleLogout}
-                >
-                  Log Out
+                <button className="Btn"
+                  onClick={handleLogout}>
+                  <div className="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+                  <div className="text">Logout</div>
                 </button>
-
               </>
             )}
           </div>

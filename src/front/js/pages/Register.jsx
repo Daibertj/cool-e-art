@@ -17,7 +17,7 @@ const Register = () => {
   const [user, setUser] = useState(initialState);
   const { actions } = useContext(Context);
   const navigate = useNavigate();
-  
+
 
   const handleSignup = async () => {
     if (!user.name || !user.email || !user.password || !user.alias) {
